@@ -9,6 +9,10 @@ Prepared WordPress project.
 git clone git@github.com:DNepovim/wordpress-base.git
 composer install
 npm install
+```
+- create new database
+- create `wp-config.php` based on `wp-config-sample.php`
+```
 gulp
 ```
 
