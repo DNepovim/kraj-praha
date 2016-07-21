@@ -1,0 +1,7 @@
+section.entry-content
+    - if (has_post_thumbnail()):
+        - the_post_thumbnail()
+    - endif
+    - the_content()
+    div.entry-links
+        - wp_link_pages()

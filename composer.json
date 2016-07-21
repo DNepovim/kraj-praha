@@ -1,0 +1,27 @@
+{
+    "name": "dnepovim/wordpress-base",
+    "description": "Wordpress scaffolding.",
+    "repositories":[
+      {
+        "type":"composer",
+        "url":"https://wpackagist.org"
+      }
+    ],
+    "require": {
+        "tracy/tracy": "^2.4",
+        "wpackagist-plugin/meta-box": "^4.8.7",
+        "wpackagist-plugin/html-editor-syntax-highlighter": "^1.7.2"
+    },
+    "extra"       : {
+      "installer-paths": {
+        "wp-content/mu-plugins/{$name}": ["type:wordpress-plugin"]
+      }
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Dominik Blaha",
+            "email": "blaha.dominik.2@gmail.com"
+        }
+    ]
+}

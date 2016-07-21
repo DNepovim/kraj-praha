@@ -1,0 +1,13 @@
+extends layouts/default
+
+block content
+    section(role="main").content
+        - if (have_posts()):
+            - while (have_posts()):
+                - the_post();
+                .content
+                    - if ($content = get_the_content("Read More", true)):
+                        - echo $content
+                    - endif
+            - endwhile
+        - endif

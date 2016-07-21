@@ -1,0 +1,15 @@
+extends layouts/default
+
+block content
+    section(role="main")
+        header
+            h1
+                - _e( 'Tag Archives: ', 'blankslate' )
+                - single_tag_title();
+        - if (have_posts()):
+            - while (have_posts()):
+                - the_post()
+                include parts/entry/entry
+            - endwhile
+        - endif
+        include components/paginator

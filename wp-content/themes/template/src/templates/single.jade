@@ -1,0 +1,12 @@
+extends layouts/default
+
+section(role="main")
+    - if (have_posts()):
+        - while (have_posts()):
+            - the_post()
+            include parts/entry/entry
+        - if (!post_password_required()) comments_template( '', true )
+        - endwhile
+    - endif
+    footer
+        include components/paginator-single

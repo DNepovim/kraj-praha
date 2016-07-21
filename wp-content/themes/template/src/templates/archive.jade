@@ -1,0 +1,11 @@
+extends layouts/default
+
+block content
+    section(role="main")
+        header
+        - if (have_posts()):
+            - while (have_posts()):
+                - the_post()
+                include parts/entry/entry
+            - endwhile
+        - endif

@@ -1,0 +1,40 @@
+section.comments
+    section.comments-list
+        - if (have_comments()):
+            - global $comments_by_type
+            - $comments_by_type = &separate_comments($comments)
+        - endif
+
+        - if (!empty( $comments_by_type['comment'])):
+            h3
+                - comments_number()
+            - if (get_comment_pages_count()>1):
+                nav(role="navigation").comments-navigation.above
+                    div
+                        - paginate_comments_links()
+            - endif
+            ul
+                - wp_list_comments( 'type=comment' )
+            - if (get_comment_pages_count()>1):
+                nav(role="navigation").comments-navigation.below
+                    div
+                        - paginate_comments_links()
+            - endif
+        - endif
+    - if (!empty($comments_by_type['pings'])):
+        - $ping_count = count($comments_by_type['pings'])
+    - endif
+    section.trackbacks-list
+        h3
+            span.ping-count
+                - $ping_count
+                span
+                    - if ($ping_count>1):
+                        - __( 'Trackbacks', 'template' )
+                    - else :
+                        - __( 'Trackback', 'template' ) )
+        ul
+            - wp_list_comments( 'type=pings&callback=blankslate_custom_pings' )
+    - if (comments_open()):
+        comment_form()
+    - endif

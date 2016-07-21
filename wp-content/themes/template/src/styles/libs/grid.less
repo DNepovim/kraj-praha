@@ -1,0 +1,199 @@
+/* =====================================================================================================================
+============================================ GRID SYSTEM BY TOMÁŠ JORPALIDIS ===========================================
+===================================================================================================================== */
+@debug-mode:0;
+@gridx-columns: 24;
+@gridx-gutter: 1rem; // Padding between columns. Gets divided in half for the left and right.
+
+@gridx-s-min: 500px;
+@gridx-m-min: 768px;
+@gridx-l-min: 992px;
+@gridx-xl-min: 1200px;
+@gridx-xxl-min: 1400px;
+
+@gridx-xs-max: (@gridx-s-min - 1);
+@gridx-s-max: (@gridx-m-min - 1);
+@gridx-m-max: (@gridx-l-min - 1);
+@gridx-l-max: (@gridx-xl-min - 1);
+@gridx-xl-max: (@gridx-xxl-min - 1);
+
+@gridx-container-m: (720px + @gridx-gutter);
+@gridx-container-l: (940px + @gridx-gutter);
+@gridx-container-xl: (1140px + @gridx-gutter);
+
+@media-xs-max: ~"(max-width: @{gridx-xs-max})";
+@media-s-min: ~"(min-width: @{gridx-s-min})";
+@media-s-max: ~"(max-width: @{gridx-s-max})";
+@media-s: ~"@{media-s-min} AND @{media-s-max}";
+@media-m-min: ~"(min-width: @{gridx-m-min})";
+@media-m-max: ~"(max-width: @{gridx-m-max})";
+@media-m: ~"@{media-m-min} AND @{media-m-max}";
+@media-l-min: ~"(min-width: @{gridx-l-min})";
+@media-l-max: ~"(max-width: @{gridx-l-max})";
+@media-l: ~"@{media-l-min} AND @{media-l-max}";
+@media-xl-min: ~"(min-width: @{gridx-xl-min})";
+@media-xl-max: ~"(max-width: @{gridx-xl-max})";
+@media-xl: ~"@{media-xl-min} AND @{media-xl-max}";
+@media-xxl-min: ~"(min-width: @{gridx-xxl-min})";
+
+
+/* =====================================================================================================================
+===================================================== GRID SETTINGS ====================================================
+===================================================================================================================== */
+.container {
+  .container-fixed();
+
+  @media (min-width: @gridx-m-min) {
+    width: @gridx-container-m;
+  }
+  @media (min-width: @gridx-l-min) {
+    width: @gridx-container-l;
+  }
+  /*@media (min-width: @gridx-xl-min) {
+    width: @gridx-container-xl;
+  }*/
+}
+
+.container-fluid {
+  .container-fixed();
+}
+
+.row {
+  .make-row();
+}
+
+.make-grid-columns();
+
+.make-grid(xs);
+@media (min-width: @gridx-s-min) {
+  .make-grid(s);
+}
+@media (min-width: @gridx-m-min) {
+  .make-grid(m);
+}
+@media (min-width: @gridx-l-min) {
+  .make-grid(l);
+}
+@media (min-width: @gridx-xl-min) {
+  .make-grid(xl);
+}
+@media (min-width: @gridx-xxl-min) {
+  .make-grid(xxl);
+}
+
+/* =====================================================================================================================
+================================================== MIXINS & FUNCTIONS ==================================================
+===================================================================================================================== */
+.container-fixed(@gutter: @gridx-gutter) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  floor((@gutter / 2));
+  padding-right: ceil((@gutter / 2));
+  &:extend(.clearfix all);
+}
+
+.make-grid-columns() {
+  // Common styles for all sizes of grid columns, widths 1-12
+  .col(@index) { // initial
+    @item: ~".grid-xs-@{index}, .grid-s-@{index}, .grid-m-@{index}, .grid-l-@{index}, .grid-xl-@{index}, .grid-xxl-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @gridx-columns) { // general; "=<" isn't a typo
+    @item: ~".grid-xs-@{index}, .grid-s-@{index}, .grid-m-@{index}, .grid-l-@{index}, .grid-xl-@{index}, .grid-xxl-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @gridx-columns) { // terminal
+    @{list} {
+      position: relative;
+      // Prevent columns from collapsing when empty
+      min-height: 1px;
+      // Inner gutter via padding
+      padding-left:  ceil((@gridx-gutter / 2));
+      padding-right: floor((@gridx-gutter / 2));
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.float-grid-columns(@class) {
+  .col(@index) { // initial
+    @item: ~".grid-@{class}-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @gridx-columns) { // general
+    @item: ~".grid-@{class}-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @gridx-columns) { // terminal
+    @{list} {
+      float: left;
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+  .grid-@{class}-@{index} {
+    width: percentage((@index / @gridx-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
+  .grid-@{class}-push-@{index} {
+    left: percentage((@index / @gridx-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
+  .grid-@{class}-push-0 {
+    left: auto;
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+  .grid-@{class}-pull-@{index} {
+    right: percentage((@index / @gridx-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
+  .grid-@{class}-pull-0 {
+    right: auto;
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = offset) {
+  .grid-@{class}-offset-@{index} {
+    margin-left: percentage((@index / @gridx-columns));
+  }
+}
+
+// Basic looping in LESS
+.loop-grid-columns(@index, @class, @type) when (@index >= 0) {
+  .calc-grid-column(@index, @class, @type);
+  // next iteration
+  .loop-grid-columns((@index - 1), @class, @type);
+}
+
+// Create grid for specific class
+.make-grid(@class) {
+  .float-grid-columns(@class);
+  .loop-grid-columns(@gridx-columns, @class, width);
+  .loop-grid-columns(@gridx-columns, @class, pull);
+  .loop-grid-columns(@gridx-columns, @class, push);
+  .loop-grid-columns(@gridx-columns, @class, offset);
+}
+
+.make-row(@gutter: @gridx-gutter) {
+  margin-left:  ceil((@gutter / -2));
+  margin-right: floor((@gutter / -2));
+  &:extend(.clearfix all);
+}
+
+
+/* =====================================================================================================================
+====================================================== DEBUG MODE ======================================================
+===================================================================================================================== */
+body:after when (@debug-mode = 1) {-webkit-user-drag:element;content:"XS";position:fixed;top:0;left:0;z-index:9999999;background:#cc0000;padding:5px 15px;text-align:center;font-weight:bold;color:#fff;pointer-events:none;
+  @media @media-s-min {content:"S"}
+  @media @media-m-min {content:"M"}
+  @media @media-l-min {content:"L"}
+  @media @media-xl-min {content:"XL"}
+  @media @media-xxl-min {content:"XXL"}
+  &:hover {opacity:.1}
+}
