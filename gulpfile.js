@@ -78,8 +78,9 @@ gulp.task('default', ['images', 'styles', 'scripts','templates'] , function () {
     browserSync.init({
         proxy: localhostURL
     });
+    gulp.watch(pathToTemplate + 'src/images/**', ['images']);
     gulp.watch(pathToTemplate + 'src/styles/**/*.less', ['styles']);
     gulp.watch(pathToTemplate + 'src/scripts/**/*.js', ['scripts']);
     gulp.watch(pathToTemplate + 'src/templates/**/*.jade', ['templates']);
-    gulp.watch(pathToTemplate + 'src/images/**', ['images']);
+    gulp.watch('**/*.php').on('change', browserSync.reload);
 });
