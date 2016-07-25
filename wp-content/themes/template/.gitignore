@@ -2,4 +2,4 @@ dist
 *.php
 
 !functions.php
-!src/cpt/
+!/src/cpt/*
