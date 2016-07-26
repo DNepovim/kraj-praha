@@ -14,7 +14,7 @@ function your_prefix_meta_boxes( $meta_boxes ) {
             array(
                 'id'   => 'end_date',
                 'name' => __('Konec'),
-                'type' => 'time'
+                'type' => 'datetime'
             ),
             array(
                 'id'   => 'position',
