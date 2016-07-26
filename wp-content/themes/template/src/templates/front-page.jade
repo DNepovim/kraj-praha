@@ -2,9 +2,12 @@ extends layouts/default
 
 block content
     section(role="main").content
+        - query_posts( array('post_type' => array('event', 'post'), 'showposts' => 6));
         - if (have_posts()):
             - while (have_posts()):
                 - the_post();
+                h2.title
+                    - the_title()
                 .content
                     - if ($content = get_the_content("Read More", true)):
                         - echo $content
