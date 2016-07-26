@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0fc30f0a08579acded10cf33e2775b94",
-    "content-hash": "692c54b099828a782490339c1117f658",
+    "hash": "8bfb57db12ceaacd9b8c11d3e9ac6666",
+    "content-hash": "a9558b8020dc793e2b4145616b62fb88",
     "packages": [
         {
             "name": "composer/installers",
@@ -168,6 +168,26 @@
                 "nette"
             ],
             "time": "2016-06-30 19:57:01"
+        },
+        {
+            "name": "wpackagist-plugin/feedwordpress",
+            "version": "2015.0514",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/feedwordpress/",
+                "reference": "tags/2015.0514"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/feedwordpress.2015.0514.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/feedwordpress/"
         },
         {
             "name": "wpackagist-plugin/html-editor-syntax-highlighter",
