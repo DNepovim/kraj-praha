@@ -52,5 +52,17 @@ function your_prefix_meta_boxes( $meta_boxes ) {
             )
         ),
     );
+    $meta_boxes[] = array(
+        'title'      => __( 'Související články', 'textdomain' ),
+        'post_types' => 'page',
+        'context'    => 'side',
+        'fields'     => array(
+            array(
+                'id'      => 'taxonomy',
+                'name'    => __( 'Kategorie', 'textdomain' ),
+                'type'    => 'taxonomy'
+            )
+        )
+    );
     return $meta_boxes;
 }
