@@ -1,8 +1,23 @@
 extends layouts/default
 
 block content
-    section(role="main").content
+    main(role="main").content.main
         - query_posts( array('post_type' => array('event', 'post'), 'showposts' => 6));
+        - if (have_posts()):
+            - while (have_posts()):
+                - the_post();
+                article.post(class=get_post_type())
+                    h2.title
+                        - the_title()
+                    .content
+                        - if ($content = get_the_excerpt() ):
+                            - echo $content
+                        - endif
+            - endwhile
+        - endif
+
+    aside.content.side.rss
+        - query_posts( array('post_type' => array('krizovatka'), 'showposts' => 6));
         - if (have_posts()):
             - while (have_posts()):
                 - the_post();
