@@ -6,11 +6,12 @@ block content
         - if (have_posts()):
             - while (have_posts()):
                 - the_post();
-                h2.title
-                    - the_title()
-                .content
-                    - if ($content = get_the_content("Read More", true)):
-                        - echo $content
-                    - endif
+                article.post(class=get_post_type())
+                    h2.title
+                        - the_title()
+                    .content
+                        - if ($content = get_the_excerpt() ):
+                            - echo $content
+                        - endif
             - endwhile
         - endif
