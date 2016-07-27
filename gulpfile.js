@@ -31,14 +31,13 @@ gulp.task('images', function () {
 });
 
 gulp.task('styles', function () {
-    gulp.src([pathToTemplate + 'src/styles/**/*.less'])
+    gulp.src([pathToTemplate + 'src/styles/styles.less'])
         .pipe(plumber({
             errorHandler: function (error) {
                 console.log(error.message);
                 this.emit('end');
             }
         }))
-        .pipe(concat('styles.less'))
         .pipe(less())
         .pipe(sourcemaps.init())
         .pipe(pixrem())

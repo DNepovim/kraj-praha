@@ -18,9 +18,9 @@ head
     meta(property='og:image:height', content='')
     meta(name='twitter:card', content='summary_large_image')
 
-    link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+    link(rel='shortcut icon', href=get_template_directory_uri() + '/favicon.ico', type='image/x-icon')
 
-    link(rel='stylesheet ', href='dist/styles.min.css', media='screen')
+    link(rel='stylesheet ', href=get_template_directory_uri() + '/dist/styles.min.css', media='screen')
     //link(rel='stylesheet', href='dist/print.min.css', media='print')
 
     - wp_head()
