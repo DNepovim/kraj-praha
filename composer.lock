@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8bfb57db12ceaacd9b8c11d3e9ac6666",
-    "content-hash": "a9558b8020dc793e2b4145616b62fb88",
+    "hash": "0666a9824bc7ebf7af47e27d8287794c",
+    "content-hash": "f59e7b871e3b8e0581530aad16af698f",
     "packages": [
         {
             "name": "composer/installers",
@@ -168,6 +168,26 @@
                 "nette"
             ],
             "time": "2016-06-30 19:57:01"
+        },
+        {
+            "name": "wpackagist-plugin/fb-last-posts",
+            "version": "1.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/fb-last-posts/",
+                "reference": "tags/1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/fb-last-posts.1.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/fb-last-posts/"
         },
         {
             "name": "wpackagist-plugin/feedwordpress",
