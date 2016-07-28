@@ -26,9 +26,17 @@ head
     - wp_head()
 | <body <?php body_class(); ?>>
 
+- include_once 'dist/symbol/shapes.svg'
+
 include ../parts/header
 
-block content
+.container
+    .row
+        main.main.grid-s-24(role="main")
+            block main
+
+        aside.aside.grid-s-24
+            block aside
 
 include ../parts/sidebar
 include ../parts/footer
