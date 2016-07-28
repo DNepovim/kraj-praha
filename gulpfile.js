@@ -5,6 +5,7 @@ const
     concat          = require('gulp-concat'),
     imagemin        = require('gulp-imagemin'),
     pngquant        = require('imagemin-pngquant'),
+    svgSprite      = require('gulp-svg-sprite'),
     less            = require('gulp-less'),
     postcss         = require('gulp-postcss'),
     autoprefixer    = require('autoprefixer'),
@@ -29,6 +30,22 @@ gulp.task('images', function () {
         }))
         .pipe(gulp.dest(pathToTemplate + 'dist/images'));
 });
+
+
+
+gulp.task('svg', function () {
+    gulp.src(pathToTemplate + 'src/svg/**/*.svg')
+        .pipe(svgSprite({
+            mode: {
+                symbol: {
+                    inline: true,
+                    sprite: 'shapes'
+                }
+            }
+        }))
+        .pipe(gulp.dest(pathToTemplate + 'dist'))
+        .pipe(browserSync.stream())
+})
 
 gulp.task('styles', function () {
     gulp.src([pathToTemplate + 'src/styles/styles.less'])
@@ -73,11 +90,12 @@ gulp.task('templates', function() {
         .pipe(browserSync.stream())
 });
 
-gulp.task('default', ['images', 'styles', 'scripts','templates'] , function () {
+gulp.task('default', ['images','svg', 'styles', 'scripts','templates'] , function () {
     browserSync.init({
         proxy: localhostURL
     });
     gulp.watch(pathToTemplate + 'src/images/**', ['images']);
+    gulp.watch(pathToTemplate + 'src/svg/**', ['svg']);
     gulp.watch(pathToTemplate + 'src/styles/**/*.less', ['styles']);
     gulp.watch(pathToTemplate + 'src/scripts/**/*.js', ['scripts']);
     gulp.watch(pathToTemplate + 'src/templates/**/*.jade', ['templates']);
