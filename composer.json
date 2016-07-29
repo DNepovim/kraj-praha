@@ -12,7 +12,8 @@
         "wpackagist-plugin/meta-box": "^4.8.7",
         "wpackagist-plugin/html-editor-syntax-highlighter": "^1.7.2",
         "wpackagist-plugin/feedwordpress": "^2015.0426",
-        "wpackagist-plugin/fb-last-posts": "^1.0"
+        "wpackagist-plugin/fb-last-posts": "^1.0",
+        "facebook/php-sdk-v4": "^5.2"
     },
     "extra"       : {
       "installer-paths": {

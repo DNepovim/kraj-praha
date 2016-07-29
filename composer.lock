@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0666a9824bc7ebf7af47e27d8287794c",
-    "content-hash": "f59e7b871e3b8e0581530aad16af698f",
+    "hash": "7a7c1ec0f974d6a24979f55b1fe610f0",
+    "content-hash": "6a4a77396097ae4f01f811cd279ea60e",
     "packages": [
         {
             "name": "composer/installers",
@@ -110,6 +110,63 @@
             "time": "2016-07-05 06:18:20"
         },
         {
+            "name": "facebook/php-sdk-v4",
+            "version": "5.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
+                "reference": "c60fba1fe1de62db1e0776d32fc2fb778189459c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/c60fba1fe1de62db1e0776d32fc2fb778189459c",
+                "reference": "c60fba1fe1de62db1e0776d32fc2fb778189459c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4|^7.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                },
+                "files": [
+                    "src/Facebook/polyfills.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/facebook-php-sdk-v4/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/facebook-php-sdk-v4",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2016-05-18 22:04:36"
+        },
+        {
             "name": "tracy/tracy",
             "version": "v2.4.1",
             "source": {
@@ -180,7 +237,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/fb-last-posts.1.0.zip",
-                "reference": null,
+                "reference": "tags/1.0",
                 "shasum": null
             },
             "require": {
@@ -220,7 +277,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/html-editor-syntax-highlighter.1.7.2.zip",
-                "reference": null,
+                "reference": "tags/1.7.2",
                 "shasum": null
             },
             "require": {
@@ -240,7 +297,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/meta-box.4.8.7.zip",
-                "reference": null,
+                "reference": "tags/4.8.7",
                 "shasum": null
             },
             "require": {
