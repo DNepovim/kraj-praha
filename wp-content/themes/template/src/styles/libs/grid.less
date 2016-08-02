@@ -181,6 +181,7 @@
 .make-row(@gutter: @gridx-gutter) {
   margin-left:  ceil((@gutter / -2));
   margin-right: floor((@gutter / -2));
+  clear: both;
   &:extend(.clearfix all);
 }
 
