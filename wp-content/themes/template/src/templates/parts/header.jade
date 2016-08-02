@@ -4,7 +4,11 @@ header.main-header.container(role="banner")
             svg.logotype__logo
                 use(xlink:href='#logotyp')
 
-        nav.main-nav.grid-s-24.grid-m-16(role="navigation")
+        .silhouette.grid-s-15.grid-s-offset-1
+            svg.silhouette__logo
+                use(xlink:href='#silhouette')
+
+        nav.main-nav.grid-s-24(role="navigation")
             - $menu_name = 'main_menu'; //menu slug
             - $locations = get_nav_menu_locations();
             - $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
