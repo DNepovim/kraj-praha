@@ -1,12 +1,9 @@
 header.main-header.container(role="banner")
     .row
         .logotype.grid-s-24.grid-m-8
-            .logotype__logo
-                svg.svg
-                    use(xlink:href='#logo')
-            h1.title.logotype__title
-                strong='skaut'
-                - bloginfo('title');
+            svg.logotype__logo
+                use(xlink:href='#logotyp')
+
         nav.main-nav.grid-s-24.grid-m-16(role="navigation")
             - $menu_name = 'main_menu'; //menu slug
             - $locations = get_nav_menu_locations();
