@@ -1,0 +1,38 @@
+.button {
+  position: relative;
+  margin: @margin-button;
+  &__background {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    use {
+      stroke: @second;
+      fill: none;
+      transition: fill 300ms, stroke 300ms;
+    }
+  }
+  &__link{
+    position: relative;
+    display: block;
+    z-index: 5;
+    color: @second;
+    text-align: center;
+    padding: @padding-button;
+    transition: color 300ms;
+  }
+  &:hover {
+    .button__background {
+      use {
+        fill: @second;
+      }
+
+    }
+    .button__link {
+      color: @blank;
+    }
+
+  }
+}
