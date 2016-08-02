@@ -1,6 +1,5 @@
 .excerpt{
   text-align: right;
-  margin: 0 0 @margin-box 0;
   & *{
     text-align: left;
   }
@@ -21,8 +20,17 @@
   }
   &__text{
     text-align: left;
+    margin: 1em 0 0.5em;
   }
   &__button{
     display: inline-block;
+  }
+  &.krizovatka &__title a{
+    color: @krizovatkaText;
+    font-size: @title-font-size-3-aside;
+  }
+  &.facebook &__title a{
+    color: @facebookText;
+    font-size: @base-font-size;
   }
 }
