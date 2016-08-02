@@ -1,20 +1,21 @@
 header.main-header.container(role="banner")
-    .logotype
-        .logotype__logo
-            svg.svg
-                use(xlink:href='#logo')
-        h1.title.logotype__title
-            strong='skaut'
-            - bloginfo('title');
-    nav.main-nav(role="navigation")
-        - $menu_name = 'main_menu'; //menu slug
-        - $locations = get_nav_menu_locations();
-        - $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-        - $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
-        ul.main-nav__items
-            - foreach($menuitems as $item):
-                li.main-nav__item.button
-                    svg.button__background
-                        |<use xlink:href='#shape-<?php echo rand(1, 3) ?>'></use>
-                    | <a class='link button__link' href='<?php echo $item->url ?>'><?php echo $item->title ?></a>
-            - endforeach
+    .row
+        .logotype.grid-s-24.grid-m-8
+            .logotype__logo
+                svg.svg
+                    use(xlink:href='#logo')
+            h1.title.logotype__title
+                strong='skaut'
+                - bloginfo('title');
+        nav.main-nav.grid-s-24.grid-m-16(role="navigation")
+            - $menu_name = 'main_menu'; //menu slug
+            - $locations = get_nav_menu_locations();
+            - $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+            - $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
+            ul.main-nav__items
+                - foreach($menuitems as $item):
+                    li.main-nav__item.button
+                        svg.button__background
+                            |<use xlink:href='#shape-<?php echo rand(1, 3) ?>'></use>
+                        | <a class='link button__link' href='<?php echo $item->url ?>'><?php echo $item->title ?></a>
+                - endforeach
