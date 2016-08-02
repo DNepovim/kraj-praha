@@ -1,36 +1,74 @@
-.excerpt{
+.excerpt {
+  padding: 1rem 1.6rem;
+  margin: 1rem;
   text-align: right;
-  & *{
+  & * {
     text-align: left;
   }
-  &__thumbnail{
-    height: 180px;
+  &__thumbnail {
+    width: 30vw;
+    height: 30vw;
+    margin: 0 1rem 0 0;
+    float: left;
   }
-  &__title{
+  &__title {
     margin: 1em 0 0;
-    a{
+    a {
       display: block;
       text-align: center;
     }
   }
-  &__date{
+  &__date {
     font-size: 0.8em;
     text-align: center;
     margin: 0;
   }
-  &__text{
-    text-align: left;
+  &__text {
+    text-align: center;
     margin: 1em 0 0.5em;
   }
-  &__button{
+  &__button {
     display: inline-block;
   }
-  &.krizovatka &__title a{
+  &.krizovatka &__title a {
     color: @krizovatkaText;
     font-size: @title-font-size-3-aside;
   }
-  &.facebook &__title a{
+  &.facebook &__title a {
     color: @facebookText;
     font-size: @base-font-size;
+  }
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    fill: @background;
+    &--shadow {
+      z-index: -2;
+      top: 1rem;
+      left: 1rem;
+      fill: @shadow;
+      transform: rotate(180deg);
+    }
+  }
+  &.thumb .excerpt {
+    &__title a {
+      text-align: left;
+    }
+    &__date {
+      text-align: left;
+    }
+    &__text {
+      text-align: left;
+    }
+  }
+  @media @media-m-min {
+    &__thumbnail {
+      width: 20vw;
+      height: 20vw;
+    }
   }
 }

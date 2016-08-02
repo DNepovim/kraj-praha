@@ -5,5 +5,5 @@
             <use xlink:href="#path-1"></use>
         </mask>
     </defs>
-    <use id="Combined-Shape" mask="url(#mask-2)" stroke-width="2" fill="#fefefe" fill-rule="evenodd" xlink:href="#path-1"></use>
+    <use id="mask" mask="url(#mask-2)" stroke-width="2" fill-rule="evenodd" xlink:href="#path-1"></use>
 </svg>

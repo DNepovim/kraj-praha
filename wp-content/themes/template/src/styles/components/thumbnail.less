@@ -2,9 +2,6 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  margin: 40px 0 0 0;
-  width: 100%;
-  max-width: 250px;
   &__frame {
     position: absolute;
     top: 0;
@@ -13,9 +10,8 @@
     width: 102%;
     height: 104%;
     margin: -1%;
-  }
-  @media @media-m-min {
-    float: left;
-    margin: 0 1rem 0 0;
+    * {
+      fill: @background;
+    }
   }
 }
