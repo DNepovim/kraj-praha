@@ -6,11 +6,25 @@
     display: inline-block;
     svg{
       use{
-        fill: @second
+        stroke: @second;
+        fill: none;
+        transition: fill 300ms;
       }
     }
     a{
-      color: @blank;
+      color: @second;
+      transition: color 300ms;
+    }
+    &:hover {
+      svg{
+        use{
+          fill: @second
+        }
+      }
+      a{
+        color: @blank;
+      }
+
     }
   }
 }
