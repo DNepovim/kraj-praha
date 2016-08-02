@@ -19,8 +19,13 @@ block aside
                 - the_post();
                 - $id = get_the_ID();
                 - $meta = get_post_meta($id)
-                article.post.content-box__post.excerpt(class=get_post_type())
-                    - if($thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))):
+                - $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))
+                - $classes = get_post_type()
+                - if(!empty($thumb)):
+                    - $classes .= 'thumb'
+                - endif
+                article.post.content-box__post.excerpt(class= '<?php echo $classes ?>')
+                    - if($thumb):
                         figure.thumbnail.excerpt__thumbnail(style='background-image: url('+ $thumb + ')')
                             svg.thumbnail__frame
                                 use(xlink:href='#frame')
