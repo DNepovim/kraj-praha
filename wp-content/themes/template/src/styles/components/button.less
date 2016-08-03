@@ -9,7 +9,7 @@
     height: 100%;
     width: 100%;
     use {
-      stroke: @second;
+      stroke: @first;
       fill: none;
       transition: fill 300ms, stroke 300ms;
     }
@@ -18,7 +18,7 @@
     position: relative;
     display: block;
     z-index: 5;
-    color: @second;
+    color: @first;
     text-align: center;
     padding: @padding-button;
     transition: color 300ms;
@@ -26,7 +26,7 @@
   &:hover {
     .button__background {
       use {
-        fill: @second;
+        fill: @first;
       }
 
     }
