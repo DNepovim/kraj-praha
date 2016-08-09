@@ -3,28 +3,38 @@
     - the_post();
     - $id = get_the_ID();
     - $meta = get_post_meta($id)
-    - $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))
-    - $classes = get_post_type()
-    - if(!empty($thumb)):
-      - $classes .= 'thumb'
+    - cdd($meta)
+
+    - $type = reset($meta['fptc_type'])
+
+    - $message = reset($meta['fptc_message'])
+    - $length = 100
+
+    - if (strlen($message)>$length):
+      - $position = strpos($message, ' ', $length)
+      - $message = substr($message,0,$position)
+      - $message .= '...'
     - endif
-    article.post.content-box__post.excerpt(class= '<?php echo $classes ?>')
+
+
+    - $thumb = reset($meta['fptc_picture'])
+    - $classes = get_post_type()
+    - $classes .= ' ' . $type
+    - if(!empty($thumb)):
+      - $classes .= ' ' . 'thumb'
+    - endif
+    article.post.content-box__post.excerpt.excerpt--fb(class= '<?php echo $classes ?>')
+      h3.title
+        - echo $type
+      p.text.excerpt__text.excerpt__text--story
+        a.link(href='<?php echo reset($meta["fptc_link"]) ?>', target='_blank')
+          - the_title()
+      p.text.excerpt__text
+        - echo $message
       - if($thumb):
-        figure.thumbnail.excerpt__thumbnail(style='background-image: url('+ $thumb + ')')
-          svg.thumbnail__frame
+        figure.thumbnail.excerpt__thumbnail(style='background-image: url(' + $thumb + ')')
+          svg.thumbnail__frame.thumbnail__frame--fb
             use(xlink:href='#frame')
       - endif
-      h2.title.excerpt__title
-        a.link(href=esc_url( get_permalink() ))
-          - the_title()
-      p.date.excerpt__date
-        - the_time( reset($meta['fptc_update_time']) )
-      p.text.excerpt__text
-        - echo reset($meta['fptc_message'])
-      .button.excerpt__button
-        svg.button__background
-          |<use xlink:href='#shape-<?php echo rand(1, 3) ?>'></use>
-        a.link.button__link(href=esc_url( get_permalink()))
-          | Číst dál
   - endwhile
 - endif
