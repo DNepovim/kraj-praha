@@ -7,10 +7,6 @@
             - $classes .= ' thumb'
         - endif
         article.post.content-box__post.excerpt(class= '<?php echo $classes ?>')
-            svg.excerpt__background
-                use(xlink:href='#rect')
-            svg.excerpt__background.excerpt__background--shadow
-                use(xlink:href='#rect')
             - if($thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))):
                 figure.thumbnail.excerpt__thumbnail(style='background-image: url('+ $thumb + ')')
                     svg.thumbnail__frame
