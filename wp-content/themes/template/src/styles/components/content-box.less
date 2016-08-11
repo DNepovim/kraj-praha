@@ -1,0 +1,28 @@
+.content-box {
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    fill: @excerpt-background;
+    &--shadow {
+      z-index: -2;
+      top: 1rem;
+      left: 1rem;
+      fill: @shadow;
+      transform: rotate(180deg);
+    }
+  }
+  &--aside {
+    .content-box__background {
+      fill: @shadow;
+    }
+  }
+  &--fb {
+    .content-box__background {
+      fill: @facebookBackground;
+    }
+  }
+}
