@@ -90,7 +90,9 @@ gulp.task('templates', function() {
         .pipe(browserSync.stream())
 });
 
-gulp.task('default', ['images','svg', 'styles', 'scripts','templates'] , function () {
+gulp.task('compile', ['images','svg', 'styles', 'scripts','templates'])
+
+gulp.task('default', ['compile'] , function () {
     browserSync.init({
         proxy: localhostURL
     });
@@ -100,3 +102,4 @@ gulp.task('default', ['images','svg', 'styles', 'scripts','templates'] , functio
     gulp.watch(pathToTemplate + 'src/scripts/**/*.js', ['scripts']);
     gulp.watch(pathToTemplate + 'src/templates/**/*.jade', ['templates']);
 });
+
