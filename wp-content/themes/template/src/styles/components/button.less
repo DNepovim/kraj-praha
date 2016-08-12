@@ -14,7 +14,7 @@
       transition: fill 300ms, stroke 300ms;
     }
   }
-  &__link{
+  &__link {
     position: relative;
     display: block;
     z-index: 5;
@@ -22,17 +22,30 @@
     text-align: center;
     padding: @padding-button;
     transition: color 300ms;
+    use {
+      stroke: @first;
+      transition: stroke 300ms;
+    }
   }
-  &:hover {
-    .button__background {
+  &__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: -0.2rem;
+  }
+  &:hover & {
+    &__background {
       use {
         fill: @first;
       }
-
     }
-    .button__link {
+    &__link {
       color: @blank;
     }
-
+    &__icon {
+      fill: @blank;
+      use {
+        stroke: @blank;
+      }
+    }
   }
 }
