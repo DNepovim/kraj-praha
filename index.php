@@ -10,25 +10,6 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-/** Enable Tracy **/
-\Tracy\Debugger::enable();
-
-function dd($val, $exit = NULL) {
-    \Tracy\Debugger::dump($val);
-
-    if ($exit !== NULL) {
-        exit;
-    }
-}
-
-function cdd($val, $exit = NULL) {
-    \Tracy\Debugger::barDump($val);
-
-    if ($exit !== NULL) {
-        exit;
-    }
-}
-
 /**
  * Tells WordPress to load the WordPress theme and output it.
  *

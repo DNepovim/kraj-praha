@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a7c1ec0f974d6a24979f55b1fe610f0",
-    "content-hash": "6a4a77396097ae4f01f811cd279ea60e",
+    "hash": "d1024ea8b289a6491311b7cf6aa283c0",
+    "content-hash": "ce4cd7b055b322a4bce72c9f42dfd0ae",
     "packages": [
         {
             "name": "composer/installers",
@@ -167,68 +167,6 @@
             "time": "2016-08-09 11:32:26"
         },
         {
-            "name": "tracy/tracy",
-            "version": "v2.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/tracy.git",
-                "reference": "6b67ebb3a4ab663f7230f769627b6d1e138b1423"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/6b67ebb3a4ab663f7230f769627b6d1e138b1423",
-                "reference": "6b67ebb3a4ab663f7230f769627b6d1e138b1423",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-session": "*",
-                "php": ">=5.4.4"
-            },
-            "require-dev": {
-                "nette/di": "~2.3",
-                "nette/tester": "~2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.4-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src"
-                ],
-                "files": [
-                    "src/shortcuts.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "Tracy: useful PHP debugger",
-            "homepage": "https://tracy.nette.org",
-            "keywords": [
-                "debug",
-                "debugger",
-                "nette"
-            ],
-            "time": "2016-07-31 16:43:38"
-        },
-        {
             "name": "wpackagist-plugin/fb-last-posts",
             "version": "1.0",
             "source": {
@@ -307,6 +245,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/meta-box/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-tracy",
+            "version": "1.0.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-tracy/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-tracy.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-tracy/"
         }
     ],
     "packages-dev": [],
