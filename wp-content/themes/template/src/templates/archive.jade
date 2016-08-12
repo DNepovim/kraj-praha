@@ -1,11 +1,4 @@
-extends layouts/default
+extends layouts/one-column
 
-block content
-    section(role="main")
-        header
-        - if (have_posts()):
-            - while (have_posts()):
-                - the_post()
-                include parts/entry/content
-            - endwhile
-        - endif
+block main
+    include parts/wrapper
