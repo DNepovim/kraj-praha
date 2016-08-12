@@ -2,9 +2,6 @@
   padding: 1.6rem 1.6rem 1rem;
   margin: 1rem;
   text-align: right;
-  & * {
-    text-align: left;
-  }
   &__thumbnail {
     width: 30vw;
     height: 30vw;
@@ -17,15 +14,33 @@
       display: block;
       text-align: center;
     }
+    .thumb & {
+      a {
+        text-align: left;
+      }
+    }
   }
   &__date {
     font-size: 0.8em;
     text-align: center;
     margin: 0;
+    .thumb & {
+      text-align: left;
+    }
+  }
+  &__excerpt {
+    text-align: center;
+    .thumb & {
+      text-align: left;
+    }
+    .single & {
+      font-weight: bold;
+    }
   }
   &__text {
-    text-align: center;
-    margin: 1em 0 0.5em;
+    text-align: left;
+    margin: 3em 0 0.5em;
+    clear: both;
   }
   &__button {
     display: inline-block;
