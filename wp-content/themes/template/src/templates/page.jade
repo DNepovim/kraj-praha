@@ -1,16 +1,4 @@
-extends layouts/default
+extends layouts/one-column
 
-block content
-    section(role="main").entry
-        - if (have_posts()):
-            - while (have_posts()):
-                - the_post()
-                article(id!="post-<?php the_ID(); ?>" class!="<?php post_class(); ?>")
-                    header.header
-                        h1
-                            - the_title()
-                    section.content
-                        - the_content()
-
-            - endwhile
-        - endif
+block main
+    include parts/wrapper

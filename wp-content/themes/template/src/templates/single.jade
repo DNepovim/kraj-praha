@@ -1,10 +1,11 @@
 extends layouts/default
 
-section(role="main")
+block main
     - if (have_posts()):
         - while (have_posts()):
             - the_post()
-            include parts/entry/entry
+            - cdd('here')
+            include parts/entry/content
         - if (!post_password_required()) comments_template( '', true )
         - endwhile
     - endif

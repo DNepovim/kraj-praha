@@ -8,7 +8,7 @@ block content
                     - printf( __( 'Search Results for: %s', 'blankslate' ), get_search_query() )
             - while (have_posts()):
                 - the_post()
-                include parts/entry/entry
+                include parts/entry/content
             - endwhile
             include components/paginator
         - else:

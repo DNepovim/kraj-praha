@@ -1,7 +1,31 @@
-section.entry-content
-    - if (has_post_thumbnail()):
-        - the_post_thumbnail()
+article.post.content-box__post.content(class= '<?php echo $classes ?>')
+    - if($thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))):
+        figure.thumbnail.content__thumbnail(style='background-image: url('+ $thumb + ')')
+            svg.thumbnail__frame
+                use(xlink:href='#frame')
     - endif
-    - the_content()
-    div.entry-links
-        - wp_link_pages()
+    - if (is_single()||is_page()):
+        h1.title.content__title
+            a.link(href=esc_url( get_permalink() ))
+                - the_title()
+    - else:
+        h2.title.content__title
+            a.link(href=esc_url( get_permalink() ))
+                - the_title()
+    - endif
+
+    p.date.content__date
+        - the_time( get_option( 'date_format' ) )
+    p.text.content__text
+        - if (is_single()||is_page()):
+            - echo get_the_content()
+        - else:
+            - echo get_the_excerpt()
+        - endif
+    - if (!(is_single()||is_page())):
+        .button.content__button
+            svg.button__background
+                |<use xlink:href='#shape-<?php echo rand(1, 3) ?>'></use>
+            a.link.button__link(href=esc_url( get_permalink()))
+                | Číst dál
+    - endif
