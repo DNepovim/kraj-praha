@@ -1,23 +1,27 @@
 <?php
 
+
 add_filter( 'rwmb_meta_boxes', 'your_prefix_meta_boxes' );
 function your_prefix_meta_boxes( $meta_boxes ) {
+
+    $prefix = 'praha_';
+
     $meta_boxes[] = array(
         'title'      => __( 'Podrobnosti', 'textdomain' ),
         'post_types' => 'event',
         'fields'     => array(
             array(
-                'id'   => 'start_date',
+                'id'   => $prefix . 'start_date',
                 'name' => __('Začátek'),
                 'type' => 'datetime'
             ),
             array(
-                'id'   => 'end_date',
+                'id'   => $prefix . 'end_date',
                 'name' => __('Konec'),
                 'type' => 'datetime'
             ),
             array(
-                'id'   => 'position',
+                'id'   => $prefix . 'position',
                 'name' => __( 'Místo', 'textdomain' ),
                 'type' => 'map',
             ),
@@ -30,22 +34,22 @@ function your_prefix_meta_boxes( $meta_boxes ) {
         'priority'   => 'low',
         'fields'     => array(
             array(
-                'id'      => 'url',
+                'id'      => $prefix . 'url',
                 'name'    => __( 'Web', 'textdomain' ),
                 'type'    => 'url'
             ),
             array(
-                'id'   => 'email',
+                'id'   => $prefix . 'email',
                 'name' => __( 'E-mail', 'textdomain' ),
                 'type' => 'email',
             ),
             array(
-                'id'   => 'login',
+                'id'   => $prefix . 'login',
                 'name' => __( 'Odkaz na přihlašování', 'textdomain' ),
                 'type' => 'url',
             ),
             array(
-                'id'   => 'fb',
+                'id'   => $prefix . 'fb',
                 'name' => __('Facebook'),
                 'desc' => __('Odkaz na stránku nebo událost'),
                 'type' => 'url'
@@ -58,9 +62,9 @@ function your_prefix_meta_boxes( $meta_boxes ) {
         'context'    => 'side',
         'fields'     => array(
             array(
-                'id'      => 'taxonomy',
+                'id'      => $prefix . 'taxonomy',
                 'name'    => __( 'Kategorie', 'textdomain' ),
-                'type'    => 'taxonomy'
+                'type'    => 'taxonomy_advanced'
             )
         )
     );
