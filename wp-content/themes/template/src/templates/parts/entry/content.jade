@@ -14,8 +14,10 @@ article.post.content-box__post.content(class= '<?php echo $classes ?>')
                 - the_title()
     - endif
 
-    p.date.content__date
-        - the_time( get_option( 'date_format' ) )
+    - if (!is_page()):
+        p.date.content__date
+            - the_time( get_option( 'date_format' ) )
+    - endif
     p.text.content__text
         - if (is_single()||is_page()):
             - echo get_the_content()
