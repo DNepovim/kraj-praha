@@ -12,6 +12,13 @@ function create_post_type()
             ),
             'public' => true,
             'has_archive' => true,
+            'supports' => array(
+	            'title',
+	            'author',
+	            'excerpt',
+	            'editor',
+	            'thumbnail',
+            )
         )
     );
     register_post_type('krizovatka',
