@@ -1,0 +1,39 @@
+
+form#primaryPostForm.form(action="<?php bloginfo('template_directory');?>/post-process.php", method="POST")
+
+
+  fieldset
+    label.form__label(for="postTitle")
+      - _e('Titulek:', 'form')
+    - if ( !empty($_GET['postTitle']) ):
+      span.form__error
+        - _e('Titulek musí být vyplněn', 'form')
+    - endif
+    input#postTitle.required.form__input.form__input--text(type="text", name="postTitle")
+
+  label.form__label(for="postExcerpt")
+    - _e('Náhled:', 'form')
+  textarea#postExcerpt.form__input.form__input--text.form__input--textarea(name="postExcerpt", rows="8", cols="30")
+
+  br
+
+  label.form__label(for="postContent")
+    - _e('Obsah:', 'form')
+  - if ( !empty($_GET['postContent']) ):
+    span.form__error
+      - _e('Obsah musí být vyplněn', 'form')
+  - endif
+  textarea#postContent.required.form__input.form__input--text.form__input--textarea(name="postContent", rows="8", cols="30")
+
+  br
+
+  fieldset
+    input#submitted(type="hidden", name="submitted", value="true")
+
+  - wp_nonce_field( 'post_nonce', 'post_nonce_field' )
+  button.button.form__button(type="submit")
+    - _e('Přidat příspěvek', 'form')
+
+
+
+

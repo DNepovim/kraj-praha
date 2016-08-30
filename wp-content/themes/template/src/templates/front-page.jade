@@ -4,6 +4,7 @@ extends layouts/two-column
 block main
     - query_posts( array('post_type' => array('event', 'post'), 'showposts' => 6))
     include parts/wrapper
+    include parts/add-post
 
 block aside
     section.content-box.content-box--aside.content-box--krizovatka
@@ -23,4 +24,3 @@ block aside
         a.label.label--facebook(href='https://facebook.com/skautipraha', targer='_blank') Z našeho facebooku
         - query_posts( array('post_type' => array('facebook'), 'showposts' => 5))
         include parts/wrapper--facebook
-
