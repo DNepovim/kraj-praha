@@ -1,0 +1,13 @@
+.modal {
+  display: none;
+  position: absolute;
+  width: 60vw;
+  min-height: 80vh;
+  margin: 150px 20vw ;
+  &__check:checked + .modal {
+    display: block;
+  }
+  &__check {
+    display: none;
+  }
+}

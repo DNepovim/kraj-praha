@@ -4,9 +4,13 @@ extends layouts/two-column
 block main
     - query_posts( array('post_type' => array('event', 'post'), 'showposts' => 6))
     include parts/wrapper
-    include parts/add-post
 
 block aside
+    .button.modal__button
+        svg.button__background
+            |<use xlink:href='#rect'></use>
+        label.link.button__link.modal__label(for='addPost')
+            | Přidat příspěvek
     section.content-box.content-box--aside.content-box--krizovatka
         svg.content-box__background
             use(xlink:href='#rect')
@@ -24,3 +28,7 @@ block aside
         a.label.label--facebook(href='https://facebook.com/skautipraha', targer='_blank') Z našeho facebooku
         - query_posts( array('post_type' => array('facebook'), 'showposts' => 5))
         include parts/wrapper--facebook
+
+block footer
+    input#addPost.modal__check(type='checkbox')
+    include parts/add-post
