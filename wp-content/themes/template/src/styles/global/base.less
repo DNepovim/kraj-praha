@@ -5,3 +5,20 @@ div, section, article, header, figure, nav, footer, label, main, button, aside, 
 html{ font-family: @font-base; font-size: @base-font-size;}
 * {box-sizing: border-box}
 a{ text-decoration: none; transition: color 300ms; }
+.center(@direction) when (@direction = both) {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.center(@direction) when (@direction = x) {
+  transform: translateX(-50%);
+  left: 50%;
+}
+.center(@direction) when (@direction = y) {
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.clearfix {
+  clear: both;
+}
