@@ -1,2 +1,15 @@
 body {
+  background: fade(@first, 30);
+}
+.container {
+  margin-top: 30px;
+  padding-top: 30px;
+  &__background {
+    use {
+      fill: @second;
+    }
+  }
+}
+.aside {
+  margin: 2.6rem 0;
 }

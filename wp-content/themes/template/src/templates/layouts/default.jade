@@ -28,14 +28,19 @@ head
 
 - include_once 'dist/symbol/shapes.svg'
 
-include ../parts/header
+block top
 
-block content
+.container
+    svg.background.container__background
+        |<use xlink:href='#layout'></use>
+    include ../parts/header
 
-include ../parts/sidebar
-include ../parts/footer
+    block content
 
-block footer
+    include ../parts/sidebar
+    include ../parts/footer
+
+block bottom
 
 script(src='https://code.jquery.com/jquery-2.2.0.min.js')
 script(src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js')
