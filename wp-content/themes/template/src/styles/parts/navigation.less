@@ -1,4 +1,5 @@
 .main-nav{
+  margin: 1rem 1rem 0;
   &__items{
     text-align: center;
     margin: 0;
@@ -6,28 +7,6 @@
   }
   &__item{
     display: inline-block;
-    svg{
-      use{
-        stroke: @first;
-        fill: none;
-        transition: fill 300ms;
-      }
-    }
-    a{
-      color: @first;
-      transition: color 300ms;
-    }
-    &:hover {
-      svg{
-        use{
-          fill: @first;
-        }
-      }
-      a{
-        color: @blank;
-      }
-
-    }
   }
 }
 

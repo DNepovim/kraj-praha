@@ -44,6 +44,7 @@
     }
     &__link {
       color: @second;
+      text-decoration: underline;
     }
     &__icon {
       fill: @second;
@@ -52,15 +53,24 @@
       }
     }
   }
-  &--call .button {
-    &__background {
-      use {
-        fill: @first;
-        stroke: none;
+  &--call {
+    .button {
+      &__background {
+        use {
+          fill: @first;
+        }
+      }
+      &__link {
+        color: @second;
       }
     }
-    &__link {
-      color: @second;
+    &:hover .button {
+      &__background {
+        use {
+          fill: @third;
+          stroke: @third;
+        }
+      }
     }
   }
 }
