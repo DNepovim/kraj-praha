@@ -1,6 +1,7 @@
 .button {
   position: relative;
   margin: @margin-button;
+  cursor: pointer;
   &__background {
     position: absolute;
     display: block;
@@ -8,6 +9,7 @@
     left: 0;
     height: 100%;
     width: 100%;
+    cursor: pointer;
     use {
       stroke: @first;
       fill: none;
@@ -20,8 +22,10 @@
     z-index: 5;
     color: @first;
     text-align: center;
+    margin: 0;
     padding: @padding-button;
     transition: color 300ms;
+    cursor: pointer;
     use {
       stroke: @first;
       transition: stroke 300ms;
@@ -39,13 +43,24 @@
       }
     }
     &__link {
-      color: @blank;
+      color: @second;
     }
     &__icon {
-      fill: @blank;
+      fill: @second;
       use {
-        stroke: @blank;
+        stroke: @second;
       }
+    }
+  }
+  &--call .button {
+    &__background {
+      use {
+        fill: @first;
+        stroke: none;
+      }
+    }
+    &__link {
+      color: @second;
     }
   }
 }

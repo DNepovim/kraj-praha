@@ -1,12 +1,16 @@
 extends layouts/two-column
 
+block top
+    input#addPost.modal__check(type='checkbox')
+    include parts/add-post
+    label.modal__outside(for='addPost')
 
 block main
     - query_posts( array('post_type' => array('event', 'post'), 'showposts' => 6))
     include parts/wrapper
 
 block aside
-    .button.modal__button
+    .button.button--call.modal__button
         svg.button__background
             |<use xlink:href='#rect'></use>
         label.link.button__link.modal__label(for='addPost')
@@ -29,6 +33,3 @@ block aside
         - query_posts( array('post_type' => array('facebook'), 'showposts' => 5))
         include parts/wrapper--facebook
 
-block footer
-    input#addPost.modal__check(type='checkbox')
-    include parts/add-post

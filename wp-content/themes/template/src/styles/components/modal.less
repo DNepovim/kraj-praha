@@ -1,13 +1,30 @@
 .modal {
-  display: none;
   position: absolute;
-  width: 60vw;
-  min-height: 80vh;
-  margin: 150px 20vw ;
-  &__check:checked + .modal {
-    display: block;
-  }
+  z-index: 100;
+  width: 80vw;
+  margin: 20px 10vw ;
+  transform: translateY(calc(~'-100% - 80px'));
+  transition: transform 300ms;
   &__check {
     display: none;
+  }
+  &__outside {
+    opacity: 0;
+    background: @first;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    width: 100vw;
+    height: 0;
+    cursor: pointer;
+    transition: opacity 300ms;
+  }
+  &__check:checked ~ .modal {
+    transform: translateY(0);
+    &__outside {
+      height: 100vh;
+      opacity: 0.5;
+    }
   }
 }

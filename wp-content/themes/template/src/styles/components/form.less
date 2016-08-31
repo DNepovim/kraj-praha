@@ -1,0 +1,36 @@
+.form {
+  padding: 10px 5% 30px;
+  &__background {
+    use {
+      fill: @second;
+    }
+  }
+  &__title {
+    text-align: center;
+  }
+  &__label {
+    display: block;
+    color: @first;
+    margin: 2em 0 0.2em;
+  }
+  &__input {
+    background: @blank;
+    width: 100%;
+    border: none;
+    border-radius: @radius;
+    &--title {
+      font-size: @title-font-size-2;
+    }
+  }
+  &__button {
+    background: none;
+    margin: 1rem;
+    border: none;
+    .center(x);
+  }
+  &__close {
+    position: absolute;
+    top: 3rem;
+    left: 3.4rem;
+  }
+}
