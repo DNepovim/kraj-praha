@@ -5,7 +5,8 @@ head
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
     meta(name='viewport', content='width=device-width,initial-scale=1')
 
-    title!=wp_title( " | ", true, "right" )
+    title!=wp_title( " | ", true, "right" ) . bloginfo( 'name' )
+
     meta(name='description', content!=bloginfo('description'))
     meta(name='author', content='Dominik Bláha / www.dombl.cz')
 
