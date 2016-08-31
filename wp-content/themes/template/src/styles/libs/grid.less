@@ -189,7 +189,7 @@
 /* =====================================================================================================================
 ====================================================== DEBUG MODE ======================================================
 ===================================================================================================================== */
-body:after when (@debug-mode = 1) {-webkit-user-drag:element;content:"XS";position:fixed;top:0;left:0;z-index:9999999;background:#cc0000;padding:5px 15px;text-align:center;font-weight:bold;color:#fff;pointer-events:none;
+#tracy-debug-bar:after when (@debug-mode = 1) {-webkit-user-drag:element;content:"XS";position:fixed;top:0;left:0;z-index:9999999;background:#cc0000;padding:5px 15px;text-align:center;font-weight:bold;color:#fff;pointer-events:none;
   @media @media-s-min {content:"S"}
   @media @media-m-min {content:"M"}
   @media @media-l-min {content:"L"}
