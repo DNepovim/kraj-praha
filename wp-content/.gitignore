@@ -1,2 +1,4 @@
 mu-plugins/**/
 uploads
+
+!mu-plugins/fb-posts-to-cpt
