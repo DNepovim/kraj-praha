@@ -20,8 +20,8 @@ block aside
             use(xlink:href='#rect')
         //svg.content-box__background.content-box__background--shadow
         //    use(xlink:href='#rect')
-        a.label.label--first(href='https://facebook.com/skautipraha', targer='_blank') Novinky ze skautské křižovatky
-        - query_posts( array('post_type' => array('krizovatka'), 'showposts' => 5))
+        a.label.label--first(href='http://krizovatka.skaut.cz', target='_blank') Novinky ze skautské křižovatky
+        - query_posts( array('post_type' => array('rss'), 'showposts' => 5))
         include parts/wrapper--aside
 
     section.content-box.content-box--aside.content-box--fb.grid-s-24
