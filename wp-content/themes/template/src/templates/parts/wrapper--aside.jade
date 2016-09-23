@@ -13,19 +13,8 @@ ul.post-list
                         svg.thumbnail__frame
                             use(xlink:href='#frame')
                 - endif
-                    a.post-list__item__link(href=esc_url( get_permalink() ))
+                    a.post-list__item__link(href=esc_url( get_post_meta(get_the_ID(), 'rtc_guid', true )), target='_blank')
                         - the_title()
-                //p.date.excerpt__date
-                //    - the_time( get_option( 'date_format' ) )
-                //p.text.excerpt__text
-                //    - if ($content = get_the_excerpt() ):
-                //        - echo $content
-                //    - endif
-                //.button.excerpt__button
-                //    svg.button__background
-                //        |<use xlink:href='#shape-<?php echo rand(1, 3) ?>'></use>
-                //    a.link.button__link(href=esc_url( get_permalink()))
-                //        | Číst dál
         - endwhile
     - endif
 
