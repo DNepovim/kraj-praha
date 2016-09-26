@@ -1,10 +1,20 @@
 .main-header {
+  position: static !important;
   width: 100%;
-  * {
-    float: none;
-    display: inline-block;
-  }
   .silhouette {
+    display: none;
     bottom: 20px;
+  }
+  @media @media-m-min {
+    .silhouette {
+      display: block;
+    }
+    &__hamburger {
+      display: none;
+    }
+    & > * {
+      float: none;
+      display: inline-block;
+    }
   }
 }

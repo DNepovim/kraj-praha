@@ -7,7 +7,12 @@ header.main-header.row(role="banner")
     svg.silhouette__logo
       use(xlink:href='#silhouette')
 
+  input#menu-check.main-nav__check.hamburger__check(type='checkbox')
   nav.main-nav.grid-s-24(role="navigation")
+    label.hamburger.main-nav__hamburger(for='menu-check')
+      span.hamburger__spin.hamburger__spin--1
+      span.hamburger__spin.hamburger__spin--2
+      span.hamburger__spin.hamburger__spin--3
     - $menu_name = 'main_menu'; //menu slug
     - $locations = get_nav_menu_locations();
     - if (!empty($locations)):
