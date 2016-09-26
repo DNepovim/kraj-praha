@@ -1,15 +1,26 @@
 body {
-  background: fade(@first, 30);
+  background: @second;
+  @media @media-m-min {
+    background: fade(@first, 30);
+  }
 }
+
 .container {
   margin-top: 30px;
   padding: 30px 40px;
   &__background {
+    display: none;
     use {
       fill: @second;
     }
   }
+  @media @media-m-min {
+    &__background {
+      display: block;
+    }
+  }
 }
+
 .aside {
   margin: 2.6rem 0;
 }
