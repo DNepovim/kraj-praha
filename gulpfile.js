@@ -94,7 +94,8 @@ gulp.task('compile', ['images','svg', 'styles', 'scripts','templates'])
 
 gulp.task('default', ['compile'] , function () {
     browserSync.init({
-        proxy: localhostURL
+        proxy: localhostURL,
+        open: false
     });
     gulp.watch(pathToTemplate + 'src/images/**', ['images']);
     gulp.watch(pathToTemplate + 'src/svg/**', ['svg']);
