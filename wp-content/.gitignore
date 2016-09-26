@@ -3,3 +3,4 @@ uploads
 
 !mu-plugins/fb-posts-to-cpt
 !mu-plugins/rss-to-cpt
+!mu-plugins/bedrock-autoloader.php
