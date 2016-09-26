@@ -73,4 +73,27 @@
       }
     }
   }
+  &--inv {
+    .button {
+      &__background {
+        use {
+          fill: @second;
+        }
+      }
+      &__link {
+        color: @first;
+      }
+    }
+    &:hover .button {
+      &__background {
+        use {
+          fill: @third;
+          stroke: @third;
+        }
+      }
+    }
+  }
+  @media @media-m-min {
+    margin: 0.1em 0.2em;
+  }
 }
