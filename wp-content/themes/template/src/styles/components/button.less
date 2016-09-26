@@ -37,20 +37,22 @@
     height: 1.2rem;
     margin: -0.2rem;
   }
-  &:hover & {
-    &__background {
-      use {
-        fill: @first;
+  @media @media-m-min {
+    &:hover & {
+      &__background {
+        use {
+          fill: @first;
+        }
       }
-    }
-    &__link {
-      color: @second;
-      text-decoration: underline;
-    }
-    &__icon {
-      fill: @second;
-      use {
-        stroke: @second;
+      &__link {
+        color: @second;
+        text-decoration: underline;
+      }
+      &__icon {
+        fill: @second;
+        use {
+          stroke: @second;
+        }
       }
     }
   }
@@ -65,11 +67,13 @@
         color: @second;
       }
     }
-    &:hover .button {
-      &__background {
-        use {
-          fill: @third;
-          stroke: @third;
+    @media @media-m-min {
+      &:hover .button {
+        &__background {
+          use {
+            fill: @third;
+            stroke: @third;
+          }
         }
       }
     }
@@ -85,11 +89,13 @@
         color: @first;
       }
     }
-    &:hover .button {
-      &__background {
-        use {
-          fill: @third;
-          stroke: @third;
+    @media @media-m-min {
+      &:hover .button {
+        &__background {
+          use {
+            fill: @third;
+            stroke: @third;
+          }
         }
       }
     }
