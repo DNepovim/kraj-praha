@@ -1,6 +1,6 @@
 .button {
   position: relative;
-  margin: @margin-button;
+  margin: 0.5rem 0;
   cursor: pointer;
   &__background {
     position: absolute;
@@ -21,9 +21,10 @@
     display: block;
     z-index: 5;
     color: @first;
+    font-size: @mobilebutton-font-size;
     text-align: center;
     margin: 0;
-    padding: @padding-button;
+    padding: 0.6em 1em;
     transition: color 300ms;
     cursor: pointer;
     use {
