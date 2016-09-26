@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 100;
   width: 80vw;
-  margin: 20px 10vw ;
+  margin: 20px 10vw;
   transform: translateY(calc(~'-100% - 80px'));
   transition: transform 300ms;
   &__check {
@@ -31,6 +31,8 @@
     display: none;
   }
   @media @media-m-min {
-    display: block;
+    &__button {
+      display: block;
+    }
   }
 }
