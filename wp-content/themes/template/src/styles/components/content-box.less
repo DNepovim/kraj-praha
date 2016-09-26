@@ -1,6 +1,7 @@
 .content-box {
   margin: 2rem 0 0;
   &__background {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -24,6 +25,11 @@
   &--fb {
     .content-box__background {
       fill: @facebookBackground;
+    }
+  }
+  @media @media-m-min {
+    &__background {
+      display: block;
     }
   }
 }
