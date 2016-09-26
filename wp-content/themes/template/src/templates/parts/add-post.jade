@@ -16,10 +16,6 @@ form#primaryPostForm.form.modal(action="<?php bloginfo('template_directory');?>/
   - endif
   input#postTitle.required.form__input.form__input--text.form__input--title(type="text", name="postTitle")
 
-  label.form__label(for="postExcerpt")
-    - _e('Náhled:', 'form')
-  textarea#postExcerpt.form__input.form__input--text.form__input--excerpt.form__input--textarea(name="postExcerpt", rows="8", cols="30")
-
   label.form__label(for="postContent")
     - _e('Obsah:', 'form')
   - if ( !empty($_GET['postContent']) ):

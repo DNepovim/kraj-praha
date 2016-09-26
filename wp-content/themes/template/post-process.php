@@ -28,7 +28,6 @@ if ( isset( $_POST['submitted'] )
 
 	$post_information = array(
 		'post_title'   => wp_strip_all_tags( $_POST['postTitle'] ),
-		'post_excerpt' => $_POST['postExcerpt'],
 		'post_content' => $_POST['postContent'],
 		'post_type'    => 'post',
 		'post_status'  => 'publish'
