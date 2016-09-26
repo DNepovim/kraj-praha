@@ -20,7 +20,7 @@ header.main-header.row(role="banner")
       - $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
       ul.main-nav__items
         - foreach($menuitems as $item):
-          li.main-nav__item.button.button--call
+          li.main-nav__item.button.button--inv
             svg.button__background
               use(xlink:href='#shape-<?php echo rand(1, 3) ?>')
             a.link.button__link(href='<?php echo $item->url ?>')
