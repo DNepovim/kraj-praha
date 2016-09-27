@@ -24,6 +24,7 @@ function your_prefix_meta_boxes( $meta_boxes ) {
                 'id'   => $prefix . 'position',
                 'name' => __( 'Místo', 'textdomain' ),
                 'type' => 'map',
+	            'std' => '50.0823452,14.4196943,14.93z'
             ),
         ),
     );
