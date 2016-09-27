@@ -8,7 +8,7 @@ function your_prefix_meta_boxes( $meta_boxes ) {
 
     $meta_boxes[] = array(
         'title'      => __( 'Podrobnosti', 'textdomain' ),
-        'post_types' => 'event',
+        'post_types' => 'udalosti',
         'fields'     => array(
             array(
                 'id'   => $prefix . 'start_date',
@@ -30,7 +30,7 @@ function your_prefix_meta_boxes( $meta_boxes ) {
     );
     $meta_boxes[] = array(
         'title'      => __( 'Kontakt', 'textdomain' ),
-        'post_types' => 'event',
+        'post_types' => 'udalosti',
         'context'    => 'side',
         'priority'   => 'low',
         'fields'     => array(

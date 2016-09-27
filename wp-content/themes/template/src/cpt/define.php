@@ -5,7 +5,7 @@ add_action('init', 'create_post_type');
 function create_post_type()
 {
 	add_post_type_support('page', 'excerpt');
-	register_post_type('event',
+	register_post_type('udalosti',
 		array(
 			'labels' => array(
 				'name' => __('Událost'),
