@@ -3,7 +3,7 @@ article.post.content-box__post.content(class= '<?php echo $classes; ?>')
 
     //- THUMBNAIL
 
-    - if($thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))):
+    - if($thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'post_thumb')[0]):
         figure.thumbnail.content__thumbnail(style='background-image: url('+ $thumb + ')')
             svg.thumbnail__frame
                 use(xlink:href='#frame')
