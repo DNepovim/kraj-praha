@@ -26,6 +26,8 @@ article.post.content-box__post.content(class= '<?php echo $classes; ?>')
     - if (!is_page()):
         p.date.content__date
             - the_time( get_option( 'date_format' ) )
+            = ' | '
+            - the_author()
     - endif
 
     //- EXCERPT
