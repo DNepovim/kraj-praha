@@ -5,6 +5,7 @@ block main
 
     - if ($taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true)) :
         - query_posts(array('cat' => $taxonomy))
-        include parts/wrapper
+        .grid-s-20.grid-s-offset-2
+            include parts/wrapper
     - endif
 
