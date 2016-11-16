@@ -10,7 +10,6 @@ const
     postcss         = require('gulp-postcss'),
     autoprefixer    = require('autoprefixer'),
     pixrem          = require('gulp-pixrem'),
-    sourcemaps      = require('gulp-sourcemaps'),
     minifycss       = require('gulp-minify-css'),
     uglify          = require('gulp-uglify'),
     jade            = require('gulp-jade-php'),
@@ -56,10 +55,8 @@ gulp.task('styles', function () {
             }
         }))
         .pipe(less())
-        .pipe(sourcemaps.init())
         .pipe(pixrem())
         .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
-        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(pathToTemplate + 'dist/'))
         .pipe(rename({suffix: '.min'}))
         .pipe(minifycss())
