@@ -22,6 +22,14 @@
     padding: 30px 20px;
     transition: left 300ms;
   }
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    fill: @first;
+  }
   @media @media-m-min {
     position: relative;
     right: 0;
@@ -34,17 +42,17 @@
       overflow: auto;
       background: transparent;
       text-align: center;
-      margin: 0;
-      padding: 0;
+      width: auto;
+      margin: 0 auto;
+      padding: 0 0.7rem;
       .button__link {
-        padding: 0.6em 0.8em;
+        padding: 0.6em 0.5em;
       }
     }
-
     &__item {
       display: inline-block;
+      margin: 0;
     }
-
   }
 }
 

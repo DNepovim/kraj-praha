@@ -28,7 +28,7 @@
     transition: color 300ms;
     cursor: pointer;
     use {
-      stroke: @first;
+      stroke: @second;
       fill: none;
       transition: stroke 300ms;
     }
@@ -43,11 +43,6 @@
       font-size: @base-font-size;
     }
     &:hover & {
-      &__background {
-        use {
-          fill: @first;
-        }
-      }
       &__link {
         color: @second;
         text-decoration: underline;
@@ -64,33 +59,18 @@
     .button {
       &__background {
         use {
-          fill: @first;
+          fill: @third;
         }
       }
       &__link {
         color: @second;
       }
     }
-    @media @media-m-min {
-      &:hover .button {
-        &__background {
-          use {
-            fill: @second;
-            stroke: @third;
-          }
-        }
-      }
-    }
   }
   &--inv {
     .button {
-      &__background {
-        use {
-          fill: @second;
-        }
-      }
       &__link {
-        color: @first;
+        color: @second;
       }
     }
     @media @media-m-min {
