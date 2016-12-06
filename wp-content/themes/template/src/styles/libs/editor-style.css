@@ -24,7 +24,6 @@ table th,
 .mce-item-table th,
 table caption {
  border-width: 0 1px 1px 0;
- font-family: "Noto Serif", serif;
  font-size: 17px;
  font-weight: 700;
  padding: 7px;
@@ -35,7 +34,6 @@ table caption {
 table td,
 .mce-item-table td {
  border-width: 0 1px 1px 0;
- font-family: "Noto Serif", serif;
  font-size: 17px;
  padding: 7px;
  vertical-align: baseline;
@@ -67,8 +65,6 @@ img {
 .wp-caption {
  background: transparent;
  border: none;
- color: #707070;
- font-family: "Noto Sans", sans-serif;
  margin: 0 0 28px 0;
  max-width: 100%;
  padding: 0;

@@ -2,6 +2,7 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  margin: 0 1rem 1rem 0;
   &__frame {
     position: absolute;
     top: 0;
@@ -16,6 +17,28 @@
     &--fb
     * {
       fill: @facebookBackground;
+    }
+  }
+
+  .event & {
+    margin: 1rem;
+
+    &__frame use {
+      fill: @first;
+    }
+
+    &__text {
+      position: absolute;
+      top: 50%;
+      z-index: 10;
+      transform: translateY(-50%);
+      width: 100%;
+      margin: 0;
+      text-align: center;
+      color: @second;
+      font-family: @font-skautbold;
+      font-size: 3em;
+      word-spacing: -0.2em;
     }
   }
 }

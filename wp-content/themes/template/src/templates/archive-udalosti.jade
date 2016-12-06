@@ -1,0 +1,61 @@
+extends layouts/one-column
+
+block main
+    - if (have_posts()):
+        - while (have_posts()):
+            - the_post();
+            - $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))
+            - $classes = get_post_type()
+            - if(!empty($thumb)):
+                - $classes .= ' thumb'
+            - endif
+            - $classes .= (is_single()||is_page()) ? ' single' : null;
+            article.post.content-box__post.content.event(class= '<?php echo $classes; ?>')
+
+                //- THUMBNAIL
+
+                a.link(href=esc_url( get_permalink() ))
+                    figure.thumbnail.content__thumbnail
+                        svg.thumbnail__frame
+                            use(xlink:href='#rect')
+                        p.thumbnail__text=date('j. n.', strtotime(get_post_meta(get_the_ID(), 'praha_start_date', true)))
+
+                //- TITLE
+
+                h2.title.title--medium.content__title
+                    a.link(href=esc_url( get_permalink() ))
+                        - the_title()
+
+                //- EXCERPT
+
+                - if (is_single()||is_page()):
+                    - if (has_excerpt(get_the_ID())):
+                        .excerpt.text.content__excerpt
+                            - the_excerpt()
+                    - endif
+                - else:
+                    .excerpt.text.content__excerpt
+                        - the_excerpt()
+                - endif
+
+                //- CONTENT
+
+                - if (is_single()||is_page()):
+                    .text.content__text
+                        - the_content()
+                - endif
+
+                //- BUTTON
+
+                - if (!(is_single()||is_page())):
+                    .button.content__button
+                        svg.button__background
+                            |<use xlink:href='#shape-<?php echo rand(1, 3) ?>'></use>
+                        a.link.button__link(href=esc_url( get_permalink()))
+                            | Číst dál
+                - endif
+        - endwhile
+    - else:
+        ='Nejsou naplánované, žádné akce.'
+    - endif;
+

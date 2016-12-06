@@ -15,7 +15,6 @@ function create_post_type()
 			'supports' => array(
 				'title',
 				'author',
-				'excerpt',
 				'editor',
 				'thumbnail',
 			)
