@@ -1,23 +1,7 @@
-extends layouts/default
+extends layouts/with-sidebar
 
-block content
-    section.main
-        - if (have_posts()):
-            header
-                h1
-                    - printf( __( 'Search Results for: %s', 'blankslate' ), get_search_query() )
-            - while (have_posts()):
-                - the_post()
-                include parts/entry/content
-            - endwhile
-            include components/paginator
-        - else:
-            article(id="post-0", class="post no-results not-found")
-                header
-                    h2
-                        - _e( 'Nothing Found', 'blankslate' )
-                section.entry.content
-                    p
-                        - _e( 'Sorry, nothing matched your search. Please try again.', 'blankslate' )
-                    - get_search_form()
-        - endif
+block main
+  h2.title
+    ='Výsledky vyhledávání pro dotaz: '
+    =$_GET['s']
+  include parts/wrapper
