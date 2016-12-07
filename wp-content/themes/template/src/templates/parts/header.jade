@@ -8,10 +8,6 @@ header.main-header.row(role='banner')
       use(xlink:href='#silhouette')
 
   input#menu-check.main-nav__check.hamburger__check(type='checkbox')
-  form.search-form(role='search', method='get', action=esc_url(home_url('/')))
-    label
-      input.search-field(type='search', placeholder=esc_attr_x('Search &hellip;', 'placeholder'), value=get_search_query(), name='s')
-      input.search-submit(type='submit',value=esc_attr_x('Search', 'submit button'))
   nav.main-nav.grid-s-24(role='navigation')
     label.hamburger.main-nav__hamburger(for='menu-check')
       span.hamburger__spin.hamburger__spin--1

@@ -10,6 +10,14 @@ block main
     include parts/wrapper
 
 block aside
+    form.search-form(role='search', method='get', action=esc_url(home_url('/')))
+        svg.search-form__background
+            use(xlink:href='#rect')
+        input.search-form__input(type='search', placeholder='Hledat', value=get_search_query(), name='s')
+        label.search-form__button(for='search-submit')
+            svg.search-form__icon
+                use(xlink:href='#search')
+        input#search-submit.search-form__submit(type='submit',value='Hledat')
     .button.button--call.modal__button
         svg.button__background
             |<use xlink:href='#rect'></use>
