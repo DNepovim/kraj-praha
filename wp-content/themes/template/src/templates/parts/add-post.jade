@@ -1,4 +1,4 @@
-form#primaryPostForm.form.modal(action="<?php bloginfo('template_directory');?>/post-process.php", method="POST")
+form#primaryPostForm.form.modal(action=bloginfo('template_directory')+'/post-process.php', method='POST')
 
   label.cross.form__close(for='addPost')
 
@@ -6,17 +6,17 @@ form#primaryPostForm.form.modal(action="<?php bloginfo('template_directory');?>/
     - _e('Přidat příspěvek', 'form')
 
   svg.background.form__background
-    |<use xlink:href='#rect'></use>
+    use(xlink:href='#rect')
 
-  label.form__label(for="postTitle")
+  label.form__label(for='postTitle')
     - _e('Titulek:', 'form')
   - if ( !empty($_GET['postTitle']) ):
     span.form__error
       - _e('Titulek musí být vyplněn', 'form')
   - endif
-  input#postTitle.required.form__input.form__input--text.form__input--title(type="text", name="postTitle")
+  input#postTitle.required.form__input.form__input--text.form__input--title(type='text', name='postTitle')
 
-  label.form__label(for="postContent")
+  label.form__label(for='postContent')
     - _e('Obsah:', 'form')
   - if ( !empty($_GET['postContent']) ):
     span.form__error
@@ -27,12 +27,12 @@ form#primaryPostForm.form.modal(action="<?php bloginfo('template_directory');?>/
   - $arg['drag_drop_upload'] = true
   - wp_editor('', 'postContent', array('editor_class' => 'cleass'))
 
-  input#submitted(type="hidden", name="submitted", value="true")
+  input#submitted(type='hidden', name='submitted', value='true')
 
   - wp_nonce_field( 'post_nonce', 'post_nonce_field' )
-  button.button.button--call.form__button(type="submit")
+  button.button.button--call.form__button(type='submit')
     svg.button__background
-      |<use xlink:href='#rect'></use>
+      use(xlink:href='#rect')
     p.link.button__link
       - _e('Přidat příspěvek', 'form')
 
