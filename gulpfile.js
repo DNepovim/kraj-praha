@@ -16,7 +16,7 @@ const
     browserSync     = require('browser-sync');
 
 const
-    localhostURL = 'https://praha.dev'
+    localhostURL = 'praha.dev'
     pathToTemplate = 'wp-content/themes/template/';
 
 

@@ -16,26 +16,24 @@ block aside
       svg.search-form__icon
         use(xlink:href='#search')
     input#search-submit.search-form__submit(type='submit',value='Hledat')
+
   .button.button--call.modal__button
     svg.button__background
       |<use xlink:href='#rect'></use>
     label.link.button__link.modal__label(for='addPost')
       | Přidat příspěvek
-  section.content-box.content-box--aside.content-box--krizovatka
-    svg.content-box__background
-      use(xlink:href='#rect')
-    //svg.content-box__background.content-box__background--shadow
-    //    use(xlink:href='#rect')
-    a.label.label--first(href='http://krizovatka.skaut.cz', target='_blank') Novinky ze skautské křižovatky
-    - query_posts( array('post_type' => array('rss'), 'showposts' => 5))
-    include ../parts/wrapper--aside
 
   section.content-box.content-box--aside.content-box--fb.grid-s-24
     svg.content-box__background
       use(xlink:href='#rect')
-    //svg.content-box__background.content-box__background--shadow
-    //    use(xlink:href='#rect')
     a.label.label--facebook(href='https://facebook.com/skautipraha', targer='_blank') Z našeho facebooku
     - query_posts( array('post_type' => array('facebook'), 'showposts' => 5))
     include ../parts/wrapper--facebook
+
+  section.content-box.content-box--aside.content-box--krizovatka
+    svg.content-box__background
+      use(xlink:href='#rect')
+    a.label.label--first(href='http://krizovatka.skaut.cz', target='_blank') Novinky ze skautské křižovatky
+    - query_posts( array('post_type' => array('rss'), 'showposts' => 5))
+    include ../parts/wrapper--aside
 
