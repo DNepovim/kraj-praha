@@ -28,14 +28,14 @@ block aside
     label.link.button__link.modal__label(for='addPost')
       ='Přidat příspěvek'
 
-  section.content-box.content-box--aside.content-box--fb.grid-s-24
+  section.aside.content-box.content-box--aside.content-box--fb.grid-s-24
     svg.content-box__background
       use(xlink:href='#rect')
     a.label.label--facebook(href='https://facebook.com/skautipraha', targer='_blank') Z našeho facebooku
     - query_posts( array('post_type' => array('facebook'), 'showposts' => 5))
     include ../parts/wrapper--facebook
 
-  section.content-box.content-box--aside.content-box--krizovatka
+  section.aside.content-box.content-box--aside.content-box--krizovatka
     svg.content-box__background
       use(xlink:href='#rect')
     a.label.label--first(href='http://krizovatka.skaut.cz', target='_blank') Novinky ze skautské křižovatky
