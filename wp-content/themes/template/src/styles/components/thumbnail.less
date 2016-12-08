@@ -22,6 +22,8 @@
 
   .event & {
     margin: 1rem;
+    width: 120px;
+    height: 120px;
 
     &__frame use {
       fill: @first;
@@ -37,8 +39,14 @@
       text-align: center;
       color: @second;
       font-family: @font-skautbold;
-      font-size: 3em;
+      font-size: 2em;
       word-spacing: -0.2em;
+    }
+
+    &__subtext {
+      display: block;
+      font-size: 0.8rem;
+      font-style: normal;
     }
   }
 }

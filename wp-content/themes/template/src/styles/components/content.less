@@ -22,8 +22,14 @@
   }
   &__excerpt {
     text-align: left;
+
     .single & {
       font-weight: bold;
+    }
+
+    p {
+      margin: 0.2em 0;
+      height: 100%;
     }
   }
   &__text {
@@ -54,6 +60,36 @@
       left: 1rem;
       fill: @shadow;
       transform: rotate(180deg);
+    }
+  }
+
+  &__subtitle {
+    text-align: left;
+    margin: -0.7rem 0 0;
+  }
+
+  &__icon {
+    position: relative;
+    top: 0.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: @first;
+  }
+
+  .event & {
+    &__title {
+      margin: 0.5rem 0 0;
+    }
+
+    &__excerpt {
+      width: 58%;
+      height: 4rem;
+      overflow: hidden;
+
+    }
+
+    &__button {
+      float: right;
     }
   }
   @media @media-m-min {

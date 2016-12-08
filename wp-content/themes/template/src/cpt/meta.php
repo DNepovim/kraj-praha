@@ -20,9 +20,14 @@ function your_prefix_meta_boxes( $meta_boxes ) {
                 'name' => __('Konec'),
                 'type' => 'datetime'
             ),
+	        array(
+		        'id'   => $prefix . 'position',
+		        'name' => __( 'Místo', 'textdomain' ),
+		        'type' => 'text'
+	        ),
             array(
-                'id'   => $prefix . 'position',
-                'name' => __( 'Místo', 'textdomain' ),
+                'id'   => $prefix . 'map',
+                'name' => __( 'Mapa', 'textdomain' ),
                 'type' => 'map',
 	            'std' => '50.0823452,14.4196943,14.93z'
             ),

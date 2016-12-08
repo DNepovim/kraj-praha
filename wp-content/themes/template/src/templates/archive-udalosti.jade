@@ -12,21 +12,39 @@ block main
             - $classes .= (is_single()||is_page()) ? ' single' : null;
             article.post.content-box__post.content.event(class= '<?php echo $classes; ?>')
 
-                //- THUMBNAIL
-
                 a.link(href=esc_url( get_permalink() ))
                     figure.thumbnail.content__thumbnail
                         svg.thumbnail__frame
                             use(xlink:href='#rect')
                         p.thumbnail__text=date('j. n.', strtotime(get_post_meta(get_the_ID(), 'praha_start_date', true)))
+                            i.thumbnail__subtext
+                                - switch(date('D', strtotime(get_post_meta(get_the_ID(), 'praha_start_date', true)))):
+                                - case 'Mon': echo 'pondělí'; break
+                                - case 'Tue': echo 'úterý'; break
+                                - case 'Wed': echo 'středa'; break
+                                - case 'Thu': echo 'čtvrtek'; break
+                                - case 'Fri': echo 'pátek'; break
+                                - case 'Sat': echo 'sobota'; break
+                                - case 'Sun': echo 'neděle'; break
+                                - endswitch
 
-                //- TITLE
 
                 h2.title.title--medium.content__title
                     a.link(href=esc_url( get_permalink() ))
                         - the_title()
+                p.content__subtitle
+                    svg.content__icon
+                        use(xlink:href='#location')
+                    ='Prachovské skály'
 
-                //- EXCERPT
+                - if (!(is_single()||is_page())):
+                    .button.content__button
+                        svg.button__background
+                            use(xlink:href='#shape-<?php echo rand(1, 3) ?>')
+                        a.link.button__link(href=esc_url( get_permalink()))
+                            ='Informace'
+                            i.button__arrow!='&nbsp;&rarr;'
+                - endif
 
                 - if (is_single()||is_page()):
                     - if (has_excerpt(get_the_ID())):
@@ -38,22 +56,6 @@ block main
                         - the_excerpt()
                 - endif
 
-                //- CONTENT
-
-                - if (is_single()||is_page()):
-                    .text.content__text
-                        - the_content()
-                - endif
-
-                //- BUTTON
-
-                - if (!(is_single()||is_page())):
-                    .button.content__button
-                        svg.button__background
-                            |<use xlink:href='#shape-<?php echo rand(1, 3) ?>'></use>
-                        a.link.button__link(href=esc_url( get_permalink()))
-                            | Číst dál
-                - endif
         - endwhile
     - else:
         ='Nejsou naplánované, žádné akce.'
