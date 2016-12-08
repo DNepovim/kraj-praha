@@ -23,7 +23,11 @@ header.main-header.row(role='banner')
           use(xlink:href='#rect')
         - $first = true
         - foreach($menuitems as $item):
-          li.main-nav__item.button.button--inv
+          - $classes='main-nav__item button button--inv'
+          - if($item->title == get_the_title()):
+            - $classes .=' active'
+          - endif
+          li(class=$classes)
             a.link.button__link(href='<?php echo $item->url ?>')
               - if ($first):
                 svg.button__icon

@@ -45,6 +45,18 @@
     font-style: normal;
   }
 
+  &.active  {
+    background: @second;
+
+    .button__link {
+      color: @first;
+    }
+
+    .button__icon {
+      fill: @first;
+    }
+  }
+
   .event & {
     &__button {
       float: right;

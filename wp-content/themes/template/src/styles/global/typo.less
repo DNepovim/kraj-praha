@@ -17,6 +17,9 @@ body{
   &--hight{
     font-size: @title-font-size-1;
   }
+  &--wrapper {
+    margin: 0 1rem -2rem;
+  }
 }
 
 .label {
@@ -36,6 +39,11 @@ body{
   }
 }
 
-a {
+a, strong {
   color: @first;
 }
+
+a:hover {
+  text-decoration: underline;
+}
+

@@ -6,6 +6,7 @@ block main
     - if ($taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true)) :
         - query_posts(array('cat' => $taxonomy))
         .grid-s-20.grid-s-offset-2
+            h3.title.title--wrapper='Články k tématu:'
             include parts/wrapper
     - endif
 
