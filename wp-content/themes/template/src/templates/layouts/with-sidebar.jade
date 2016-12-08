@@ -1,7 +1,12 @@
 extends two-column
 
 block top
-  input#addPost.modal__check(type='checkbox')
+  - if (isset($_GET['modal']) && $_GET['modal']):
+    input#addPost.modal__check(type='checkbox', checked='checked')
+  - else:
+    input#addPost.modal__check(type='checkbox')
+  - endif
+
   include ../parts/add-post
   label.modal__outside(for='addPost')
 

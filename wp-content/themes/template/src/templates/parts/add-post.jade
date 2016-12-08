@@ -5,6 +5,18 @@ form#primaryPostForm.form.modal(action=bloginfo('template_directory')+'/post-pro
   h3.title.title--medium.form__title
     - _e('Přidat příspěvek', 'form')
 
+  - if (is_user_logged_in()):
+    p.subtitle.form__subtitle
+      - $user = get_user_by('ID', wp_get_current_user()->ID)
+      ='Jsi přihlášen jako '
+      strong.name=$user->display_name
+  - else:
+    p.subtitle.form__subtitle
+      ='Nejsi přihlášen. Tvůj příspěvěk bude přidán až po schválení administrátorem.'
+      br
+      a(href=wp_login_url('/?modal=true'))='(přihlásit)'
+  - endif
+
   svg.background.form__background
     use(xlink:href='#rect')
 
