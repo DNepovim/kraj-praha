@@ -26,11 +26,17 @@ if ( isset( $_POST['submitted'] )
 		exit;
 	}
 
+	if (is_user_logged_in()) {
+		$post_status = 'publish';
+	} else {
+		$post_status = 'pending';
+	}
+
 	$post_information = array(
 		'post_title'   => wp_strip_all_tags( $_POST['postTitle'] ),
 		'post_content' => $_POST['postContent'],
 		'post_type'    => 'post',
-		'post_status'  => 'publish'
+		'post_status'  => $post_status
 	);
 
 	$post_id = wp_insert_post( $post_information );
