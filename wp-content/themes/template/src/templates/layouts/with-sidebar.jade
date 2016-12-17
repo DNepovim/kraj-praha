@@ -16,7 +16,12 @@ block aside
   form.search-form(role='search', method='get', action=esc_url(home_url('/')))
     svg.search-form__background
       use(xlink:href='#rect')
-    input.search-form__input(type='search', placeholder='Hledat', value=$_GET['s'], name='s')
+    - if (isset($_GET['s']) && $_GET['s']):
+      - $value = $_GET['s']
+    - else:
+      - $value = ''
+    - endif
+    input.search-form__input(type='search', placeholder='Hledat', value=$value, name='s')
     label.search-form__button(for='search-submit')
       svg.search-form__icon
         use(xlink:href='#search')
