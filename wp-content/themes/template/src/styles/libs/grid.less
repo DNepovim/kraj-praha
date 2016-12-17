@@ -3,7 +3,7 @@
 ===================================================================================================================== */
 @debug-mode:1;
 @gridx-columns: 24;
-@gridx-gutter: 25px; // Padding between columns. Gets divided in half for the left and right.
+@gridx-gutter: 25px;
 
 @gridx-s-min: 500px;
 @gridx-m-min: 768px;
@@ -180,7 +180,7 @@
 
 .make-row(@gutter: @gridx-gutter) {
   margin-left:  ceil((@gutter / -2));
-  margin-right: floor((@gutter / -2));
+  margin-right: ceil((@gutter / -2));
   clear: both;
   &:extend(.clearfix all);
 }

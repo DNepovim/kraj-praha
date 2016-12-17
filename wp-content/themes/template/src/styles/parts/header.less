@@ -1,16 +1,12 @@
 .main-header {
-  position: static !important;
-  width: 100%;
-  .silhouette {
-    bottom: 25px;
+  &__row {
+    display: flex;
+    align-items: flex-end;
   }
+
   @media @media-m-min {
     &__hamburger {
       display: none;
-    }
-    & > * {
-      float: none;
-      display: inline-block;
     }
   }
 }
