@@ -35,7 +35,7 @@ block main
                 p.content__subtitle
                     svg.content__icon
                         use(xlink:href='#location')
-                    ='Prachovské skály'
+                    = get_post_meta(get_the_ID(), 'praha_position', true)
 
                 - if (!(is_single()||is_page())):
                     .button.content__button
