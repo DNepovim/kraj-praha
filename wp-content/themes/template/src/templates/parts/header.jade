@@ -38,11 +38,13 @@ header.main-header(role='banner')
           - $first = true
           - foreach($menuitems as $item):
             - $classes='main-nav__item button button--inv'
-            - if($item->title == get_the_title()):
+            - if(str_replace('/', '', parse_url($item->url)['path']) == $wp->request):
               - $classes .=' active'
             - endif
             li(class=$classes)
-              a.link.button__link(href='<?php echo $item->url ?>')
+              svg.main-nav__item__background
+                use(xlink:href='#rect')
+              a.link.main-nav__item__button.button__link(href='<?php echo $item->url ?>')
                 - if ($first):
                   svg.button__icon
                     use(xlink:href='#home')
