@@ -20,7 +20,6 @@
     height: 100%;
     margin: 0;
     padding: 30px 20px;
-    transition: left 300ms;
   }
   &__background {
     position: absolute;
@@ -29,6 +28,56 @@
     width: 100%;
     height: 100%;
     fill: @first;
+  }
+
+  &__item {
+    padding: 0.6em 1em;
+
+    &__background {
+      display: none;
+      position: absolute;
+      top: 20%;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      use {
+        fill: @second;
+      }
+    }
+
+    &__link {
+      position: relative;
+      z-index: 1;
+      color: @second;
+    }
+
+    &__icon {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin: -0.2rem;
+
+      use {
+        fill: none;
+        stroke: @second;
+      }
+    }
+    &.active, &:hover {
+      .main-nav__item {
+        &__background {
+          display: block;
+        }
+
+        &__link {
+          color: @first;
+        }
+
+        &__icon {
+          use {
+            stroke: @first;
+          }
+        }
+      }
+    }
   }
   @media @media-m-min {
     position: relative;
@@ -51,6 +100,8 @@
     &__item {
       display: inline-block;
       margin: 0;
+
+
     }
   }
 }

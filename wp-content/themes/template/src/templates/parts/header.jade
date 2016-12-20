@@ -44,9 +44,9 @@ header.main-header(role='banner')
             li(class=$classes)
               svg.main-nav__item__background
                 use(xlink:href='#rect')
-              a.link.main-nav__item__button.button__link(href='<?php echo $item->url ?>')
+              a.link.main-nav__item__link(href='<?php echo $item->url ?>')
                 - if ($first):
-                  svg.button__icon
+                  svg.main-nav__item__icon
                     use(xlink:href='#home')
                   - $first = false
                 - else:
