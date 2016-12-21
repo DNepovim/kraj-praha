@@ -27,6 +27,19 @@ header.main-header(role='banner')
         span.hamburger__spin.hamburger__spin--1
         span.hamburger__spin.hamburger__spin--2
         span.hamburger__spin.hamburger__spin--3
+      form.search-form(role='search', method='get', action=esc_url(home_url('/')))
+        svg.search-form__background
+          use(xlink:href='#rect')
+        - if (isset($_GET['s']) && $_GET['s']):
+          - $value = $_GET['s']
+        - else:
+          - $value = ''
+        - endif
+        input.search-form__input(type='search', placeholder='Hledat', value=$value, name='s')
+        label.search-form__button(for='search-submit')
+          svg.search-form__icon
+            use(xlink:href='#search')
+        input#search-submit.search-form__submit(type='submit',value='Hledat')
       - $menu_name = 'main_menu'; //menu slug
       - $locations = get_nav_menu_locations();
       - if (!empty($locations)):
