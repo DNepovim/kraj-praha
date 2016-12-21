@@ -34,13 +34,18 @@ head
 block top
 
 .container
-    svg.background.container__background
-        |<use xlink:href='#layout'></use>
+    svg.container__border.container__border--top
+        use(xlink:href='#border-top')
+
     include ../parts/header
 
     block content
 
     include ../parts/sidebar
+
+    svg.container__border.container__border--bottom
+        use(xlink:href='#border-bottom')
+
 include ../parts/footer
 
 block bottom
