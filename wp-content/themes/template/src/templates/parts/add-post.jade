@@ -1,4 +1,4 @@
-form#primaryPostForm.form.modal(action=bloginfo('template_directory')+'/post-process.php', method='POST')
+form#primaryPostForm.form.modal(action=bloginfo('template_directory')+'/post-process.php', method='POST', enctype='multipart/form-data')
 
   label.cross.form__close(for='addPost')
 
@@ -38,6 +38,10 @@ form#primaryPostForm.form.modal(action=bloginfo('template_directory')+'/post-pro
   - $arg['editor_class'] = 'required form__input form__input--text form__input--textarea'
   - $arg['drag_drop_upload'] = true
   - wp_editor('', 'postContent', array('editor_class' => 'cleass'))
+
+  label.form__label(for='postThumbnail')
+    - _e('Náhledový obrázek:', 'form')
+  input#postThumbnail.form__input.form__input--upload(type='file', name='postThumbnail', accept='image/gif, image/jpeg, image/png')
 
   - $categories = get_categories(array('hide_empty' => false))
   - foreach ($categories as $category):
