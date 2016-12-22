@@ -6,7 +6,6 @@ if ( isset( $_POST['submitted'] )
      && wp_verify_nonce( $_POST['post_nonce_field'], 'post_nonce' )
 ) {
 
-
 	if ( trim( $_POST['postTitle'] ) === '' ) {
 		$err['postTitle'] = true;
 		$hasError         = true;
@@ -36,7 +35,8 @@ if ( isset( $_POST['submitted'] )
 		'post_title'   => wp_strip_all_tags( $_POST['postTitle'] ),
 		'post_content' => $_POST['postContent'],
 		'post_type'    => 'post',
-		'post_status'  => $post_status
+		'post_status'  => $post_status,
+		'post_category'=> $_POST['postCategory']
 	);
 
 	$post_id = wp_insert_post( $post_information );

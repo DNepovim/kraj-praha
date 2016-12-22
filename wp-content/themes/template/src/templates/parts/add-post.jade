@@ -39,6 +39,15 @@ form#primaryPostForm.form.modal(action=bloginfo('template_directory')+'/post-pro
   - $arg['drag_drop_upload'] = true
   - wp_editor('', 'postContent', array('editor_class' => 'cleass'))
 
+  - $categories = get_categories(array('hide_empty' => false))
+  - foreach ($categories as $category):
+    - $id = 'postCategory-' . $category->term_id
+    - $value = $category->term_id
+    input.form__input.form__input--checkbox(id=$id, type='checkbox', name='postCategory[]', value=$value)
+    label.form__label(for=$id)
+      = $category->name
+  - endforeach
+
   input#submitted(type='hidden', name='submitted', value='true')
 
   - wp_nonce_field( 'post_nonce', 'post_nonce_field' )
