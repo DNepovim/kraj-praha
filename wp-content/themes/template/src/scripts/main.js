@@ -9,6 +9,8 @@ $(document).ready(function () {
         var image = (window.URL ? URL : webkitURL).createObjectURL(this.files[0]);
 
         $(label).css('background-image', 'url(' + image + ')');
+
+        $('.remover').css('display', 'block');
     })
 
     $('.remover').on('click', function () {
@@ -19,8 +21,8 @@ $(document).ready(function () {
         $(input).unwrap();
 
         $(label).css('background-image', 'none');
+
+        $('.remover').css('display', 'none');
     })
-
-
 });
 
