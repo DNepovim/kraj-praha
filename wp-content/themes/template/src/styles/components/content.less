@@ -23,7 +23,11 @@
   &__excerpt {
     text-align: left;
     overflow: hidden;
-    height: 5.6rem;
+    max-height: 6.2rem;
+
+    .rss & {
+      display: none;
+    }
 
     .single & {
       font-weight: bold;
@@ -89,7 +93,7 @@
     }
 
     &__excerpt {
-      height: 4rem;
+      height: 4.7rem;
     }
 
     &__button {
