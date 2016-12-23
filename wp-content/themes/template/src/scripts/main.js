@@ -1,10 +1,26 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     $('#primaryPostForm').validate()
 
     // Image preview in upload input
     $('.form__input--upload').on('change', function () {
-        $('#img_url')[0].src = (window.URL ? URL : webkitURL).createObjectURL(this.files[0]);
+
+        var label = $(this).data('label');
+        var image = (window.URL ? URL : webkitURL).createObjectURL(this.files[0]);
+
+        $(label).css('background-image', 'url(' + image + ')');
     })
 
+    $('.remover').on('click', function () {
+        var input = $(this).data('for');
+        var label = $(input).data('label');
+
+        $(input).wrap('<form>').closest('form').get(0).reset();
+        $(input).unwrap();
+
+        $(label).css('background-image', 'none');
+    })
+
+
 });
+
