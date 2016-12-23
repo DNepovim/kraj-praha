@@ -39,25 +39,29 @@ form#primaryPostForm.form.modal(action=bloginfo('template_directory')+'/post-pro
   - $arg['drag_drop_upload'] = true
   - wp_editor('', 'postContent', array('editor_class' => 'cleass'))
 
-  label.form__label(for='postThumbnail')
-    - _e('Náhledový obrázek:', 'form')
   input#postThumbnail.form__input.form__input--upload.form__input--hidden(data-label='#form-thumbanil', type='file', name='postThumbnail', accept='image/gif, image/jpeg, image/png')
 
-  label#form-thumbanil.thumbnail.form__thumbnail(for='postThumbnail')
-    svg.thumbnail__frame.form__thumbnail__frame
-      use(xlink:href='#frame')
-  .remover(data-for='#postThumbnail')='remove'
+  fieldset.thumbnail__container.form__fieldset.form__fieldset--inline
+    label.form__label(for='postThumbnail')
+      - _e('Náhledový obrázek:', 'form')
+    label#form-thumbanil.thumbnail.form__thumbnail(for='postThumbnail')
+      svg.thumbnail__frame.form__thumbnail__frame
+        use(xlink:href='#frame')
+    .remover.thumbnail__remover(data-for='#postThumbnail')='(smazat)'
 
 
 
-  - $categories = get_categories(array('hide_empty' => false))
-  - foreach ($categories as $category):
-    - $id = 'postCategory-' . $category->term_id
-    - $value = $category->term_id
-    input.form__input.form__input--checkbox(id=$id, type='checkbox', name='postCategory[]', value=$value)
-    label.form__label(for=$id)
-      = $category->name
-  - endforeach
+  fieldset.form__fieldset.form__fieldset--inline
+    .form__legend.form__label='Kategorie:'
+    - $categories = get_categories(array('hide_empty' => false))
+    - foreach ($categories as $category):
+      - $id = 'postCategory-' . $category->term_id
+      - $value = $category->term_id
+      input.form__input.form__input--checkbox(id=$id, type='checkbox', name='postCategory[]', value=$value)
+      label.form__label.form__label--checkbox(for=$id)
+        = $category->name
+      br
+    - endforeach
 
   input#submitted(type='hidden', name='submitted', value='true')
 

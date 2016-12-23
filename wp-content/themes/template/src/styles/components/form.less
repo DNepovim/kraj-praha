@@ -13,6 +13,11 @@
     display: block;
     color: @first;
     margin: 2em 0 0.2em;
+    &--checkbox {
+      display: inline-block;
+      margin: 0 0 0 0.5em;
+      color: @text;
+    }
   }
   &__input {
     background: @blank;
@@ -25,12 +30,21 @@
     &--title {
       font-size: @title-font-size-2;
     }
+    &--hidden {
+      display: none;
+    }
+    &--checkbox {
+      display: inline-block;
+      width: auto;
+    }
     &:focus {
       outline: none;
       border: @first solid 1px;
     }
   }
   &__button {
+    clear: both;
+    display: block;
     background: none;
     margin: 1rem;
     border: none;
@@ -40,5 +54,23 @@
     position: absolute;
     top: 3rem;
     left: 3.4rem;
+  }
+  &__thumbnail {
+    cursor: pointer;
+    background-color: fade(@first, 50%);
+    width: 200px;
+    height: 250px;
+    margin: 0;
+  }
+  &__legend {
+    color: @first;
+  }
+  &__fieldset {
+    border: none;
+    margin: 0 2rem 0 0;
+
+    &--inline {
+      float: left;
+    }
   }
 }
