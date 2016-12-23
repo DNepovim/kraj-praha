@@ -1,57 +1,55 @@
 doctype html
-| <html <?php language_attributes(); ?>>
-head
-    meta(charset!=bloginfo('charset'))
-    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-    meta(name='viewport', content='width=device-width,initial-scale=1')
+html(lang=get_bloginfo('language'))
+    head
+        meta(charset!=bloginfo('charset'))
+        meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+        meta(name='viewport', content='width=device-width,initial-scale=1')
 
-    title!=wp_title( ' | ', true, 'right' ) . bloginfo( 'name' )
+        title!=wp_title( ' | ', true, 'right' ) . bloginfo( 'name' )
 
-    meta(name='description', content!=bloginfo('description'))
-    meta(name='author', content='Dominik Bláha / www.dombl.cz')
+        meta(name='description', content!=bloginfo('description'))
+        meta(name='author', content='Dominik Bláha / www.dombl.cz')
 
-    meta(property='og:title', content!=wp_title( ' | ', true, 'right' ))
-    meta(property='og:description', content!=bloginfo('description'))
-    meta(propertu='og:url', content!=esc_url( home_url( '/' )))
-    meta(property='og:type', content='article')
-    meta(property='og:image', content='')
-    meta(property='og:image:width', content='')
-    meta(property='og:image:height', content='')
-    meta(name='twitter:card', content='summary_large_image')
+        meta(property='og:title', content!=wp_title( ' | ', true, 'right' ))
+        meta(property='og:description', content!=bloginfo('description'))
+        meta(propertu='og:url', content!=esc_url( home_url( '/' )))
+        meta(property='og:type', content='article')
+        meta(property='og:image', content='')
+        meta(property='og:image:width', content='')
+        meta(property='og:image:height', content='')
+        meta(name='twitter:card', content='summary_large_image')
 
-    link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i', rel='stylesheet')
 
-    link(rel='shortcut icon', href=get_template_directory_uri() + '/favicon.ico', type='image/x-icon')
+        link(rel='shortcut icon', href=get_template_directory_uri() + '/favicon.ico', type='image/x-icon')
 
-    link(rel='stylesheet ', href=get_template_directory_uri() + '/dist/styles.min.css', media='screen')
-    //link(rel='stylesheet', href='dist/print.min.css', media='print')
+        link(rel='stylesheet ', href=get_template_directory_uri() + '/dist/styles.min.css', media='screen')
+        //link(rel='stylesheet', href='dist/print.min.css', media='print')
 
-    - wp_head()
-| <body <?php body_class(); ?>>
+        - wp_head()
+    body(class=implode(' ', get_body_class()))
 
-- include_once 'dist/symbol/shapes.svg'
+        - include_once 'dist/symbol/shapes.svg'
 
-block top
+        block top
 
-.container
-    svg.container__border.container__border--top
-        use(xlink:href='#border-top')
+        .container
+            svg.container__border.container__border--top
+                use(xlink:href='#border-top')
 
-    include ../parts/header
+            include ../parts/header
 
-    block content
+            block content
 
-    include ../parts/sidebar
+            include ../parts/sidebar
 
-    svg.container__border.container__border--bottom
-        use(xlink:href='#border-bottom')
+            svg.container__border.container__border--bottom
+                use(xlink:href='#border-bottom')
 
-include ../parts/footer
+        include ../parts/footer
 
-block bottom
+        block bottom
 
-script(src='https://code.jquery.com/jquery-2.2.0.min.js')
-script(src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js')
-script(src=get_template_directory_uri() + '/dist/scripts.min.js')
-| </body>
-| </html>
+        script(src='https://code.jquery.com/jquery-2.2.0.min.js')
+        script(src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js')
+        script(src=get_template_directory_uri() + '/dist/scripts.min.js')
