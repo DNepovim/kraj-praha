@@ -42,6 +42,7 @@ form#primaryPostForm.form.modal(action=bloginfo('template_directory')+'/post-pro
   label.form__label(for='postThumbnail')
     - _e('Náhledový obrázek:', 'form')
   input#postThumbnail.form__input.form__input--upload(type='file', name='postThumbnail', accept='image/gif, image/jpeg, image/png')
+  img#img_url(src="", alt="your image")
 
   - $categories = get_categories(array('hide_empty' => false))
   - foreach ($categories as $category):
