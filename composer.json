@@ -11,6 +11,7 @@
         "wpackagist-plugin/wp-tracy": "^1.0.5",
         "wpackagist-plugin/meta-box": "^4.8.7",
         "wpackagist-plugin/html-editor-syntax-highlighter": "^1.7.2",
+        "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.2.4",
         "facebook/graph-sdk": "^5.2"
     },
     "extra"       : {
