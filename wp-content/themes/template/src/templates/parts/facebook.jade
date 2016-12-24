@@ -9,8 +9,14 @@
     - $classes = get_post_type()
     - $classes .= ' ' . $type
 
+    - $link = 'https://www.facebook.com/'
+    - $link .= get_option( 'fptc_option' )['page_id']
+    - $link .= '/posts/'
+    - $link .= explode('_', get_post_meta($id, 'fptc_fb_id', true))[1]
+
     article.content.content-box__post.facebook(class=$classes)
-      != wp_trim_words(get_post_meta($id, 'fptc_message', true), 20)
+      a(href=$link, target='_blank')
+        != wp_trim_words(get_post_meta($id, 'fptc_message', true), 20)
 
   - endwhile
 - endif
