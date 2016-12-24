@@ -4,21 +4,26 @@ body{
   letter-spacing: 0.01em;
   line-height: 1.5em;
 }
+
 .title{
   font-family: @font-title;
   font-size: @title-font-size-3;
   color: @first;
   line-height: 1.5em;
+
   & a {
     text-align: center;
     color: @first;
   }
+
   &--medium{
     font-size: @title-font-size-2;
   }
+
   &--hight{
     font-size: @title-font-size-1;
   }
+
   &--wrapper {
     margin: 1rem 0;
   }
@@ -31,17 +36,18 @@ body{
 }
 
 .label {
-  display: inline-block;
+  display: block;
   color: @first;
   font-size: 1.2rem;
   text-align: center;
-  width: 80%;
-  margin: 20px 10% 0;
   padding: 0.1em;
   clear: both;
+  z-index: 1;
+
   &--facebook {
     color: @facebookText;
   }
+
   &--krizovatka {
     color: @krizovatka;
   }
@@ -54,4 +60,3 @@ a, strong {
 a:hover {
   text-decoration: underline;
 }
-

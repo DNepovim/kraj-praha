@@ -4,6 +4,7 @@
   width: 2rem;
   height: 2rem;
   cursor: pointer;
+
   &:before, &:after {
     position: absolute;
     top: 50%;
@@ -14,16 +15,20 @@
     background: @first;
     transition:  transform 300ms;
   }
+
   &:before {
     transform: rotate(45deg);
   }
+
   &:after {
     transform: rotate(-45deg);
   }
+
   &:hover{
     &:before {
       transform: rotate(-45deg);
     }
+
     &:after {
       transform: rotate(45deg);
     }

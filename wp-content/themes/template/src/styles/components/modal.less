@@ -7,9 +7,11 @@
   margin: 20px 0;
   transform: translate(-50%, calc(~'-100% - 80px'));
   transition: transform 300ms;
+
   &__check {
     display: none;
   }
+
   &__outside {
     opacity: 0;
     background: @first;
@@ -22,6 +24,7 @@
     cursor: pointer;
     transition: opacity 300ms;
   }
+
   &__check:checked ~ .modal {
     transform: translate(-50%,0);
     &__outside {
@@ -29,9 +32,11 @@
       opacity: 0.5;
     }
   }
+
   &__button {
     display: none;
   }
+
   @media @media-m-min {
     &__button {
       display: block;

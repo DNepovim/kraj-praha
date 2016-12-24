@@ -1,5 +1,4 @@
 .content {
-  text-align: right;
   clear: both;
   margin: 0 0 1rem;
 
@@ -9,52 +8,43 @@
     margin: 0 1rem 0 0;
     float: left;
   }
+
   &__title {
     margin: 0;
+
     a {
       display: block;
       text-align: left;
     }
   }
+
   &__date {
     font-size: 0.8em;
     text-align: left;
     margin: 0;
   }
+
   &__excerpt {
     text-align: left;
     overflow: hidden;
     max-height: 6.2rem;
-
-    .rss & {
-      display: none;
-    }
-
-    .single & {
-      font-weight: bold;
-    }
 
     p {
       margin: 0.2em 0;
       height: 100%;
     }
   }
+
   &__text {
     text-align: left;
     margin: 1em 0 0.5em;
   }
+
   &__button {
     display: block;
     margin: 2rem 0 0;
   }
-  &.krizovatka &__title a {
-    color: @krizovatkaText;
-    font-size: @base-font-size;
-  }
-  &.facebook &__title a {
-    color: @facebookText;
-    font-size: @base-font-size;
-  }
+
   &__background {
     position: absolute;
     top: 0;
@@ -62,6 +52,7 @@
     z-index: -1;
     height: 100%;
     width: 100%;
+
     &--shadow {
       z-index: -2;
       top: 1rem;
@@ -82,6 +73,12 @@
     width: 1.5rem;
     height: 1.5rem;
     fill: @first;
+  }
+
+  .single & {
+    &__excerpt {
+      font-weight: bold;
+    }
   }
 
   &.event {
@@ -109,6 +106,7 @@
       margin: 0 1rem 0 0;
       float: left;
     }
+
     &__button {
       display: inline-block;
       margin: 0.5rem 0 0;

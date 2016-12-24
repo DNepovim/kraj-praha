@@ -1,14 +1,16 @@
 .content-box {
   margin: 2rem 0 0;
+  clear: both;
+
   &__background {
     display: none;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
     height: 100%;
     width: 100%;
     fill: @second;
+
     &--shadow {
       z-index: -2;
       top: 1rem;
@@ -17,16 +19,20 @@
       transform: rotate(180deg);
     }
   }
+
   &--aside {
+    padding: 2rem 1.5rem;
     .content-box__background {
       fill: @shadow;
     }
   }
+
   &--fb {
     .content-box__background {
       fill: @facebookBackground;
     }
   }
+
   @media @media-m-min {
     &__background {
       display: block;

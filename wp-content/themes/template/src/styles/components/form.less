@@ -1,24 +1,29 @@
 .form {
   padding: 10px 5% 30px;
+
   &__background {
     use {
       fill: @second;
     }
   }
+
   &__title {
     text-align: center;
     margin-bottom: 0.1em;
   }
+
   &__label {
     display: block;
     color: @first;
     margin: 2em 0 0.2em;
+
     &--checkbox {
       display: inline-block;
       margin: 0 0 0 0.5em;
       color: @text;
     }
   }
+
   &__input {
     background: @blank;
     width: 100%;
@@ -27,21 +32,26 @@
     border-radius: @radius;
     font-size: 1.2rem;
     border: @blank solid 1px;
+
     &--title {
       font-size: @title-font-size-2;
     }
+
     &--hidden {
       display: none;
     }
+
     &--checkbox {
       display: inline-block;
       width: auto;
     }
+
     &:focus {
       outline: none;
       border: @first solid 1px;
     }
   }
+
   &__button {
     clear: both;
     display: block;
@@ -50,11 +60,13 @@
     border: none;
     .center(x);
   }
+
   &__close {
     position: absolute;
     top: 3rem;
     left: 3.4rem;
   }
+
   &__thumbnail {
     cursor: pointer;
     background-color: fade(@first, 50%);
@@ -62,9 +74,11 @@
     height: 250px;
     margin: 0;
   }
+
   &__legend {
     color: @first;
   }
+
   &__fieldset {
     border: none;
     margin: 0 2rem 0 0;

@@ -12,11 +12,13 @@
     height: 100%;
     width: 100%;
     cursor: pointer;
+
     use {
       stroke: @first;
       fill: @first;
     }
   }
+
   &__link {
     position: relative;
     display: block;
@@ -28,11 +30,13 @@
     margin: 0;
     padding: 0.6em 1em;
     cursor: pointer;
+
     use {
       stroke: @second;
       fill: none;
     }
   }
+
   &__icon {
     width: 1.2rem;
     height: 1.2rem;
@@ -54,11 +58,13 @@
     &__link {
       font-size: @base-font-size;
     }
+
     &:hover & {
       &__link {
         color: @second;
         text-decoration: underline;
       }
+
       &__icon {
         fill: @second;
         use {
@@ -67,6 +73,7 @@
       }
     }
   }
+
   &--call {
     .button {
       &__background {
@@ -74,17 +81,20 @@
           fill: @third;
         }
       }
+
       &__link {
         color: @second;
       }
     }
   }
+
   &--inv {
     .button {
       &__link {
         color: @second;
       }
     }
+
     @media @media-m-min {
       &:hover .button {
         &__background {
@@ -96,6 +106,7 @@
       }
     }
   }
+
   @media @media-m-min {
     margin: 0.1em 0.2em;
   }
