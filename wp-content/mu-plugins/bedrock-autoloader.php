@@ -146,4 +146,5 @@ class Autoloader {
   }
 }
 
+include 'wp-tracy/index.php';
 new Autoloader();
