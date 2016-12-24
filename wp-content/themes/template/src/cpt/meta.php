@@ -24,13 +24,7 @@ function your_prefix_meta_boxes( $meta_boxes ) {
 		        'id'   => $prefix . 'position',
 		        'name' => __( 'Místo', 'textdomain' ),
 		        'type' => 'text'
-	        ),
-            array(
-                'id'   => $prefix . 'map',
-                'name' => __( 'Mapa', 'textdomain' ),
-                'type' => 'map',
-	            'std' => '50.0823452,14.4196943,14.93z'
-            ),
+	        )
         ),
     );
     $meta_boxes[] = array(
@@ -44,22 +38,6 @@ function your_prefix_meta_boxes( $meta_boxes ) {
                 'name'    => __( 'Web', 'textdomain' ),
                 'type'    => 'url'
             ),
-            array(
-                'id'   => $prefix . 'email',
-                'name' => __( 'E-mail', 'textdomain' ),
-                'type' => 'email',
-            ),
-            array(
-                'id'   => $prefix . 'login',
-                'name' => __( 'Odkaz na přihlašování', 'textdomain' ),
-                'type' => 'url',
-            ),
-            array(
-                'id'   => $prefix . 'fb',
-                'name' => __('Facebook'),
-                'desc' => __('Odkaz na stránku nebo událost'),
-                'type' => 'url'
-            )
         ),
     );
     $meta_boxes[] = array(
