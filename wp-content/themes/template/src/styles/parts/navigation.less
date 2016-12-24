@@ -35,7 +35,7 @@
   }
 
   &__item {
-    padding: 0.6em 1em;
+    position: relative;
 
     &__background {
       display: none;
@@ -53,6 +53,8 @@
       position: relative;
       z-index: 1;
       color: @second;
+      padding: 1em;
+      font-size: 1.4rem;
     }
 
     &__icon {
@@ -101,15 +103,16 @@
       width: auto;
       margin: 0 auto;
       padding: 0 0.7rem;
-      .button__link {
-        padding: 0.6em 0.5em;
-      }
     }
     &__item {
       display: inline-block;
       margin: 0;
 
-
+      &__link {
+        display: block;
+        font-size: 1rem;
+        padding: 0.6em 1em;
+      }
     }
   }
 }
