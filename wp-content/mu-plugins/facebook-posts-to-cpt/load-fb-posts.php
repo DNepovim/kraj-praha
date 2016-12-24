@@ -10,7 +10,7 @@ function fptc_load() {
 	] );
 
 	try {
-		$response = $fb->get( '/' . $options['page_id'] . '/posts?locale=cs_CZ', $options['access_token'] );
+		$response = $fb->get( '/' . $options['page_id'] . '/posts?locale=cs_CZ&fields=message,link,created_time,story', $options['access_token'] );
 	} catch ( Facebook\Exceptions\FacebookResponseException $e ) {
 		echo 'Graph returned an error: ' . $e->getMessage();
 		exit;
@@ -77,11 +77,11 @@ function fptc_colect_data( $data ) {
 		'post_title'  => $title,
 		'post_status' => 'publish',
 		'post_type'   => 'fb',
+		'post_date'   => $data['created_time'],
 		'meta_input'  => array(
-			'fptc_fb_id'        => (string) $data['id'],
-			'fptc_created_time' => (string) $data['created_time'],
-			'fptc_story'        => (string) $data['story'],
-			'fptc_message'      => (string) $data['message']
+			'fptc_fb_id'   => (string) $data['id'],
+			'fptc_story'   => (string) $data['story'],
+			'fptc_message' => (string) $data['message']
 		)
 	);
 
