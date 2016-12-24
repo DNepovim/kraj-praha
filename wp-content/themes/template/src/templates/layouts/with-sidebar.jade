@@ -20,17 +20,16 @@ block aside
     label.link.button__link.modal__label(for='addPost')
       ='Přidat příspěvek'
 
-  section.aside.content-box.content-box--aside.content-box--fb.grid-s-24
+  section.content-box.content-box--aside.content-box--fb.fb
     svg.content-box__background
       use(xlink:href='#rect')
     a.label.label--facebook(href='https://facebook.com/skautipraha', targer='_blank') Z našeho facebooku
-    - query_posts( array('post_type' => array('facebook'), 'showposts' => 5))
-    include ../parts/wrapper--facebook
+    include ../parts/facebook
 
-  section.aside.content-box.content-box--aside.content-box--krizovatka
+  section.content-box.content-box--aside.content-box--krizovatka.rss
     svg.content-box__background
       use(xlink:href='#rect')
     a.label.label--first(href='http://krizovatka.skaut.cz', target='_blank') Novinky ze skautské křižovatky
-    - query_posts( array('post_type' => array('rss'), 'showposts' => 5))
+    - query_posts( array('post_type' => 'rss', 'showposts' => 5))
     include ../parts/wrapper--aside
 

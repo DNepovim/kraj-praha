@@ -75,6 +75,16 @@
     fill: @first;
   }
 
+  .fb & {
+    max-height: 4.7rem;
+    overflow: hidden;
+    transition: max-height 300ms;
+
+    &:hover {
+      max-height: 20rem;
+    }
+  }
+
   .single & {
     &__excerpt {
       font-weight: bold;
