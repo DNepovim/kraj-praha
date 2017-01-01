@@ -42,8 +42,26 @@
     }
 
     &--checkbox {
+      position: relative;
+      appearance: none;
       display: inline-block;
-      width: auto;
+      width: 1em;
+      height: 1em;
+      border-radius: 9px 5px 9px 5px;
+      background: @first;
+
+      &:checked:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: '';
+        display: block;
+        width: 0.2em;
+        height: 0.3em;
+        border-left: 2px solid @second;
+        border-bottom: 2px solid @second;
+        transform: rotate(-45deg) translate(20%, -70%);
+      }
     }
 
     &:focus {
