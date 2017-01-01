@@ -47,6 +47,9 @@ form#primaryPostForm.form.modal(action=bloginfo('template_directory')+'/post-pro
     label#form-thumbanil.thumbnail.form__thumbnail(for='postThumbnail')
       svg.thumbnail__frame.form__thumbnail__frame
         use(xlink:href='#frame')
+      svg.thumbnail__icon.form__thumbnail__icon
+        use(xlink:href='#upload')
+
     .remover.thumbnail__remover(data-for='#postThumbnail')='(smazat)'
 
 
