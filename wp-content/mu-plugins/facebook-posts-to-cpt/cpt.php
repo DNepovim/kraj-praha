@@ -10,6 +10,7 @@ function fptc_create_post_type() {
 			),
 			'public'      => true,
 			'has_archive' => true,
+			'menu_icon'   => 'dashicons-facebook',
 			'supports'    => array( 'title' )
 		)
 	);

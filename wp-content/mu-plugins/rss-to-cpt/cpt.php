@@ -10,6 +10,7 @@ function rtc_create_post_type() {
 			),
 			'public'      => true,
 			'has_archive' => true,
+			'menu_icon'   => 'dashicons-book-alt',
 			'supports'    => array( 'title' )
 		)
 	);

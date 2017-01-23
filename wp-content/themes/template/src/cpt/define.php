@@ -11,6 +11,7 @@ function create_post_type()
 				'name' => __('Událost'),
 			),
 			'public' => true,
+			'menu_icon' => 'dashicons-calendar-alt',
 			'has_archive' => true,
 			'supports' => array(
 				'title',
