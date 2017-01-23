@@ -11,6 +11,7 @@ function rtc_create_post_type() {
 			'public'      => true,
 			'has_archive' => true,
 			'menu_icon'   => 'dashicons-book-alt',
+			'capabilities' => 'administrator',
 			'supports'    => array( 'title' )
 		)
 	);
