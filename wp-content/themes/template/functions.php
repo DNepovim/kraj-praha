@@ -41,3 +41,9 @@ add_action( 'do_meta_boxes', 'remove_default_custom_fields_meta_box', 1, 3 );
 function remove_default_custom_fields_meta_box( $post_type, $context, $post ) {
     remove_meta_box( 'postcustom', $post_type, $context );
 }
+
+// Remove tags
+function unregister_tags() {
+    unregister_taxonomy_for_object_type('post_tag', 'post');
+}
+add_action('init', 'unregister_tags');
