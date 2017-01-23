@@ -8,7 +8,7 @@ function create_post_type()
 	register_post_type('udalosti',
 		array(
 			'labels' => array(
-				'name'               => __('Událost'),
+				'name'               => __('Události'),
 				'name_admin_bar'     => __('Přidat událost'),
 				'add_new'            => __('Přidat událost'),
 				'add_new_item'       => __('Přidat událost' ),
