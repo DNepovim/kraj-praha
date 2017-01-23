@@ -35,3 +35,9 @@ function custom_menu_page_removing() {
     remove_menu_page( 'tools.php' );
 }
 add_action( 'admin_menu', 'custom_menu_page_removing' );
+
+// Remove custom fields from all posts
+add_action( 'do_meta_boxes', 'remove_default_custom_fields_meta_box', 1, 3 );
+function remove_default_custom_fields_meta_box( $post_type, $context, $post ) {
+    remove_meta_box( 'postcustom', $post_type, $context );
+}
