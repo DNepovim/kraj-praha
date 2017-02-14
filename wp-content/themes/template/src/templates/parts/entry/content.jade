@@ -18,10 +18,11 @@ article.post.content-box__post.content(class= '<?php echo $classes; ?>')
 
     //- TITLE
 
-    - if (is_single()||is_page()):
+    - if (is_single()):
         h1.title.title--medium.content__title
             a.link(href=esc_url( get_permalink() ))
                 - the_title()
+    - elseif (is_page):
     - else:
         h2.title.content__title
             a.link(href=esc_url( get_permalink() ))
