@@ -43,6 +43,8 @@ add_action('init', 'unregister_tags');
 
 function format_TinyMCE( $in ) {
     $in['block_formats'] = "Odstavec=p; Nadpis=h3; Podnadpis=h4";
+    $in['toolbar1'] = 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,spellchecker,wp_fullscreen,wp_adv ';
+	$in['toolbar2'] = 'formatselect,underline,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help ';
 	return $in;
 }
 add_filter( 'tiny_mce_before_init', 'format_TinyMCE' );
