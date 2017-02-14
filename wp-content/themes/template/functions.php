@@ -40,3 +40,9 @@ function unregister_tags() {
     unregister_taxonomy_for_object_type('post_tag', 'post');
 }
 add_action('init', 'unregister_tags');
+
+function format_TinyMCE( $in ) {
+    $in['block_formats'] = "Odstavec=p; Nadpis=h3; Podnadpis=h4";
+	return $in;
+}
+add_filter( 'tiny_mce_before_init', 'format_TinyMCE' );
