@@ -56,9 +56,10 @@
 
     &__link {
       position: relative;
+      display: block;
       z-index: 1;
       color: @second;
-      padding: 1em;
+      padding: 0.2em 0.4em;
       font-size: 1.4rem;
     }
 
@@ -73,23 +74,6 @@
       }
     }
 
-    &.active, &:hover {
-      .main-nav__item {
-        &__background {
-          display: block;
-        }
-
-        &__link {
-          color: @second;
-        }
-
-        &__icon {
-          use {
-            stroke: @second;
-          }
-        }
-      }
-    }
   }
 
   @media @media-m-min {
@@ -122,6 +106,23 @@
         display: block;
         font-size: 0.9rem;
         padding: 1em 0.7em;
+      }
+      &.active, &:hover {
+        .main-nav__item {
+          &__background {
+            display: block;
+          }
+
+          &__link {
+            color: @second;
+          }
+
+          &__icon {
+            use {
+              stroke: @second;
+            }
+          }
+        }
       }
     }
   }
