@@ -26,7 +26,7 @@ $(document).ready(function () {
     })
 
     $('.color-switcher-button').on('click', function() {
-        $('head link#stylesheet').attr('href', $(this).data('stylesheet'));
+        $('body').fadeOut('fast').siblings('head').find('link#stylesheet').attr('href', $(this).data('stylesheet')).closest('head').siblings('body').fadeIn('fast');
     })
 });
 
