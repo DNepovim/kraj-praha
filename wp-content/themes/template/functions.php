@@ -42,7 +42,7 @@ function unregister_tags() {
 add_action('init', 'unregister_tags');
 
 function format_TinyMCE( $in ) {
-    $in['block_formats'] = "Odstavec=p; Nadpis=h3; Podnadpis=h4";
+    $in['block_formats'] = "Odstavec=p; Nadpis=h2; Podnadpis=h3";
     $in['toolbar1'] = 'formatselect,bold,underline,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,spellchecker,wp_fullscreen,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help  ';
 	$in['toolbar2'] = '';
 	return $in;
