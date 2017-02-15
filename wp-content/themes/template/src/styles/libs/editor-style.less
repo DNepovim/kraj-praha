@@ -1,4 +1,17 @@
 .main {
+
+h2 {
+ margin: 1.6em 0 0.2em;
+}
+
+h3 {
+ margin: 0;
+}
+
+p {
+ margin: 0.2em 0 1em;
+}
+
 table {
  border: @first solid 1px;
  overflow: hidden;
@@ -26,8 +39,18 @@ table {
  }
 }
 
-ol {
+ol, ul {
   list-style: none;
+
+  li {
+   margin: 0 0 0.4em;
+
+  }
+
+}
+
+ol {
+  padding-left: 0.8rem;
 
   li {
    counter-increment: item;
@@ -38,7 +61,7 @@ ol {
     min-width: 1.8rem;
     color: @first;
     font-family: @font-skautbold;
-    font-weight: bold;
+    font-size: 0.9em;
     text-align: right;
     letter-spacing: 0.1em;
     margin-right: 0.5em
@@ -47,8 +70,7 @@ ol {
 }
 
 ul {
-  list-style: none;
-  padding-left: 3.9rem;
+  padding-left: 2rem;
 
   li {
    &:before {
@@ -89,6 +111,12 @@ img {
  height: auto;
  max-width: 100%;
  vertical-align: middle;
+}
+
+.alignnone, .alignleft, .alignright, .aligncenter {
+  @media @media-s-max {
+   width: 100%;
+  }
 }
 
 .alignleft {
