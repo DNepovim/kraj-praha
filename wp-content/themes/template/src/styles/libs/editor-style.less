@@ -1,42 +1,87 @@
-table,
-th,
-td,
-.mce-item-table,
-.mce-item-table th,
-.mce-item-table td {
- border: 1px solid #eaeaea;
-}
-
-table a {
- color: #333;
-}
-
-table,
-.mce-item-table {
+.main {
+table {
+ border: @first solid 1px;
+ overflow: hidden;
  border-collapse: separate;
  border-spacing: 0;
- border-width: 1px 0 0 1px;
  margin: 0 0 28px;
  width: 100%;
+ border-radius: @radius;
+ & th,
+ & caption {
+  font-size: 17px;
+  font-weight: 700;
+  padding: 7px;
+  text-align: left;
+  vertical-align: baseline;
+ }
+ & td {
+  border-right: @first solid 1px;
+  font-size: 17px;
+  padding: 7px;
+  vertical-align: baseline;
+  &:last-of-type {
+   border-right: none
+  }
+ }
 }
 
-table th,
-.mce-item-table th,
-table caption {
- border-width: 0 1px 1px 0;
- font-size: 17px;
- font-weight: 700;
- padding: 7px;
- text-align: left;
- vertical-align: baseline;
+ol {
+  list-style: none;
+
+  li {
+   counter-increment: item;
+
+   &:before {
+    content: counter(item) ')';
+    display: inline-block;
+    min-width: 1.8rem;
+    color: @first;
+    font-family: @font-skautbold;
+    font-weight: bold;
+    text-align: right;
+    letter-spacing: 0.1em;
+    margin-right: 0.5em
+   }
+  }
 }
 
-table td,
-.mce-item-table td {
- border-width: 0 1px 1px 0;
- font-size: 17px;
- padding: 7px;
- vertical-align: baseline;
+ul {
+  list-style: none;
+  padding-left: 3.9rem;
+
+  li {
+   &:before {
+    content: '';
+    display: inline-block;
+    background: @first;
+    width: 0.4rem;
+    height: 0.4em;
+    margin: 0 0.5em 0.12em 0;
+    border-radius: 0.4em 0.3em 0.5em 0.3em
+   }
+  }
+}
+
+blockquote {
+ color: @first;
+ font-style: italic;
+ padding-left: 1.2em;
+ border-left: @first solid 2px;
+}
+
+hr {
+ margin-bottom: 2px;
+ color: @first;
+}
+
+a {
+ color: @first;
+ text-decoration: underline;
+
+ &:hover {
+  text-decoration: none;
+ }
 }
 
 img {
@@ -88,4 +133,5 @@ img {
  font-size: 14px;
  line-height: 1.5;
  padding: 7px 0;
+}
 }
