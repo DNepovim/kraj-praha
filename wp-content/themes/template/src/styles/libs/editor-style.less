@@ -19,6 +19,7 @@ table {
  margin: 0 0 28px;
  width: 100%;
  border-radius: @radius;
+ background: white;
  & th,
  & caption {
   font-size: 17px;
@@ -29,11 +30,17 @@ table {
  }
  & td {
   border-right: @first solid 1px;
+  border-bottom: @first solid 1px;
   font-size: 17px;
   padding: 7px;
   vertical-align: baseline;
   &:last-of-type {
    border-right: none
+  }
+ }
+ & tr:last-of-type {
+  td {
+   border-bottom: 0
   }
  }
 }
