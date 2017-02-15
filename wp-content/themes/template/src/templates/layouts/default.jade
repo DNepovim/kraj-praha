@@ -23,7 +23,7 @@ html(lang=get_bloginfo('language'))
 
         link(rel='shortcut icon', href=get_template_directory_uri() + '/favicon.ico', type='image/x-icon')
 
-        link(rel='stylesheet ', href=get_template_directory_uri() + '/dist/styles.min.css', media='screen')
+        link#stylesheet(rel='stylesheet ', href=get_template_directory_uri() + '/dist/first.min.css', media='screen')
         //link(rel='stylesheet', href='dist/print.min.css', media='print')
 
         - wp_head()
@@ -45,6 +45,11 @@ html(lang=get_bloginfo('language'))
 
             svg.container__border.container__border--bottom
                 use(xlink:href='#border-bottom')
+
+            .color-switcher
+                button.color-switcher-button.first(data-stylesheet=get_template_directory_uri() + '/dist/first.min.css')
+                button.color-switcher-button.second(data-stylesheet=get_template_directory_uri() + '/dist/second.min.css')
+                button.color-switcher-button.third(data-stylesheet=get_template_directory_uri() + '/dist/third.min.css')
 
         include ../parts/footer
 

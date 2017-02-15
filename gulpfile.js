@@ -47,7 +47,7 @@ gulp.task('svg', function () {
 })
 
 gulp.task('styles', function () {
-    gulp.src([pathToTemplate + 'src/styles/styles.less'])
+    gulp.src([pathToTemplate + 'src/styles/*.less'])
         .pipe(plumber({
             errorHandler: function (error) {
                 console.log(error.message);

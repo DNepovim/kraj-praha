@@ -24,5 +24,9 @@ $(document).ready(function () {
 
         $('.remover').css('display', 'none');
     })
+
+    $('.color-switcher-button').on('click', function() {
+        $('head link#stylesheet').attr('href', $(this).data('stylesheet'));
+    })
 });
 
