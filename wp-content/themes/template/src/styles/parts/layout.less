@@ -1,5 +1,6 @@
 body {
   background: @second;
+  transition: background 300ms;
   @media @media-m-min {
     background: @first
   }
@@ -9,6 +10,7 @@ body {
   background: @second;
   margin-top: 30px;
   padding: 50px 20px 100px;
+  transition: background 300ms;
 
   &__border {
     display: none;
@@ -21,6 +23,7 @@ body {
 
     use {
       fill: @first;
+      transition: fill 300ms;
     }
 
     &--top {
