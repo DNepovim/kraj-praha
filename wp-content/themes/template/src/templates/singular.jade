@@ -4,9 +4,19 @@ block main
     include parts/wrapper
 
     - if ($taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true)) :
-        - query_posts(array('cat' => $taxonomy))
-        .grid-s-20.grid-s-offset-2
-            h3.title.title--wrapper='Články k tématu:'
-            include parts/wrapper
+    - query_posts(array('cat' => $taxonomy))
+        - if (have_posts()):
+            .grid-s-20.grid-s-offset-2
+                h3.title.title--wrapper='Články k tématu:'
+                - while (have_posts()):
+                    - the_post();
+                    - $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))
+                    - $classes = get_post_type()
+                    - if(!empty($thumb)):
+                        - $classes .= ' thumb'
+                    - endif
+                    include parts/entry/content
+                - endwhile
+        - endif;
     - endif
 
