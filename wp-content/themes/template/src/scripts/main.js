@@ -13,6 +13,7 @@ $(document).ready(function () {
         $('.remover').css('display', 'block');
     })
 
+    // Remove image from form
     $('.remover').on('click', function () {
         var input = $(this).data('for');
         var label = $(input).data('label');
@@ -25,6 +26,7 @@ $(document).ready(function () {
         $('.remover').css('display', 'none');
     })
 
+    // Color switcher
     $('.color-switcher-button').on('click', function() {
         $('link#stylesheet').attr('href', $(this).data('stylesheet'));
     })
