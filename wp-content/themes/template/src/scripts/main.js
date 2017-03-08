@@ -25,12 +25,5 @@ $(document).ready(function () {
 
         $('.remover').css('display', 'none');
     })
-
-    // Color switcher
-    $('.color-switcher-button').on('click', function() {
-        $('link#stylesheet').attr('href', $(this).data('stylesheet'));
-        $('.color-switcher-button').removeClass('active');
-        $(this).addClass('active');
-    })
 });
 
