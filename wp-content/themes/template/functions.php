@@ -11,6 +11,7 @@ register_nav_menu('main_menu', 'Hlavní menu');
 add_theme_support( 'post-thumbnails' );
 set_post_thumbnail_size( 1200, 9999 );
 add_image_size('post_thumb', 150, 150);
+add_image_size('og', 1200, 630);
 
 // Disable html editor
 function editor_settings($settings) {
