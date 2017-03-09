@@ -10,7 +10,7 @@ register_nav_menu('main_menu', 'Hlavní menu');
 // Register thumbnail
 add_theme_support( 'post-thumbnails' );
 set_post_thumbnail_size( 1200, 9999 );
-add_image_size('post_thumb', 150, 150);
+add_image_size('post_thumb', 150, 150, true);
 add_image_size('og', 1200, 630);
 
 // Disable html editor
@@ -56,3 +56,10 @@ function format_TinyMCE( $in ) {
 	return $in;
 }
 add_filter( 'tiny_mce_before_init', 'format_TinyMCE' );
+
+// Remove emoji
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
