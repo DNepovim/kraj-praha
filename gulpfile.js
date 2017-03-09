@@ -72,7 +72,6 @@ gulp.task('scripts', function () {
                 this.emit('end');
             }
         }))
-        .pipe(concat('scripts.js'))
         .pipe(gulp.dest(pathToTemplate + 'dist/'))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
