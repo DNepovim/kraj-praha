@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad61278bc3f2663193254667e0237574",
+    "content-hash": "4dca96d1d6c884377d3836384d429323",
     "packages": [
         {
             "name": "composer/installers",
@@ -210,6 +210,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/meta-box/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-smushit",
+            "version": "2.6.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-smushit/",
+                "reference": "tags/2.6.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-smushit.2.6.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-smushit/"
         },
         {
             "name": "wpackagist-plugin/wp-tracy",
