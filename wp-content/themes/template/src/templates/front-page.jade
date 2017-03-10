@@ -1,5 +1,5 @@
 extends layouts/with-sidebar
 
 block main
-    - query_posts( array('post_type' => array('event', 'post'), 'showposts' => 6))
+    - query_posts( array('post_type' => array('udalosti', 'post'), 'showposts' => 6))
     include parts/wrapper
