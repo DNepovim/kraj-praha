@@ -29,13 +29,13 @@ $(document).ready(function () {
         $('.remover').css('display', 'none')
     })
 
-
+    // Color switcher
+    $('.color-switcher-button').on('click', function() {
+      getCSS($(this).data('stylesheet'))
+      createCookie("style", $(this).attr('title'), 365)
+    })
 })
 
-window.onunload = function(e) {
-  var title = getActiveStyleSheet()
-  createCookie("style", title, 365)
-}
 function createCookie(name,value,days) {
   if (days) {
     var date = new Date()
@@ -43,13 +43,16 @@ function createCookie(name,value,days) {
     var expires = " expires="+date.toGMTString()
   }
   else expires = ""
-  document.cookie = name+"="+value+expires+" path=/"
+  document.cookie = name + "=" + value + ";" + expires + "; path=/"
 }
 
-function getActiveStyleSheet() {
-  var i, a
-  for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
-    if(a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title") && !a.disabled) return a.getAttribute("title")
-  }
-  return null
+function getCSS( url, callback ) {
+    $(document.createElement('link')).attr({
+        href: url,
+        media: 'screen',
+        type: 'text/css',
+        rel: 'stylesheet'
+    }).appendTo('head')
+
+    $(document.createElement('img')).attr('src', url)
 }

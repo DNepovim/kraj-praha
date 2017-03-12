@@ -36,11 +36,9 @@ html(lang=get_bloginfo('language'))
 
         link(rel='shortcut icon', href=get_template_directory_uri() + '/favicon.ico', type='image/x-icon')
 
-        link(rel='stylesheet', title='first' href=get_template_directory_uri() + '/dist/first.min.css', media='screen')
-        link(rel='alternate stylesheet', title='second' href=get_template_directory_uri() + '/dist/second.min.css', media='screen')
-        link(rel='alternate stylesheet', title='third' href=get_template_directory_uri() + '/dist/third.min.css', media='screen')
-
-        script(type='text/javascript', src=get_template_directory_uri() + '/dist/critical.min.js')
+        - bdump($_COOKIE)
+        - $stylesheet = !empty($_COOKIE['style']) ? explode(' ', $_COOKIE['style'])[0] : 'first'
+        link(rel='stylesheet', title='first' href=get_template_directory_uri() + '/dist/' + $stylesheet + '.min.css', media='screen')
 
         //link(rel='stylesheet', href='dist/print.min.css', media='print')
 
@@ -65,9 +63,9 @@ html(lang=get_bloginfo('language'))
                 use(xlink:href='#border-bottom')
 
             .color-switcher#color-switcher(style="display:none")
-                button.color-switcher-button.first(onClick="setActiveStyleSheet('first')", data-stylesheet=get_template_directory_uri() + '/dist/first.min.css')
-                button.color-switcher-button.second(onClick="setActiveStyleSheet('second')", data-stylesheet=get_template_directory_uri() + '/dist/second.min.css')
-                button.color-switcher-button.third(onClick="setActiveStyleSheet('third')", data-stylesheet=get_template_directory_uri() + '/dist/third.min.css')
+                button.color-switcher-button.first(title='first', data-stylesheet=get_template_directory_uri() + '/dist/first.min.css')
+                button.color-switcher-button.second(title='second', data-stylesheet=get_template_directory_uri() + '/dist/second.min.css')
+                button.color-switcher-button.third(title='third', data-stylesheet=get_template_directory_uri() + '/dist/third.min.css')
 
         include ../parts/footer
 
