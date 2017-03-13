@@ -36,7 +36,6 @@ html(lang=get_bloginfo('language'))
 
         link(rel='shortcut icon', href=get_template_directory_uri() + '/favicon.ico', type='image/x-icon')
 
-        - bdump($_COOKIE)
         - $stylesheet = !empty($_COOKIE['style']) ? explode(' ', $_COOKIE['style'])[0] : 'first'
         link(rel='stylesheet', title='first' href=get_template_directory_uri() + '/dist/' + $stylesheet + '.min.css', media='screen')
 
