@@ -37,7 +37,7 @@ html(lang=get_bloginfo('language'))
         link(rel='shortcut icon', href=get_template_directory_uri() + '/favicon.ico', type='image/x-icon')
 
         - $stylesheet = !empty($_COOKIE['style']) ? explode(' ', $_COOKIE['style'])[0] : 'first'
-        link(rel='stylesheet', title='first' href=get_template_directory_uri() + '/dist/' + $stylesheet + '.min.css', media='screen')
+        link(rel='stylesheet' href=get_template_directory_uri() + '/dist/' + $stylesheet + '.min.css', media='screen')
 
         //link(rel='stylesheet', href='dist/print.min.css', media='print')
 
@@ -70,9 +70,9 @@ html(lang=get_bloginfo('language'))
                 use(xlink:href='#border-bottom')
 
             .color-switcher#color-switcher(style="display:none")
-                button.color-switcher-button.first(title='first', data-stylesheet=get_template_directory_uri() + '/dist/first.min.css')
-                button.color-switcher-button.second(title='second', data-stylesheet=get_template_directory_uri() + '/dist/second.min.css')
-                button.color-switcher-button.third(title='third', data-stylesheet=get_template_directory_uri() + '/dist/third.min.css')
+                button.color-switcher-button.first(class="<?php if($stylesheet=='first'){echo 'active';}?>", title='first', data-stylesheet=get_template_directory_uri() + '/dist/first.min.css')
+                button.color-switcher-button.second(class="<?php if($stylesheet=='first'){echo 'second';}?>", title='second', data-stylesheet=get_template_directory_uri() + '/dist/second.min.css')
+                button.color-switcher-button.third(class="<?php if($stylesheet=='first'){echo 'third';}?>", title='third', data-stylesheet=get_template_directory_uri() + '/dist/third.min.css')
 
         include ../parts/footer
 

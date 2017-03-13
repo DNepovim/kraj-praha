@@ -33,6 +33,8 @@ $(document).ready(function () {
     $('.color-switcher-button').on('click', function() {
       getCSS($(this).data('stylesheet'))
       createCookie("style", $(this).attr('title'), 365)
+      $('.color-switcher-button').removeClass('active')
+      $(this).addClass('active')
     })
 })
 
