@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+{default $activeLang = get_active_lang_code()}
+
+<html lang="{$activeLang}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>{site_title()}</title>
+
+    <meta name="description" content="{get_bloginfo('description')|noescape}">
+
+    {use_google_fonts([ 'Open+Sans:300,300i,400,400i,700,700i'])}
+
+    {var $stylesheet = !empty($_COOKIE['style']) ? explode(' ', $_COOKIE['style'])[0] : 'first'}
+    <link rel="stylesheet" href="{$assetsPath}/styles/{$stylesheet}.css" media="screen">
+
+    {* <link rel="shortcut icon" type="image/x-icon" href="{$basePath}/favicon.ico"> *}
+    <link rel="icon" type="image/png" href="{$assetsPath}/images/favicon.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="{$assetsPath}/images/favicon-32x32.png" sizes="32x32">
+
+    {var $currentUrl = home_url(add_query_arg(array(),$wp->request))}
+    <meta property="og:title" content="{wp_title( ' | ', true, 'right' ) . bloginfo( 'name' )}">
+    <meta property="og:url" content="{$currentUrl}">
+    <meta property="og:type" content="article">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+
+
+    {if is_single() && has_post_thumbnail()}
+        {var $thumbnail = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'og')}
+        <meta property="og:image" content="{$thumbnail}">
+        {var $content = wp_strip_all_tags($post->post_content)}
+        {var $position = strpos($content, ' ', 200)}
+        {var $excerpt = substr($content, 0, $position) . '…'}
+        <meta property="og:description" content="{$excerpt}">
+    {else}
+        <meta property="og:image" content="{get_template_directory_uri()}/dist/images/logo-og.png">
+        <meta property="og:description" content="{bloginfo("description")}">
+    {/if}
+
+
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp|noescape}oldie.css" media="screen">
+    <script src="{$assetsPath}/node_modules/lt-ie-9/lt-ie-9.min.js"></script>
+    <![endif]-->
+
+    <script>
+        initComponents = [
+            { name: 'shapes', data: { url: {$assetsPath}+'/sprites/shapes.svg' } }
+        ]
+    </script>
+
+    {wp_head()}
+
+</head>
+<body>
+
+    {$mangoSnippet}
+
+    {block top}{/block}
+
+    <div class="container">
+        {include ../components/shape.latte name => border-top, class => "container__border container__border--top"}
+
+        {include ../parts/header.latte}
+
+        {block content}{/block}
+
+        {include ../components/shape.latte name => border-bottom, class => "container__border container__border--bottom"}
+
+        <div class="color-switcher" id="color-switcher" style="display:none">
+            <button n:class="color-switcher-button, first, $stylesheet=='first' ? 'active'" title="first" data-stylesheet="{get_template_directory_uri()}/dist/first.css"></button>
+            <button n:class="color-switcher-button, second, $stylesheet=='first' ? 'second'" title="second" data-stylesheet="{get_template_directory_uri()}/dist/second.css"></button>
+            <button n:class="color-switcher-button, third, $stylesheet=='first' ? 'third'" title="third" data-stylesheet="{get_template_directory_uri()}/dist/third.css"></button>
+        </div>
+    </div>
+
+    {include ../parts/footer.latte}
+
+    {block bottom}{/block}
+
+    {block scripts}
+        {analytics()}
+        {*eu_cookies($activeLang)*}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" defer></script>
+        <script src="{$assetsPath}/scripts/index.js" defer></script>
+    {/block}
+
+    {wp_footer()}
+
+</body>
+</html>

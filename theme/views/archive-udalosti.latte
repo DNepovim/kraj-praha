@@ -1,0 +1,64 @@
+{extends layouts/one-column.latte}
+
+{block main}
+    {if have_posts()}
+        {while have_posts()}
+            {php the_post()}
+            {var $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID)}
+            {var $classes = get_post_type()}
+            {if !empty($thumb)}
+                {var $classes .= ' thumb'}
+            {/if}
+            {var $classes .= (is_single()||is_page()) ? ' single' : null}
+            <article n:class="post, content-box__post, content, event, $classes">
+
+                <a class="link" href={esc_url( get_permalink() )}>
+                    <figure class="thumbnail content__thumbnail">
+                        {include shape.latte name => rect, class => "thumbnail__frame"}
+                        <p Class="thumbnail__text">{date('j. n.', strtotime(get_post_meta(get_the_ID(), 'praha_start_date', true)))}</p>
+                            <i class="thumbnail__subtext">
+                                {php switch(date('D', strtotime(get_post_meta(get_the_ID(), 'praha_start_date', true)))):
+                                {php case 'Mon': echo 'pondělí'}
+                                    {php break}
+                                {php case 'Tue': echo 'úterý'}
+                                    {php break}
+                                {php case 'Wed': echo 'středa'}
+                                    {php break}
+                                {php case 'Thu': echo 'čtvrtek'}
+                                    {php break}
+                                {php case 'Fri': echo 'pátek'}
+                                    {php break}
+                                {php case 'Sat': echo 'sobota'}
+                                    {php break}
+                                {php case 'Sun': echo 'neděle'}
+                                    {php break}
+                                {php enswitch}
+                            </i>
+                        </p>
+                    </figure>
+                </a>
+
+
+                <h2 class="title title--medium content__title">
+                    <a class="link" href={esc_url(get_permalink())}>
+                        {the_title()}
+                <p class="content__subtitle">
+                    {include shape.latte name => location, class => "content__icon"}
+                    {get_post_meta(get_the_ID(), 'praha_position', true)}
+                {if is_single()||is_page()}
+                    {if has_excerpt(get_the_ID())}
+                        <div class="excerpt text content__excerpt">
+                            {the_excerpt()}
+                        </div>
+                    {/if}
+                {else}
+                    <div class="excerpt text content__excerpt">
+                        {the_excerpt()}
+                    </div>
+                {/if}
+
+        {/while}
+    {else}
+        Nejsou naplánované, žádné akce.
+    {/if}
+

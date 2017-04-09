@@ -1,0 +1,13 @@
+{extends layouts/with-sidebar.latte}
+
+{block main}
+  <h1 class="title title--medium">Tady to co hledáte není</h1>
+
+  <div class="search-line">
+    <p class="title title--wrapper">Zkuste hledat dál:</p>
+    {include components/search-form.latte}
+
+  <p class="title title--wrapper">Nebo se podívejte na nejnovější příspěvky:</p>
+
+  {php query_posts( array('post_type' => array('event', 'post'), 'showposts' => 6))}
+  {include parts/wrapper.latte}

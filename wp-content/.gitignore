@@ -1,6 +1,0 @@
-mu-plugins/**/
-uploads
-
-!mu-plugins/facebook-posts-to-cpt
-!mu-plugins/rss-to-cpt
-!mu-plugins/bedrock-autoloader.php

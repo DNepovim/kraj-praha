@@ -1,0 +1,28 @@
+parameters:
+	assetsDirname: assets
+	assetsDir: %wwwDir%/%assetsDirname%
+	wp:
+		table_prefix: wp_
+	s3:
+		enabled: off
+		bucket: uploads.mangoweb.org
+		region: eu-central-1
+		key:
+		secret:
+
+database:
+	dsn: 'mysql:host=%database.host%;dbname=%database.database%'
+	user: %database.username%
+	password: %database.password%
+	options:
+		lazy: yes
+
+services:
+	db: Nette\Database\Context
+	mailer: @nette.mailer
+
+mail:
+	smtp: true
+
+php:
+	date.timezone: Europe/Prague

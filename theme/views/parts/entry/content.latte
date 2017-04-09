@@ -1,0 +1,36 @@
+<article n:class="post, content-box__post, content, get_thumbnail_url($Post->ID) ? 'thumb', get_post_type(), is_single()||is_page() ? 'single wysiwyg'">
+    {if $thumb = get_thumbnail_url($Post->ID)}
+        {if is_single($Post->ID)||is_page($Post->ID)}
+            <figure class="thumbnail content__thumbnail" style="background-image: url({$thumb})">
+                {include ../../components/shape.latte name => frame, class => "thumbnail__frame"}
+            </figure>
+        {else}
+            <a class="link" href="{$Post|wp_permalink}">
+                <figure class="thumbnail content__thumbnail" style="background-image: url({$thumb})">
+                    {include ../../components/shape.latte name => frame, class => "thumbnail__frame"}
+                </figure>
+            </a>
+        {/if}
+    {/if}
+
+    {if is_single($Post->ID)||is_page($Post->ID)}
+        <h1 class="title title--medium content__title">{$Post|wp_title}</h1>
+    {else}
+        <h2 class="title content__title">
+            <a class="link" href="{$Post|wp_permalink}">{$Post|wp_title}</a>
+        </h2>
+    {/if}
+
+    {if !is_page($Post->ID)}
+        <p class="date content__date">{$Post|wp_pubdate}|{$Post|wp_author}</p>
+    {/if}
+
+    {if is_single($Post->ID)||is_page($Post->ID)}
+        <div class="excerpt text content__excerpt" n:if="has_excerpt($Post->ID)">{$Post|wp_excerpt}</div>
+        <div class="text content__text">{$Post|wp_content}</div>
+    {else}
+        <div class="excerpt text content__excerpt wrapper">
+            {$Post|wp_contexcerpt}
+        </div>
+    {/if}
+</article>

@@ -1,0 +1,21 @@
+<ul class="post-list">
+    {if have_posts()}
+        {while have_posts()}
+            {php the_post()}
+            {var $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
+            {var $classes = get_post_type()}
+            {if(!empty($thumb))}
+                {var $classes .= ' thumb'}
+            {/if}
+            <li class="post content-box__post post-list__item" class={$classes}>
+                {if $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
+                    <figure class="thumbnail excerpt__thumbnail" style="background-image: url('+ $thumb + ')">
+                        {include shape.latte name => frame, class => "thumbnail__frame"}
+                    </figure>
+                {/if}
+                <a class="post-list__item__link" href={esc_url( get_post_meta(get_the_ID(), 'rtc_guid', true ))} target="_blank">
+                    {the_title()}
+                </a>
+        {/while}
+    {/if}
+</ul>

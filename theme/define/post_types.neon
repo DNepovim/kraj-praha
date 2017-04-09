@@ -1,0 +1,40 @@
+defaults:
+	public: true
+	has_archive: false
+	exclude_from_search: true
+	publicly_queryable: true
+	show_ui: true
+	show_in_menu: true
+	supports:
+		- title
+		- editor
+		- author
+		- thumbnail
+		- excerpt
+		- revisions
+		- page-attributes
+remove:
+	- posts
+	- comments
+register:
+	udalosti:
+		public: false
+		label: Události
+		labels:
+			name: Události
+			name_admin_bar: Přidat událost
+			add_new: Přidat událost
+			add_new_item: Přidat událost
+			new_item: Nová událost
+			edit_item: Upravit událost
+			view_item: Zobrazit událost
+			all_items: Všechny události
+			search_items: Hledat událost
+			not_found: Žádné události nebyly nalezeny
+			not_found_in_trash: Žádné události nebyly nalezeny
+		menu_icon: dashicons-calendar-alt
+		supports:
+			- title
+			- author
+			- editor
+			- thumbnail

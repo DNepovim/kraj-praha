@@ -1,0 +1,35 @@
+prefix: praha_
+
+register:
+	data:
+		title: Podrobnosti
+		post_types: udalosti
+		fields:
+			start_date:
+				name: Začátek
+				type: datetime
+			end_date:
+				name: Konec
+				type: datetime
+			position:
+				name:  Místo
+				type: text
+
+	contact:
+		title: Kontakt
+		post_types: udalosti
+		context: side
+		priority: low
+		fields:
+			url:
+				name:  Web
+				type: url
+
+	related:
+		title:  Související články
+		post_types: page
+		context: side
+		fields:
+			taxonomy:
+				name:  Kategorie
+				type: taxonomy_advanced

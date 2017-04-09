@@ -1,0 +1,44 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+
+parameters:
+	mango: off
+	fromEmail: 'info@example.com'
+
+	# Universal Analytics ID
+	UA: 'UA-XXXXXXX-X'
+
+	# forceDebug: on # off
+
+	# change salting on production!
+	# use https://configenerator.surge.sh/
+	wp:
+		AUTH_KEY:         "YFo9OsdGdc CHANGE ON PRODUCTION YFo9OsdGdd"
+		SECURE_AUTH_KEY:  "rgoJjobcfb CHANGE ON PRODUCTION rgoJjobcfc"
+		LOGGED_IN_KEY:    "x2GU6Bss6h CHANGE ON PRODUCTION x2GU6Bss6i"
+		NONCE_KEY:        "kwF7eWA7tw CHANGE ON PRODUCTION kwF7eWA7tx"
+		AUTH_SALT:        "SbPSqToK6Z CHANGE ON PRODUCTION SbPSqToK6a"
+		SECURE_AUTH_SALT: "TpLLmOmKrH CHANGE ON PRODUCTION TpLLmOmKri"
+		LOGGED_IN_SALT:   "DwPCNhVi7M CHANGE ON PRODUCTION DwPCNhVi7N"
+		NONCE_SALT:       "bZWrihs6uo CHANGE ON PRODUCTION bZWrihs6up"
+
+	database:
+		host: localhost
+		username:
+		password:
+		database:
+
+	s3:
+		enabled: true # disable on dev, enable on production
+		key: "AKIAIZGO5LP3LHAUFQRQ"
+		secret: # https://passwork.me/#/groups/55d5d6b5e391f44902af0d21/root/57271535e391f43a9bca88b8
+
+mail:
+	host: smtp.mailgun.org
+	secure: tls
+	username: info@example.com
+	password:

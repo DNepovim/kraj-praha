@@ -1,6 +1,0 @@
-dist
-*.php
-
-!functions.php
-!post-process.php
-!/src/cpt/*

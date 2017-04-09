@@ -1,0 +1,18 @@
+{extends layouts/one-column.latte}
+
+{block main}
+    {each}
+        {include parts/entry/content.latte}
+    {/each}
+
+    {if $taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true)}
+        {var $relatedQuery = new WP_Query(array('cat' => $taxonomy))}
+        <div class="grid-s-20 grid-s-offset-2">
+            <h3 class="title title--wrapper">Články k tématu:</h3>
+            {each $relatedQuery}
+                {include parts/entry/content.latte Post => $Post}
+            {/each}
+        </div>
+    {/if}
+{/block}
+
