@@ -15,7 +15,8 @@ if(DEBUG) console.time('Components initialization')
 //
 // Components declarations
 var components = {
-	'example': require('./components/example'),
+	'colorswitcher': require('./components/colorswitcher'),
+	'imageupload': require('./components/imageupload'),
 	'shapes': require('./components/shapes')
 }
 var instances = []

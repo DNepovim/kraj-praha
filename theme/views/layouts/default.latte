@@ -50,7 +50,8 @@
 
     <script>
         initComponents = [
-            { name: 'shapes', data: { url: {$assetsPath}+'/sprites/shapes.svg' } }
+            { name: 'shapes', data: { url: {$assetsPath}+'/sprites/shapes.svg' } },
+            { name: 'colorswitcher', place: 'body' }
         ]
     </script>
 
@@ -73,9 +74,9 @@
         {include ../components/shape.latte name => border-bottom, class => "container__border container__border--bottom"}
 
         <div class="color-switcher" id="color-switcher" style="display:none">
-            <button n:class="color-switcher-button, first, $stylesheet=='first' ? 'active'" title="first" data-stylesheet="{get_template_directory_uri()}/dist/first.css"></button>
-            <button n:class="color-switcher-button, second, $stylesheet=='first' ? 'second'" title="second" data-stylesheet="{get_template_directory_uri()}/dist/second.css"></button>
-            <button n:class="color-switcher-button, third, $stylesheet=='first' ? 'third'" title="third" data-stylesheet="{get_template_directory_uri()}/dist/third.css"></button>
+            <button n:class="color-switcher-button, first, $stylesheet=='first' ? 'active'" title="first" data-stylesheet="{$assetsPath}/styles/first.css"></button>
+            <button n:class="color-switcher-button, second, $stylesheet=='first' ? 'second'" title="second" data-stylesheet="{$assetsPath}/styles/second.css"></button>
+            <button n:class="color-switcher-button, third, $stylesheet=='first' ? 'third'" title="third" data-stylesheet="{$assetsPath}/styles/third.css"></button>
         </div>
     </div>
 
