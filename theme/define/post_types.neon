@@ -14,7 +14,6 @@ defaults:
 		- revisions
 		- page-attributes
 remove:
-	- posts
 	- comments
 register:
 	udalosti:
