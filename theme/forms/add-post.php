@@ -1,20 +1,18 @@
 <?php
 
-// Latte: {$Forms[contact]}
-
 use Nette\Forms\Form;
 
 $form = new Form;
 
 $form->addProtection('Detected robot activity.');
 
-$form->addText('title', 'Nadpis')
+$form->addText('title', 'Nadpis:')
 	->setRequired('Musíš svůj článek nějak nazvat.');
 
-$form->addTextarea('content', 'Obsah')
+$form->addTextarea('content', 'Obsah:')
 	->setRequired('Něco sem napiš.');
 
-$form->addUpload('thumb', 'Náhledový obrázek')
+$form->addUpload('thumb', 'Náhledový obrázek:')
 	->setRequired(FALSE)
 	->addRule(Form::IMAGE, 'Obrázek musí být JPEG, PNG nebo GIF.');
 
@@ -24,7 +22,7 @@ foreach ($categories as $category) {
 	$options[$category->term_id] =  $category->name;
 }
 
-$form->addCheckboxList('category', 'Kategorie', $options);
+$form->addCheckboxList('category', 'Kategorie:', $options);
 
 $form->addSubmit('send', 'Odeslat ke schválení');
 
