@@ -28,7 +28,6 @@ $form->addCheckboxList('category', 'Kategorie', $options);
 
 $form->addSubmit('send', 'Odeslat ke schválení');
 
-bdump($form->getValues());
 // exit;
 
 if(isFormValid($form, __FILE__)) {
