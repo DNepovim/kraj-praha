@@ -1,7 +1,7 @@
 {extends two-column.latte}
 
 {block #top}
-  <input id="addPost" class="modal__check" type="checkbox"{if isset($_GET['modal']) && $_GET['modal']} checked="checked"{/if} checked="checked">
+  <input id="addPost" class="modal__check" type="checkbox"{if isset($_GET['modal']) && $_GET['modal']} checked="checked"{/if}>
 
   {include ../parts/add-post.latte}
   <label class="modal__outside" for="addPost"></label>
