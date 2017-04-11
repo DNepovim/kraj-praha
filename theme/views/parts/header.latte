@@ -4,6 +4,7 @@
       <a class="logotype" href={esc_url(home_url( '/' ))}>
         {var $logotype = !empty($_COOKIE['logotype']) ? explode(' ', $_COOKIE['logotype'])[0] : 'logotype-skaut'}
         {include ../components/shape.latte name => $logotype, class => "logotype__logo", id => 'logotyp'}
+        <div class="logotype-toggler" id="logotype-toggler"></div>
       </a>
     </div>
     <div class="grid-s-8 grid-s-offset-6">

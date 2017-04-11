@@ -5,7 +5,7 @@ class LogoSwitcher extends Component {
 
 	get listeners() {
 		return {
-			'click .logotype': 'handleClick'
+			'click #logotype-toggler': 'handleClick'
 		}
 	}
 
