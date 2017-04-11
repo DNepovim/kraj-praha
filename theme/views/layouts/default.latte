@@ -17,9 +17,7 @@
     {var $stylesheet = !empty($_COOKIE['style']) ? explode(' ', $_COOKIE['style'])[0] : 'first'}
     <link rel="stylesheet" href="{$assetsPath}/styles/{$stylesheet}.css" media="screen">
 
-    {* <link rel="shortcut icon" type="image/x-icon" href="{$basePath}/favicon.ico"> *}
-    <link rel="icon" type="image/png" href="{$assetsPath}/images/favicon.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="{$assetsPath}/images/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" type="image/x-icon" href="{$basePath}/favicon.ico">
 
     {var $currentUrl = home_url(add_query_arg(array(),$wp->request))}
     <meta property="og:title" content="{wp_title( ' | ', true, 'right' ) . bloginfo( 'name' )}">
