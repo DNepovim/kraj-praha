@@ -31,7 +31,7 @@ class ColorSwitcher extends Component {
 		var expires = ' expires='+date.toGMTString()
 	  }
 	  else expires = ''
-	  document.cookie = name + '=' + value + '' + expires + ' path=/'
+	  document.cookie = name + '=' + value + '' + expires + '; path=/'
 	}
 
 	getCSS( url, callback ) {
