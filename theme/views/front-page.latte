@@ -1,6 +1,7 @@
 {extends layouts/with-sidebar.latte}
 
 {block #main}
+	<article class="post content-box__post content-box__post--success content-box__post--message content" n:if="!empty($_GET['success']) && $_GET['success']">Příspěvek byl odeslán ke schválení.</article>
     {var $Query = new WP_Query(array('post_type' => array('udalosti', 'post'), 'showposts' => 6))}
     {each $Query}
         {var $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
