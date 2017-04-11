@@ -39,45 +39,53 @@ if(isFormValid($form, __FILE__)) {
 		$post_status = 'pending';
 	}
 
-	$post_information = array(
-		'post_title'    => wp_strip_all_tags( $values['title'] ),
-		'post_content'  => $values['content'],
-		'post_type'     => 'post',
-		'post_status'   => $post_status,
-		'post_category' => $values['category']
-	);
+	try {
+		$post_information = array(
+			'post_title'    => wp_strip_all_tags( $values['title'] ),
+			'post_content'  => $values['content'],
+			'post_type'     => 'post',
+			'post_status'   => $post_status,
+			'post_category' => $values['category']
+		);
 
-	$post_id = wp_insert_post( $post_information );
+		$post_id = wp_insert_post( $post_information );
 
-	$uploaddir = wp_upload_dir();
-	$filename = basename($values['thumb']>name);
+		if (!empty($values['thumb'])) {
+			$uploaddir = wp_upload_dir();
+			$filename = basename($values['thumb']->name);
 
-	if ( wp_mkdir_p( $upload_dir['path'] ) ) {
-		$file = $uploaddir['path'] . '/' . $filename;
-	} else {
-		$file = $uploaddir['basedir'] . '/' . $filename;
-	}
+			if ( wp_mkdir_p( $upload_dir['path'] ) ) {
+				$file = $uploaddir['path'] . '/' . $filename;
+			} else {
+				$file = $uploaddir['basedir'] . '/' . $filename;
+			}
 
-	move_uploaded_file($values['thumb']->name, $file);
+			move_uploaded_file( $values['thumb']->getTemporaryFile(), $file );
 
-	$wp_filetype = wp_check_filetype( $filename, null );
+			$wp_filetype = wp_check_filetype( $filename, null );
 
-	$attachment  = array(
-		'post_mime_type' => $wp_filetype['type'],
-		'post_title'     => sanitize_file_name( $filename ),
-		'post_content'   => '',
-		'post_status'    => 'inherit'
-	);
+			$attachment  = array(
+				'post_mime_type' => $wp_filetype['type'],
+				'post_title'     => sanitize_file_name( $filename ),
+				'post_content'   => '',
+				'post_status'    => 'inherit'
+			);
 
-	$attach_id   = wp_insert_attachment( $attachment, $file, $post_id );
+			$attach_id   = wp_insert_attachment( $attachment, $file, $post_id );
 
-	require_once( ABSPATH . 'wp-admin/includes/image.php' );
-	$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
-	$res1        = wp_update_attachment_metadata( $attach_id, $attach_data );
-	$res2        = set_post_thumbnail( $post_id, $attach_id );
+			require_once( ABSPATH . 'wp-admin/includes/image.php' );
+			$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
+			$res1        = wp_update_attachment_metadata( $attach_id, $attach_data );
+			$res2        = set_post_thumbnail( $post_id, $attach_id );
+		}
 
-	if ( $post_id ) {
-		wp_redirect( home_url() );
+		if ($post_id) {
+			wp_redirect(add_query_arg('success', true, remove_query_arg('do')));
+			die;
+		}
+	} catch (SendException $e) {
+		$form->addError('Něco se pokazilo. Zkuste to znovu');
+		wp_redirect(add_query_arg('success', false, remove_query_arg('do')));
 	}
 }
 

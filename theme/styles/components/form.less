@@ -49,6 +49,12 @@
       height: 1em;
       border-radius: 9px 5px 9px 5px;
       background: @first;
+      border-color: @second;
+      transition: border-color 300ms;
+
+      &:focus, &:hover {
+        border-color: @first;
+      }
 
       &:checked:before {
         position: absolute;

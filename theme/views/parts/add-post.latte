@@ -22,13 +22,10 @@
   {label title class => "form__label"}
   {input title class => "required form__input form__input--text form__input--title"}
 
-  {dump $form[content]}
-  {dump $form[content]->control->attrs[id]}
-
+  {label content class => "form__label"}
   {var $arg["editor_class"] = "required form__input form__input--text form__input--textarea"}
   {var $arg["drag_drop_upload"] = true}
   {php wp_editor("", $form[content]->name, $arg)}
-
 
   {input thumb class => "form__input form__input--upload form__input--hidden", data-label => "#form-thumbanil"}
 
@@ -36,9 +33,9 @@
     {label thumb class => "form__label"}
     {label thumb id => "form-thumbanil", class => "thumbnail form__thumbnail"}
       {include ../components/shape.latte name => frame, class => "thumbnail__frame form__thumbnail__frame"}
-      {include ../components/shape.latte name => upload, class => "thumbnail__icon form__thumbnail__icon"}
+      {include ../components/shape.latte name => upload, class => "thumbnail__icon form__thumbnail__icon", id => upload_icon}
     {/label}
-    <div class="remover thumbnail__remover" data-for="frm-thumb">(smazat)</div>
+    <div class="remover thumbnail__remover" data-for="#frm-thumb">(smazat)</div>
   </fieldset>
 
   <fieldset class="form__fieldset form__fieldset--inline">
@@ -53,7 +50,6 @@
 
   <input id="submitted" type="hidden" name="submitted" value="true">
 
-  {php wp_nonce_field( "post_nonce", "post_nonce_field" )}
   <button class="button button--call form__button" type="submit">
     {include ../components/shape.latte name => rect, class => "button__background"}
     <p class="link button__link">Přidat příspěvek</p>
