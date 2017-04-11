@@ -17,6 +17,7 @@ if(DEBUG) console.time('Components initialization')
 var components = {
 	'colorswitcher': require('./components/colorswitcher'),
 	'imageupload': require('./components/imageupload'),
+	'logoswitcher': require('./components/logoswitcher'),
 	'shapes': require('./components/shapes')
 }
 var instances = []
