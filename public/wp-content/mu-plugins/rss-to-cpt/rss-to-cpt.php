@@ -17,13 +17,13 @@ if ( is_admin() ) {
 	$settings_page = new RTCSettingsPage();
 };
 
-function rtc_show_update_button( $views )
-{
-	$update_url = add_query_arg('refresh-stream', 'rss', get_permalink());
-	$views['my-button'] = '<a id="update-from-provider" href="' . $update_url . '">Update stream</a>';
-	return $views;
+function rss_show_update_button() {
+	global $pagenow;
+	if ( !empty($_GET['post_type']) && $pagenow == 'edit.php' && $_GET['post_type']=='rss' ) {
+		echo '<a id="update-from-provider" href="' . get_admin_url() . 'edit.php?post-type=rss&refresh-stream=rss">Update stream</a>';
+	}
 }
-add_filter( 'views_edit-facebook', 'rtc_show_update_button' );
+add_action( 'views_edit-rss', 'rss_show_update_button' );
 
 function rtc_refresh_stream() {
 	if ( isset( $_GET['refresh-stream'] ) ) {
