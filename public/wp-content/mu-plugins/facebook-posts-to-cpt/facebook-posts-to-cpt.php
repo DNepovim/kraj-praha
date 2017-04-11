@@ -8,8 +8,6 @@
  * License: MIT
  */
 
-require_once ABSPATH . 'vendor/autoload.php';
-
 require_once 'cpt.php';
 require_once 'settings-page.php';
 require_once 'load-fb-posts.php';
@@ -18,13 +16,13 @@ if ( is_admin() ) {
 	$settings_page = new FPTCSettingsPage();
 };
 
-//function fptc_show_update_button( $views )
-//{
-//	$update_url = add_query_arg('refresh-stream', 'fb', get_permalink());
-//	$views['my-button'] = '<a id='update-from-provider' href='' . $update_url . ''>Update stream</a>';
-//	return $views;
-//}
-//add_filter( 'views_edit-facebook', 'fptc_show_update_button' );
+function fptc_show_update_button() {
+	global $pagenow;
+	if ( !empty($_GET['post_type']) && $pagenow == 'edit.php' && $_GET['post_type']=='fb' ) {
+		echo '<a id="update-from-provider" href="' . get_admin_url() . 'edit.php?post-type=fb&refresh-stream=fb">Update stream</a>';
+	}
+}
+add_action( 'views_edit-fb', 'fptc_show_update_button' );
 
 function fptc_refresh_stream() {
 	if ( isset( $_GET['refresh-stream'] ) ) {
