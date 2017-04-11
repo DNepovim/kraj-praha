@@ -2,10 +2,13 @@
 
 // Disable html editor
 function editor_settings($settings) {
-	$settings['quicktags'] = false;
-	return $settings;
+	if ( !is_user_logged_in() ) {
+		$settings['quicktags'] = false;
+		return $settings;
+	}
 }
 add_filter('wp_editor_settings', 'editor_settings');
+
 
 // Redirect blank search to frontpage
 function change_blank_search( $query_variables ) {
