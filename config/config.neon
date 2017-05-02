@@ -26,3 +26,11 @@ mail:
 
 php:
 	date.timezone: Europe/Prague
+
+extensions:
+    reCaptcha: ReCaptchaControl\DI\Extension
+
+reCaptcha:
+    siteKey: '6LfuARwUAAAAANQpwHBNeFWZwf5jt-1xS8Yy4b0a'
+    secretKey: '6LfuARwUAAAAAE0fmOV1BVfV2k3oI-SwYtlKOGIu'
+    methodName: 'addReCaptcha' # optional

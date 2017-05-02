@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "234c160604c936bf9736bb0ae412c72a",
+    "content-hash": "9a2a11f4ee00f67c01edde3d68e90dc4",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "d78064c68299743e0161004f2de3a0204e33b804"
+                "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/d78064c68299743e0161004f2de3a0204e33b804",
-                "reference": "d78064c68299743e0161004f2de3a0204e33b804",
+                "url": "https://api.github.com/repos/composer/installers/zipball/79ad876c7498c0bbfe7eed065b8651c93bfd6045",
+                "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045",
                 "shasum": ""
             },
             "require": {
@@ -59,12 +59,16 @@
             "keywords": [
                 "Craft",
                 "Dolibarr",
+                "Eliasis",
                 "Hurad",
                 "ImageCMS",
+                "Kanboard",
                 "MODX Evo",
                 "Mautic",
+                "Maya",
                 "OXID",
                 "Plentymarkets",
+                "Porto",
                 "RadPHP",
                 "SMF",
                 "Thelia",
@@ -87,9 +91,11 @@
                 "fuelphp",
                 "grav",
                 "installer",
+                "itop",
                 "joomla",
                 "kohana",
                 "laravel",
+                "lavalite",
                 "lithium",
                 "magento",
                 "mako",
@@ -104,6 +110,7 @@
                 "roundcube",
                 "shopware",
                 "silverstripe",
+                "sydes",
                 "symfony",
                 "typo3",
                 "wordpress",
@@ -111,20 +118,20 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2016-08-13T20:53:52+00:00"
+            "time": "2017-04-24T06:37:16+00:00"
         },
         {
             "name": "facebook/graph-sdk",
-            "version": "5.4.4",
+            "version": "5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-graph-sdk.git",
-                "reference": "5d0c4865e80e231d48a4571841bd018828fe58e1"
+                "reference": "93d7dc87e55a541d2e27d38f3aed40abbffdf6e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/5d0c4865e80e231d48a4571841bd018828fe58e1",
-                "reference": "5d0c4865e80e231d48a4571841bd018828fe58e1",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/93d7dc87e55a541d2e27d38f3aed40abbffdf6e1",
+                "reference": "93d7dc87e55a541d2e27d38f3aed40abbffdf6e1",
                 "shasum": ""
             },
             "require": {
@@ -169,7 +176,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2017-01-19T15:42:20+00:00"
+            "time": "2017-04-20T14:15:02+00:00"
         },
         {
             "name": "fancyguy/webroot-installer",
@@ -1870,6 +1877,54 @@
             "time": "2017-01-29T19:39:20+00:00"
         },
         {
+            "name": "uestla/recaptcha-control",
+            "version": "6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uestla/ReCaptchaControl.git",
+                "reference": "3eee9dad17f8b0d2651fb2eb52741c94ee27f4ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uestla/ReCaptchaControl/zipball/3eee9dad17f8b0d2651fb2eb52741c94ee27f4ba",
+                "reference": "3eee9dad17f8b0d2651fb2eb52741c94ee27f4ba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "nette/di": "^2.4",
+                "nette/forms": "^2.4",
+                "nette/http": "^2.4",
+                "nette/php-generator": "^2.4",
+                "nette/utils": "^2.4",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "latte/latte": "^2.4",
+                "nette/bootstrap": "^2.4",
+                "nette/tester": "^1.7",
+                "tracy/tracy": "^2.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ReCaptchaControl": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "reCAPTCHA control for Nette Framework forms",
+            "homepage": "https://github.com/uestla/ReCaptchaControl",
+            "keywords": [
+                "Forms",
+                "nette",
+                "recaptcha"
+            ],
+            "time": "2017-01-24T22:41:20+00:00"
+        },
+        {
             "name": "wordpress/wordpress",
             "version": "4.7.3",
             "dist": {
@@ -1885,7 +1940,7 @@
         },
         {
             "name": "wpackagist-plugin/all-in-one-wp-security-and-firewall",
-            "version": "4.2.6",
+            "version": "4.2.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/all-in-one-wp-security-and-firewall/",
@@ -1893,8 +1948,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.zip?timestamp=1490341246",
-                "reference": null,
+                "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.zip?timestamp=1492216430",
+                "reference": "trunk",
                 "shasum": null
             },
             "require": {
@@ -1905,16 +1960,16 @@
         },
         {
             "name": "wpackagist-plugin/wp-smushit",
-            "version": "2.6.2",
+            "version": "2.6.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-smushit/",
-                "reference": "tags/2.6.2"
+                "reference": "tags/2.6.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-smushit.2.6.2.zip",
-                "reference": null,
+                "url": "https://downloads.wordpress.org/plugin/wp-smushit.2.6.3.zip",
+                "reference": "tags/2.6.3",
                 "shasum": null
             },
             "require": {

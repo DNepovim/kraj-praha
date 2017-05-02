@@ -6,6 +6,8 @@ $form = new Form;
 
 $form->addProtection('Detected robot activity.');
 
+$form->addReCaptcha('captcha', NULL, 'Prokažte prosím svou nerobotičnost.');
+
 $form->addText('title', 'Nadpis:')
 	->setRequired('Musíš svůj článek nějak nazvat.');
 
@@ -25,8 +27,6 @@ foreach ($categories as $category) {
 $form->addCheckboxList('category', 'Kategorie:', $options);
 
 $form->addSubmit('send', 'Odeslat ke schválení');
-
-// exit;
 
 if(isFormValid($form, __FILE__)) {
 	$values = $form->getValues();
