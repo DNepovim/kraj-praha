@@ -6,8 +6,17 @@
   <div class="search-line">
     <p class="title title--wrapper">Zkuste hledat dál:</p>
     {include components/search-form.latte}
+  </div>
 
   <p class="title title--wrapper">Nebo se podívejte na nejnovější příspěvky:</p>
 
-  {php query_posts( array('post_type' => array('event', 'post'), 'showposts' => 6))}
-  {include parts/wrapper.latte}
+	{include parent}
+	{var $Query = new WP_Query(array('post_type' => array('udalosti', 'post'), 'showposts' => 6))}
+	{each $Query}
+		{var $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
+		{var $classes = get_post_type()}
+		{if !empty($thumb)}
+			{var $classes .= ' thumb'}
+		{/if}
+		{include parts/entry/content.latte Post => $Post}
+	{/each}
