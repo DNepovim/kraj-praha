@@ -9,8 +9,6 @@
 
 	{if is_user_logged_in()}
 		<p class="subtitle form__subtitle">Jsi přihlášen jako <strong clas="name">{$user->display_name}</strong></p>
-	{else}
-		<p class="subtitle form__subtitle">Tvůj příspěvěk bude přidán až po schválení administrátorem.</p>
 	{/if}
 
 	{include ../components/shape.latte name => rect, class => "background form__background"}
@@ -57,7 +55,13 @@
 
 	<button class="button button--call form__button" type="submit">
 		{include ../components/shape.latte name => rect, class => "button__background"}
-		<p class="link button__link">Přidat příspěvek</p>
+		<p class="link button__link">
+			{if is_user_logged_in()}
+				Přidat příspěvek
+			{else}
+				Odeslat ke schválení
+			{/if}
+		</p>
 	</button>
 </form>
 
