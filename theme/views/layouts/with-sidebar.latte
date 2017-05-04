@@ -7,6 +7,10 @@
 	<label class="modal__outside" for="addPost"></label>
 {/block}
 
+{block #main}
+	<article class="post content-box__post content-box__post--success content-box__post--message content" n:if="!empty($_GET['success']) && $_GET['success']">Příspěvek byl odeslán ke schválení.<br> Pokud se do jednoho dne na webu nezobrazí, napiš na <a href="mailto:kancelar@praha.skauting.cz">kancelar@praha.skauting.cz</a>.</article>
+{/block}
+
 {block #aside}
 	<div class="button button--call modal__button">
 		{include ../components/shape.latte name => rect, class => "button__background"}
