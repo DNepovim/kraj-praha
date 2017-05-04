@@ -1,42 +1,52 @@
 {extends two-column.latte}
 
 {block #top}
-  <input id="addPost" class="modal__check" type="checkbox"{if isset($_GET['modal']) && $_GET['modal']} checked="checked"{/if}>
+	<input id="addPost" class="modal__check" type="checkbox"{if isset($_GET['modal']) && $_GET['modal']} checked="checked"{/if}>
 
-  {include ../parts/add-post.latte}
-  <label class="modal__outside" for="addPost"></label>
+	{include ../parts/add-post.latte}
+	<label class="modal__outside" for="addPost"></label>
 {/block}
 
 {block #aside}
-  <div class="button button--call modal__button">
-    {include ../components/shape.latte name => rect, class => "button__background"}
-    <label class="link button__link modal__label" for="addPost">Přidat příspěvek</label>
-  </div>
+	<div class="button button--call modal__button">
+		{include ../components/shape.latte name => rect, class => "button__background"}
+		<label class="link button__link modal__label" for="addPost">Přidat příspěvek</label>
+	</div>
 
-  <section class="content-box content-box--aside content-box--fb fb">
-    {include ../components/shape.latte name => rect, class => "content-box__background"}
-    <a class="label label--facebook" href="https://facebook.com/skautipraha" targer="_blank">Z našeho facebooku</a>
-    {include ../parts/facebook.latte}
-  </section>
+	<section class="content-box content-box--aside content-box--fb fb">
+		{include ../components/shape.latte name => rect, class => "content-box__background"}
+		<a class="label label--facebook" href="https://facebook.com/skautipraha" targer="_blank">Z našeho facebooku</a>
+		{var $Query = new WP_Query(array('post_type' => 'fb', 'showposts' => 5))}
+		{each $Query}
+			{var $link = 'https://www.facebook.com/'}
+			{var $link .= get_option( 'fptc_option' )['page_id']}
+			{var $link .= '/posts/'}
+			{var $link .= explode('_', meta($Post->ID, 'fptc_fb_id'))[1]}
 
-  <section class="content-box content-box--aside content-box--krizovatka rss">
-    {include ../components/shape.latte name => rect, class => "content-box__background"}
-    <a class="label label--first" href="http://krizovatka.skaut.cz" target="_blank">Novinky ze skautské křižovatky</a>
-    {var $Query = new WP_Query(array('post_type' => 'rss', 'showposts' => 5))}
-    <ul class="post-list">
-      {each $Query}
-        {var $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
-        <li n:class="post, content-box__post, post-list__item, !empty($thumb) ? 'thumb', get_post_type()">
-          {if $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
-              <figure class="thumbnail excerpt__thumbnail" style="background-image: url({$thumb})">
-                  {include ../components/shape.latte name => frame, class => "thumbnail__frame"}
-              </figure>
-          {/if}
-          <a class="post-list__item__link" href={meta($Post->ID, rtc_guid)} target="_blank">
-              {$Post|wp_title}
-          </a>
-        </li>
-      {/each}
-    </ul>
-  </section>
+			<article class="content content-box__post facebook">
+				<a href={$link} target="_blank">{wp_trim_words(meta($Post->ID, 'fptc_message'), 20)}</a>
+			</article>
+		{/each}
+	</section>
+
+	<section class="content-box content-box--aside content-box--krizovatka rss">
+		{include ../components/shape.latte name => rect, class => "content-box__background"}
+		<a class="label label--first" href="http://krizovatka.skaut.cz" target="_blank">Novinky ze skautské křižovatky</a>
+		{var $Query = new WP_Query(array('post_type' => 'rss', 'showposts' => 5))}
+		<ul class="post-list">
+			{each $Query}
+				{var $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
+				<li n:class="post, content-box__post, post-list__item, !empty($thumb) ? 'thumb', get_post_type()">
+					{if $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
+							<figure class="thumbnail excerpt__thumbnail" style="background-image: url({$thumb})">
+									{include ../components/shape.latte name => frame, class => "thumbnail__frame"}
+							</figure>
+					{/if}
+					<a class="post-list__item__link" href={meta($Post->ID, rtc_guid)} target="_blank">
+							{$Post|wp_title}
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</section>
 
