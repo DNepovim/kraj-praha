@@ -6,13 +6,13 @@ $form = new Form;
 
 $form->addProtection('Detected robot activity.');
 
-$form->addReCaptcha('captcha', NULL, 'Prokažte prosím svou nerobotičnost.');
+$form->addReCaptcha('captcha', NULL, 'Prokaž, že nejsi robot.');
 
 $form->addText('title', 'Nadpis:')
 	->setRequired('Musíš svůj článek nějak nazvat.');
 
 $form->addTextarea('content', 'Obsah:')
-	->setRequired('Něco sem napiš.');
+	->setRequired('Napiš nějaký text.');
 
 $form->addUpload('thumb', 'Náhledový obrázek:')
 	->setRequired(FALSE)

@@ -3,65 +3,66 @@
 {var $form = $Forms[add-post]}
 <form n:name="$form" id="primaryPostForm" class="form modal">
 
-  <ul class="errors" n:if="$form->hasErrors()">
-    <li n:foreach="$form->errors as $error">{$error}</li>
-  </ul>
+	<label class="cross form__close" for="addPost"></label>
 
-  <label class="cross form__close" for="addPost"></label>
+	<h3 class="title title--medium form__title">Přidat příspěvek</h3>
 
-  <h3 class="title title--medium form__title">Přidat příspěvek</h3>
+	{if is_user_logged_in()}
+		<p class="subtitle form__subtitle">Jsi přihlášen jako <strong clas="name">{$user->display_name}</strong></p>
+	{else}
+		<p class="subtitle form__subtitle">Tvůj příspěvěk bude přidán až po schválení administrátorem.</p>
+	{/if}
 
-  {if is_user_logged_in()}
-    <p class="subtitle form__subtitle">Jsi přihlášen jako <strong clas="name">{$user->display_name}</strong></p>
-  {else}
-    <p class="subtitle form__subtitle">Tvůj příspěvěk bude přidán až po schválení administrátorem.</p>
-  {/if}
+	{include ../components/shape.latte name => rect, class => "background form__background"}
 
-  {include ../components/shape.latte name => rect, class => "background form__background"}
+	<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[title]->errors as $error">{$error}</div>
+	{label title class => "form__label"}
+	{input title class => "required form__input form__input--text form__input--title"}
 
-  {label title class => "form__label"}
-  {input title class => "required form__input form__input--text form__input--title"}
+	<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[content]->errors as $error">{$error}</div>
+	{label content class => "form__label"}
+	{var $arg["editor_class"] = "required form__input form__input--text form__input--textarea"}
+	{var $arg["drag_drop_upload"] = true}
+	{if !empty($form[content]->value)}{var $value = $form[content]->value}{else}{var $value = ''}{/if}
+	{php wp_editor($value, $form[content]->name, $arg)}
 
-  {label content class => "form__label"}
-  {var $arg["editor_class"] = "required form__input form__input--text form__input--textarea"}
-  {var $arg["drag_drop_upload"] = true}
-  {php wp_editor("", $form[content]->name, $arg)}
+	<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[thumb]->errors as $error">{$error}</div>
+	{input thumb class => "form__input form__input--upload form__input--hidden", data-label => "#form-thumbanil"}
 
-  {input thumb class => "form__input form__input--upload form__input--hidden", data-label => "#form-thumbanil"}
+	<fieldset class="thumbnail__container form__fieldset form__fieldset--inline">
+		{label thumb class => "form__label"}
+		{label thumb id => "form-thumbanil", class => "thumbnail form__thumbnail"}
+			{include ../components/shape.latte name => frame, class => "thumbnail__frame form__thumbnail__frame"}
+			{include ../components/shape.latte name => upload, class => "thumbnail__icon form__thumbnail__icon", id => upload_icon}
+		{/label}
+		<div class="remover thumbnail__remover" data-for="#frm-thumb">(smazat)</div>
+	</fieldset>
 
-  <fieldset class="thumbnail__container form__fieldset form__fieldset--inline">
-    {label thumb class => "form__label"}
-    {label thumb id => "form-thumbanil", class => "thumbnail form__thumbnail"}
-      {include ../components/shape.latte name => frame, class => "thumbnail__frame form__thumbnail__frame"}
-      {include ../components/shape.latte name => upload, class => "thumbnail__icon form__thumbnail__icon", id => upload_icon}
-    {/label}
-    <div class="remover thumbnail__remover" data-for="#frm-thumb">(smazat)</div>
-  </fieldset>
+	<fieldset class="form__fieldset form__fieldset--inline">
+		{label category class => "form__legend form__label"}
+		{var $categories = get_categories(array("hide_empty" => false))}
+		{foreach $form['category']->items as $key => $name}
+			{input category:$key class => "form__input form__input--checkbox"}
+			{label category:$key class => "form__label form__label--checkbox"}
+			<br>
+		{/foreach}
 
-  <fieldset class="form__fieldset form__fieldset--inline">
-    {label category class => "form__legend form__label"}
-    {var $categories = get_categories(array("hide_empty" => false))}
-    {foreach $form['category']->items as $key => $name}
-      {input category:$key class => "form__input form__input--checkbox"}
-      {label category:$key class => "form__label form__label--checkbox"}
-      <br>
-    {/foreach}
+		<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[captcha]->errors as $error">{$error}</div>
+		{input captcha}
 
-	  {input captcha}
-
-  </fieldset>
+	</fieldset>
 
 
-  <input id="submitted" type="hidden" name="submitted" value="true">
+	<input id="submitted" type="hidden" name="submitted" value="true">
 
-  <button class="button button--call form__button" type="submit">
-    {include ../components/shape.latte name => rect, class => "button__background"}
-    <p class="link button__link">Přidat příspěvek</p>
-  </button>
+	<button class="button button--call form__button" type="submit">
+		{include ../components/shape.latte name => rect, class => "button__background"}
+		<p class="link button__link">Přidat příspěvek</p>
+	</button>
 </form>
 
 <script>
-    initComponents.push(
-        { name: 'imageupload', place: 'body'}
-    )
+		initComponents.push(
+				{ name: 'imageupload', place: 'body'}
+		)
 </script>
