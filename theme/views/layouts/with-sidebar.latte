@@ -28,7 +28,7 @@
 			{var $link .= explode('_', meta($Post->ID, 'fptc_fb_id'))[1]}
 
 			<article class="content content-box__post facebook">
-				<a href={$link} target="_blank">{wp_trim_words(meta($Post->ID, 'fptc_message'), 20)}</a>
+				<a href={$link} target="_blank">{$Post|wp_meta:fptc_message|truncate:200}</a>
 			</article>
 		{/each}
 	</section>
