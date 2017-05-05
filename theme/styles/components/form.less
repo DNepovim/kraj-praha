@@ -22,6 +22,10 @@
       margin: 0 0 0 0.5em;
       color: @text;
     }
+
+    &--center {
+    	text-align: center;
+    }
   }
 
   &__input {
@@ -96,7 +100,7 @@
     background-color: fade(@first, 50%);
     width: 200px;
     height: 250px;
-    margin: 0;
+    margin: 0 auto;
   }
 
   &__legend {
@@ -105,10 +109,22 @@
 
   &__fieldset {
     border: none;
-    margin: 0 2rem 0 0;
 
     &--inline {
       float: left;
     }
+
+    &--half {
+    	width: 50%;
+    	margin: 0;
+    }
+  }
+
+  &__row {
+  	display: flex;
+  }
+
+  .g-recaptcha {
+  	margin: 20px 0 0 -10px;
   }
 }

@@ -26,6 +26,15 @@ foreach ($categories as $category) {
 
 $form->addCheckboxList('category', 'Kategorie:', $options);
 
+if ( !is_user_logged_in() ) {
+	$form->addText('nickname', 'Přezdívka:')
+		->setRequired('Napiš nám sem svou přezdívku.');
+
+	$form->addText('mail', 'E-mail:')
+		->addRule(Form::EMAIL, 'Napiš e-mail ve správném tvaru.')
+		->setRequired('Napiš nám sem svůj e-mail.');
+}
+
 $form->addSubmit('send', 'Odeslat ke schválení');
 
 if(isFormValid($form, __FILE__)) {
@@ -33,8 +42,12 @@ if(isFormValid($form, __FILE__)) {
 
 	if ( is_user_logged_in() ) {
 		$post_status = 'publish';
+		$meta = '';
+		$user = get_current_user_id();
 	} else {
 		$post_status = 'pending';
+		$meta = ['praha_post_author_name' => $values['nickname'], 'praha_post_author_mail' => $values['mail']];
+		$user = get_user_by('login', 'frontend')->ID;
 	}
 
 	try {
@@ -43,7 +56,9 @@ if(isFormValid($form, __FILE__)) {
 			'post_content'  => $values['content'],
 			'post_type'     => 'post',
 			'post_status'   => $post_status,
-			'post_category' => $values['category']
+			'post_category' => $values['category'],
+			'post_author'   => $user,
+			'meta_input'    => $meta
 		);
 
 		$post_id = wp_insert_post( $post_information );
