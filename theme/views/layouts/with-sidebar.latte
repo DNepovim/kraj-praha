@@ -8,7 +8,13 @@
 {/block}
 
 {block #main}
-	<article class="post content-box__post content-box__post--success content-box__post--message content" n:if="!empty($_GET['success']) && $_GET['success']">Příspěvek byl odeslán ke schválení.<br> Pokud se do jednoho dne na webu nezobrazí, napiš na <a href="mailto:kancelar@praha.skauting.cz">kancelar@praha.skauting.cz</a>.</article>
+	<div class="post content-box__post content-box__post--success content-box__post--message content" n:if="!empty($_GET['success']) && $_GET['success']">
+		{if !is_user_logged_in()}
+			Příspěvek byl odeslán ke schválení.<br> Pokud se do jednoho dne na webu nezobrazí, napiš na <a href="mailto:kancelar@praha.skauting.cz">kancelar@praha.skauting.cz</a>.
+		{else}
+			Příspěvek byl úspěšně uložen.
+		{/if}
+	</div>
 {/block}
 
 {block #aside}
