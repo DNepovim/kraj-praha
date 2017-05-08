@@ -63,7 +63,7 @@ if(isFormValid($form, __FILE__)) {
 
 		$post_id = wp_insert_post( $post_information );
 
-		if (!empty($values['thumb'])) {
+		if (!empty($values['thumb']->name)) {
 			$uploaddir = wp_upload_dir();
 			$filename = basename($values['thumb']->name);
 
