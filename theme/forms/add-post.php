@@ -64,30 +64,30 @@ if(isFormValid($form, __FILE__)) {
 		$post_id = wp_insert_post( $post_information );
 
 		if (!empty($values['thumb']->name)) {
-			$uploaddir = wp_upload_dir();
-			$filename = basename($values['thumb']->name);
 
-			if ( wp_mkdir_p( $upload_dir['path'] ) ) {
-				$file = $uploaddir['path'] . '/' . $filename;
-			} else {
-				$file = $uploaddir['basedir'] . '/' . $filename;
+			$file = $values['thumb'];
+
+			global $post;
+
+			if ($file instanceof  Nette\Http\FileUpload) {
+				if($file->isOk()) {
+					$name = uniqid();
+					$upload = wp_upload_bits(wp_unique_filename(wp_upload_dir()['path'], $file->getName()), null, $file->getContents());
+					if($upload['error']) {
+						trigger_error('Upload failed: ' . $upload['error']);
+					} else {
+						$attach_id = wp_insert_attachment([
+							'post_title' => $name,
+							'post_content' => '',
+							'post_status' => 'inherit',
+							'post_mime_type' => $file->getContentType()
+						], $upload['file'], $post_id);
+					}
+				}
 			}
 
-			move_uploaded_file( $values['thumb']->getTemporaryFile(), $file );
-
-			$wp_filetype = wp_check_filetype( $filename, null );
-
-			$attachment  = array(
-				'post_mime_type' => $wp_filetype['type'],
-				'post_title'     => sanitize_file_name( $filename ),
-				'post_content'   => '',
-				'post_status'    => 'inherit'
-			);
-
-			$attach_id   = wp_insert_attachment( $attachment, $file, $post_id );
-
 			require_once( ABSPATH . 'wp-admin/includes/image.php' );
-			$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
+			$attach_data = wp_generate_attachment_metadata( $attach_id, $upload['file'] );
 			$res1        = wp_update_attachment_metadata( $attach_id, $attach_data );
 			$res2        = set_post_thumbnail( $post_id, $attach_id );
 		}
