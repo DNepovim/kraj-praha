@@ -1,68 +1,69 @@
 {
-	"name": "mangoweb/mangopress",
-	"description": "ManGoweb's WordPress project boilerplate.",
-	"require": {
-		"wordpress/wordpress": "*",
-		"nette/nette": "^2.4.0",
-		"mangoweb/mangopress-sql-panel": "dev-master",
-		"mangoweb/mangopress-templating": "dev-master",
-		"sentry/sentry": "^0.16.0",
-		"roots/wp-password-bcrypt": "^1.0",
-        "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.2.4",
-        "wpackagist-plugin/wp-smushit": "^2.6.1",
-        "facebook/graph-sdk": "^5.2",
-		"uestla/recaptcha-control": "^6.0"
-	},
-	"require-dev": {
-		"nette/tester": "^1.7.0"
-	},
-	"authors": [
-		{
-			"name": "ViliamKopecky",
-			"email": "vk@viliamkopecky.cz"
-		},
-		{
-			"name": "Matej Simek",
-			"email": "email@matejsimek.com",
-			"homepage": "http://www.matejsimek.com"
-		}
-	],
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://wpackagist.org"
-		},
-		{
-			"type": "package",
-			"package": {
-				"name": "wordpress/wordpress",
-				"type": "webroot",
-				"version": "4.7.3",
-				"dist": {
-					"type": "zip",
-					"url": "https://github.com/WordPress/WordPress/archive/4.7.3.zip"
-				},
-				"require": {
-					"fancyguy/webroot-installer": "1.1.0"
-				}
-			}
-		}
-	],
-	"extra": {
-		"installer-paths": {
-			"public/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin", "type:wordpress-plugin"],
-			"public/wp-content/themes/{$name}": ["type:wordpress-theme"]
-		},
-		"webroot-dir": "public/wp-core",
-		"webroot-package": "wordpress/wordpress"
-	},
-	"config": {
-		"preferred-install": "dist",
-		"optimize-autoloader": true
-	},
-	"minimum-stability": "stable",
-	"scripts": {
-		"post-update-cmd": ["echo Warning: Deleting all .git dirs under vendor ", "rm -rf vendor/**/**/.git"],
-		"post-install-cmd": ["echo Warning: Deleting all .git dirs under vendor", "rm -rf vendor/**/**/.git"]
-	}
+  "name": "mangoweb/mangopress",
+  "description": "ManGoweb's WordPress project boilerplate.",
+  "require": {
+    "wordpress/wordpress": "*",
+    "nette/nette": "^2.4.0",
+    "mangoweb/mangopress-sql-panel": "dev-master",
+    "mangoweb/mangopress-templating": "dev-master",
+    "sentry/sentry": "^0.16.0",
+    "roots/wp-password-bcrypt": "^1.0",
+    "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.2.4",
+    "wpackagist-plugin/wp-smushit": "^2.6.1",
+    "wpackagist-plugin/redirection": "^2.6.2",
+    "facebook/graph-sdk": "^5.2",
+    "uestla/recaptcha-control": "^6.0"
+  },
+  "require-dev": {
+    "nette/tester": "^1.7.0"
+  },
+  "authors": [
+    {
+      "name": "ViliamKopecky",
+      "email": "vk@viliamkopecky.cz"
+    },
+    {
+      "name": "Matej Simek",
+      "email": "email@matejsimek.com",
+      "homepage": "http://www.matejsimek.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "wordpress/wordpress",
+        "type": "webroot",
+        "version": "4.7.3",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/WordPress/WordPress/archive/4.7.3.zip"
+        },
+        "require": {
+          "fancyguy/webroot-installer": "1.1.0"
+        }
+      }
+    }
+  ],
+  "extra": {
+    "installer-paths": {
+      "public/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin", "type:wordpress-plugin"],
+      "public/wp-content/themes/{$name}": ["type:wordpress-theme"]
+    },
+    "webroot-dir": "public/wp-core",
+    "webroot-package": "wordpress/wordpress"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "optimize-autoloader": true
+  },
+  "minimum-stability": "stable",
+  "scripts": {
+    "post-update-cmd": ["echo Warning: Deleting all .git dirs under vendor ", "rm -rf vendor/**/**/.git"],
+    "post-install-cmd": ["echo Warning: Deleting all .git dirs under vendor", "rm -rf vendor/**/**/.git"]
+  }
 }
