@@ -2,13 +2,11 @@
 
 // $ApiRequest = [ 'param1', 'param2', ... ]
 
-$payload = [
-	'status' => 'hello'
-];
-
 switch($ApiRequest[0]) {
-	case 'ping':
-		$payload['status'] = 'pong';
+	case 'refresh-streams':
+		rtc_load();
+		fptc_load();
+		$payload = ['status' => 'ok'];
 		break;
 	case 'echo':
 		$payload = [
