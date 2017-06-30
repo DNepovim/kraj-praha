@@ -35,9 +35,6 @@ function fptc_save( $obj ) {
 			wp_insert_post( $args );
 		}
 	}
-
-	wp_redirect( '/wp-admin/edit.php?post_type=fb' );
-	exit;
 }
 
 function fptc_exist_post( $fb_id ) {

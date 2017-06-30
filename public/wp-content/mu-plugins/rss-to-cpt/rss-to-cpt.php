@@ -29,6 +29,8 @@ function rtc_refresh_stream() {
 	if ( isset( $_GET['refresh-stream'] ) ) {
 		if ( $_GET['refresh-stream'] == "rss" ) {
 			rtc_load();
+			wp_redirect(wp_get_referer());
+			exit;
 		}
 	}
 }

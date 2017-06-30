@@ -18,8 +18,6 @@ function rtc_load() {
 			wp_insert_post( $args );
 		}
 	}
-	wp_redirect( '/wp-admin/edit.php?post_type=rss' );
-	exit;
 }
 
 function rtc_exist_post( $pubDate ) {
