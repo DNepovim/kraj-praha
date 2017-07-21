@@ -1,63 +1,63 @@
 .content-box {
-	margin: 2rem 0 0;
-	clear: both;
+  margin: 2rem 0 0;
+  clear: both;
 
-	&__background {
-		display: none;
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		fill: @second;
+  &__background {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    fill: @second;
 
-		&--shadow {
-			z-index: -2;
-			top: 1rem;
-			left: 1rem;
-			fill: @shadow;
-			transform: rotate(180deg);
-		}
-	}
+    &--shadow {
+      z-index: -2;
+      top: 1rem;
+      left: 1rem;
+      fill: @shadow;
+      transform: rotate(180deg);
+    }
+  }
 
-	&--aside {
-		padding: 2rem 1.5rem;
-		.content-box__background {
-			fill: @shadow;
-		}
-	}
+  &--aside {
+    padding: 2rem 1.5rem;
+    .content-box__background {
+      fill: @shadow;
+    }
+  }
 
-	&--fb {
-		.content-box__background {
-			fill: @facebookBackground;
-		}
-	}
+  &--fb {
+    .content-box__background {
+      fill: @facebookBackground;
+    }
+  }
 
-	&__post {
-		&--message {
-			text-align: center;
-			padding: 1em;
-			margin: 0 2em 1em;
-		}
+  &__post {
+    &--message {
+      text-align: center;
+      padding: 1em;
+      margin: 0 2em 1em;
+    }
 
-		&--success {
-			color: @first;
-			background: fade(@first, 30%);
-			border-radius: 28px 42px 20px 49px
-		}
+    &--success {
+      color: @first;
+      background: fade(@first, 15%);
+      border-radius: 28px 42px 20px 49px
+    }
 
-		&--error {
-			color: red;
-			background: fade(red, 15%);
-			border-radius: 28px 42px 20px 49px;
-			margin: 2rem 0 0.5em;
-		}
-	}
+    &--error {
+      color: red;
+      background: fade(red, 15%);
+      border-radius: 28px 42px 20px 49px;
+      margin: 2rem 0 0.5em;
+    }
+  }
 
 
-	@media @media-m-min {
-		&__background {
-			display: block;
-		}
-	}
+  @media @media-m-min {
+    &__background {
+      display: block;
+    }
+  }
 }
