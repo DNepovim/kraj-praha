@@ -45,7 +45,7 @@ define('SECURE_AUTH_SALT', $wpParams['SECURE_AUTH_SALT']);
 define('LOGGED_IN_SALT', $wpParams['LOGGED_IN_SALT']);
 define('NONCE_SALT', $wpParams['NONCE_SALT']);
 
-$table_prefix  = $wpParams['PREFIX'];
+$table_prefix  = $wpParams['table_prefix'];
 
 $s3 = $params['s3'];
 define('S3_UPLOADS_BUCKET', $s3['bucket']);

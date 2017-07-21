@@ -2,7 +2,7 @@ parameters:
 	assetsDirname: assets
 	assetsDir: %wwwDir%/%assetsDirname%
 	wp:
-		table_prefix: wp_
+		table_prefix:	qvwrx_
 	s3:
 		enabled: off
 		bucket: uploads.mangoweb.org
