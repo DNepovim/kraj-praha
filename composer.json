@@ -12,7 +12,8 @@
     "wpackagist-plugin/wp-smushit": "^2.6.1",
     "wpackagist-plugin/redirection": "^2.6.2",
     "facebook/graph-sdk": "^5.2",
-    "uestla/recaptcha-control": "^6.0"
+    "uestla/recaptcha-control": "^6.0",
+    "wpackagist-plugin/skautis-integration": "^1.1.2"
   },
   "require-dev": {
     "nette/tester": "^1.7.0"
