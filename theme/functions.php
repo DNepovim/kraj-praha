@@ -1,14 +1,17 @@
 <?php
 
-if ( ! wp_next_scheduled( 'refres_streams_hook' ) ) {
-  wp_schedule_event( time(), 'hourly', 'refres_streams_hook' );
-}
+global $App;
+if ($App->parameters['wpCron']) {
+	if ( ! wp_next_scheduled( 'refres_streams_hook' ) ) {
+		wp_schedule_event( time(), 'hourly', 'refres_streams_hook' );
+	}
 
-add_action( 'refres_streams_hook', 'refres_streams' );
+	add_action( 'refres_streams_hook', 'refres_streams' );
 
-function refres_streams() {
-		rtc_load();
-		fptc_load();
+	function refres_streams() {
+			rtc_load();
+			fptc_load();
+	}
 }
 
 // Disable html editor

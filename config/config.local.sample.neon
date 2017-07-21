@@ -8,6 +8,7 @@
 parameters:
 	mango: off
 	fromEmail: 'info@example.com'
+	wpCron: false
 
 	# Universal Analytics ID
 	UA: 'UA-XXXXXXX-X'
