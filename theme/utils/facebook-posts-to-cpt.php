@@ -8,9 +8,11 @@
  * License: MIT
  */
 
-require_once 'cpt.php';
-require_once 'settings-page.php';
-require_once 'load-fb-posts.php';
+define('FPTC_PLUGIN_DIRECTORY', 'facebook-posts-to-cpt/');
+
+require_once FPTC_PLUGIN_DIRECTORY . 'cpt.php';
+require_once FPTC_PLUGIN_DIRECTORY . 'settings-page.php';
+require_once FPTC_PLUGIN_DIRECTORY . 'load-fb-posts.php';
 
 if ( is_admin() ) {
 	$settings_page = new FPTCSettingsPage();

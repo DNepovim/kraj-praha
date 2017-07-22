@@ -8,9 +8,11 @@
  * License: MIT
  */
 
-require_once 'cpt.php';
-require_once 'settings-page.php';
-require_once 'rss-load.php';
+define('RTP_PLUGIN_DIRECTORY', 'rss-to-cpt/');
+
+require_once RTP_PLUGIN_DIRECTORY . 'cpt.php';
+require_once RTP_PLUGIN_DIRECTORY . 'settings-page.php';
+require_once RTP_PLUGIN_DIRECTORY . 'rss-load.php';
 
 
 if ( is_admin() ) {
