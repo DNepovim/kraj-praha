@@ -8,12 +8,15 @@
     "mangoweb/mangopress-templating": "dev-master",
     "sentry/sentry": "^0.16.0",
     "roots/wp-password-bcrypt": "^1.0",
+    "facebook/graph-sdk": "^5.2",
+    "uestla/recaptcha-control": "^6.0",
     "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.2.4",
     "wpackagist-plugin/wp-smushit": "^2.6.1",
     "wpackagist-plugin/redirection": "^2.6.2",
-    "facebook/graph-sdk": "^5.2",
-    "uestla/recaptcha-control": "^6.0",
-    "wpackagist-plugin/skautis-integration": "^1.1.2"
+    "wpackagist-plugin/zalomeni": "^1.4.7",
+    "wpackagist-plugin/skautis-integration": "^1.1.2",
+    "wpackagist-plugin/blue-admin": "^16.10",
+    "wpackagist-plugin/wp-super-cache": "^1.5.1"
   },
   "require-dev": {
     "nette/tester": "^1.7.0"
