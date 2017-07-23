@@ -63,12 +63,11 @@ if(isFormValid($form, __FILE__)) {
 
 		$post_id = wp_insert_post( $post_information );
 
-
 		if ( !is_user_logged_in() ) {
 			$body = 'Jupí! Na náš krajský web někdo přidal příspěvek.<br>';
-			$body .= 'Co nejdřív na něj jukni ať ' . $values['nickname'] . 'není nervózní.<br>';
-			$body .= 'Kdyby něco neštymovalo, tak mu napiš na mail <a href="mailto:' . $values['mail'] . '>' . $values['mail'] . '</a>.<br>';
-			$body .= 'Když bude všechno v pohodě, tak článek publikuj v <a href="' . get_edit_post_link($post_id) . 'target="_blank">administraci</a>.<br><br>';
+			$body .= 'Co nejdřív na něj jukni ať není ' . $values['nickname'] . ' nervózní.<br>';
+			$body .= 'Kdyby něco neštymovalo, tak mu napiš na mail <a href="mailto:' . $values['mail'] . '" target="_blank">' . $values['mail'] . '</a>.<br>';
+			$body .= 'Když bude všechno v pohodě, tak článek publikuj v <a href="' . home_url('api/editpost/' . $post_id) . '" target="_blank">administraci</a>.<br><br>';
 			$body .= '<h1>' . wp_strip_all_tags( $values['title'] ) . '</h1>';
 			$body .= $values['content'];
 
