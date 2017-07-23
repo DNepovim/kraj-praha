@@ -22,7 +22,7 @@ services:
 	mailer: @nette.mailer
 
 mail:
-	smtp: true
+	smtp: false
 
 php:
 	date.timezone: Europe/Prague
