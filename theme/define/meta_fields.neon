@@ -42,8 +42,8 @@ register:
 		context: side
 		fields:
 			post_author_name:
-				name:  Přesdívka
+				name: Přesdívka
 				type: text
 			post_author_mail:
-				name:  Přesdívka
+				name: Mail
 				type: text
