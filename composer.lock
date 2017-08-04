@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0309f2d429db33af8961780e826f86f1",
+    "content-hash": "fcdc7f7e8c3d5f9350b28ea87992788f",
     "packages": [
         {
             "name": "composer/installers",
@@ -1961,10 +1961,10 @@
         },
         {
             "name": "wordpress/wordpress",
-            "version": "4.8",
+            "version": "4.8.1",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/4.8.zip",
+                "url": "https://github.com/WordPress/WordPress/archive/4.8.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2015,15 +2015,15 @@
         },
         {
             "name": "wpackagist-plugin/redirection",
-            "version": "2.6.5",
+            "version": "2.6.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redirection/",
-                "reference": "tags/2.6.5"
+                "reference": "tags/2.6.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redirection.2.6.5.zip",
+                "url": "https://downloads.wordpress.org/plugin/redirection.2.6.6.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2055,15 +2055,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-smushit",
-            "version": "2.7.4",
+            "version": "2.7.4.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-smushit/",
-                "reference": "tags/2.7.4"
+                "reference": "tags/2.7.4.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-smushit.2.7.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-smushit.2.7.4.1.zip",
                 "reference": null,
                 "shasum": null
             },
