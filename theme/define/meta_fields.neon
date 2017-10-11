@@ -33,17 +33,3 @@ register:
 			taxonomy:
 				name:  Kategorie
 				type: taxonomy_advanced
-
-	post_author:
-		title: Autor
-		post_types:
-			- post
-			- udalosti
-		context: side
-		fields:
-			post_author_name:
-				name: Přesdívka
-				type: text
-			post_author_mail:
-				name: Mail
-				type: text
