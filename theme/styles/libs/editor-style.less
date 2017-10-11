@@ -107,8 +107,13 @@ a {
  color: @first;
  text-decoration: underline;
 
- &:hover {
-  text-decoration: none;
+	&:hover {
+		background-color: @first;
+		color: @second;
+		* {
+			background-color: @first;
+			color: @second;
+		}
  }
 }
 
