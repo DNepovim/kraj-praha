@@ -37,7 +37,9 @@ add_filter( 'request', 'change_blank_search' );
 
 // Remove tools item form admin menu
 function custom_menu_page_removing() {
-    remove_menu_page( 'tools.php' );
+	if(!is_super_admin()) {
+		remove_menu_page( 'tools.php' );
+	}
 }
 add_action( 'admin_menu', 'custom_menu_page_removing' );
 
