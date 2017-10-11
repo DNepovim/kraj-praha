@@ -74,3 +74,18 @@ remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 remove_action( 'admin_print_styles', 'print_emoji_styles' );
 
 require __DIR__ . '/theme-init.php';
+
+// Exclude rss and fb post types from wp search
+add_action( 'init', 'exclude_cpt_from_search', 99 );
+
+function exclude_cpt_from_search() {
+	global $wp_post_types;
+
+	if (post_type_exists('rss')) {
+		$wp_post_types['rss']->exclude_from_search = true;
+	}
+
+	if (post_type_exists('fb')) {
+		$wp_post_types['fb']->exclude_from_search = true;
+	}
+}
