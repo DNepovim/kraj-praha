@@ -2,7 +2,19 @@
 
 {block main}
     {each}
-        {include parts/entry/content.latte}
+			<article n:class="post, content-box__post, view-singular, content, get_thumbnail_url($Post->ID) ? 'thumb', get_post_type(), is_single()||is_page() ? 'single wysiwyg'">
+				<header class="content__header">
+					<figure class="thumbnail content__thumbnail" style="background-image: url({get_thumbnail_url($Post->ID, 'post_singular')|noescape})" n:if="get_thumbnail_url($Post->ID)">
+							{include components/shape.latte name => frame, class => "thumbnail__frame"}
+					</figure>
+					<h1 class="title title--medium content__title">{$Post|wp_title}</h1>
+					<p class="date content__date" n:if="!is_page($Post->ID)">{$Post|wp_pubdate}|{$Post|wp_author}</p>
+				</header>
+				<div class="content__content">
+					<div class="excerpt text content__excerpt" n:if="has_excerpt($Post->ID)">{$Post|wp_excerpt}</div>
+					<div class="text content__text">{$Post|wp_content}</div>
+				</div>
+			</article>
     {/each}
 
     {if $taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true)}

@@ -27,7 +27,11 @@
     font-size: 0.8em;
     text-align: left;
     margin: 0;
-  }
+	}
+
+	&__content {
+		max-width: 33em
+	}
 
   &__excerpt {
     text-align: left;
@@ -93,7 +97,21 @@
 
   &.event {
     margin: 0;
-  }
+	}
+
+	.view-singular & {
+		&__thumbnail {
+			float: right;
+			width: 330px;
+			height: 310px;
+			margin: 0 -50px 0.7em 0.5em;
+		}
+
+		&__text {
+			font-size: 1.2rem;
+		}
+
+	}
 
   .event & {
     &__title {
@@ -125,5 +143,13 @@
       display: inline-block;
       margin: 0.5rem 0 0;
     }
-  }
+	}
+
+	@media @media-m-max {
+		.view-singular & {
+			&__thumbnail {
+				display: none!important;
+			}
+		}
+	}
 }
