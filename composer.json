@@ -12,11 +12,9 @@
     "uestla/recaptcha-control": "^6.0",
     "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.2.4",
     "wpackagist-plugin/wp-smushit": "^2.6.1",
-    "wpackagist-plugin/redirection": "^2.6.2",
     "wpackagist-plugin/zalomeni": "^1.4.7",
     "wpackagist-plugin/skautis-integration": "^1.1.2",
-    "wpackagist-plugin/blue-admin": "^16.10",
-    "wpackagist-plugin/wp-super-cache": "^1.5.1"
+    "wpackagist-plugin/blue-admin": "^16.10"
   },
   "require-dev": {
     "nette/tester": "^1.7.0"
@@ -42,10 +40,10 @@
       "package": {
         "name": "wordpress/wordpress",
         "type": "webroot",
-        "version": "4.8.1",
+        "version": "4.8.2",
         "dist": {
           "type": "zip",
-          "url": "https://github.com/WordPress/WordPress/archive/4.8.1.zip"
+          "url": "https://github.com/WordPress/WordPress/archive/4.8.2.zip"
         },
         "require": {
           "fancyguy/webroot-installer": "1.1.0"
