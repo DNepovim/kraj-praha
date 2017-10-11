@@ -38,7 +38,7 @@
       {if !empty($locations)}
         {var $menu = wp_get_nav_menu_object( $locations[ $menu_name ] )}
         {var $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) )}
-        <ul class="main-nav__items">
+        <ul class="main-nav__items" n:if="!empty($menuitems)">
           {include ../components/shape.latte name => rect, class => "main-nav__background"}
           {var $first = true}
           {foreach $menuitems as $item}

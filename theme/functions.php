@@ -14,6 +14,9 @@ if ($App->parameters['wpCron']) {
 	}
 }
 
+// Register menu
+register_nav_menu('main_menu', 'Hlavní menu');
+
 // Disable html editor
 function editor_settings($settings) {
 	if ( !is_user_logged_in() ) {
