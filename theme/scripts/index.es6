@@ -18,6 +18,7 @@ var components = {
 	'colorswitcher': require('./components/colorswitcher'),
 	'imageupload': require('./components/imageupload'),
 	'logoswitcher': require('./components/logoswitcher'),
+	'scrollToAnchor': require('./components/scrollToAnchor'),
 	'shapes': require('./components/shapes')
 }
 var instances = []
