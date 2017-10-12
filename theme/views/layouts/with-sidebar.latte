@@ -42,21 +42,19 @@
 	<section class="content-box content-box--aside content-box--krizovatka rss">
 		{include ../components/shape.latte name => rect, class => "content-box__background"}
 		<a class="label label--first" href="http://krizovatka.skaut.cz" target="_blank">Novinky ze skautské křižovatky</a>
-		{var $Query = new WP_Query(array('post_type' => 'rss', 'showposts' => 5))}
-		<ul class="post-list">
-			{each $Query}
-				{var $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
-				<li n:class="post, content-box__post, post-list__item, !empty($thumb) ? 'thumb', get_post_type()">
-					{if $thumb = wp_get_attachment_url( get_post_thumbnail_id($post->ID))}
-							<figure class="thumbnail excerpt__thumbnail" style="background-image: url({$thumb})">
-									{include ../components/shape.latte name => frame, class => "thumbnail__frame"}
-							</figure>
-					{/if}
-					<a class="post-list__item__link" href={meta($Post->ID, rtc_guid)} target="_blank">
-							{$Post|wp_title}
-					</a>
-				</li>
-			{/each}
-		</ul>
+		{var $Query = new WP_Query([
+			'post_type' => 'rss',
+			'showposts' => 5,
+			'meta_key'  => 'rtc_pub_date',
+			'orderby'   => 'date',
+			'order'     => 'DESC'
+		])}
+		{each $Query}
+			<article class="content content-box__post rss">
+				<a href={meta($Post->ID, rtc_guid)} target="_blank">
+					{$Post|wp_title}
+				</a>
+			</article>
+		{/each}
 	</section>
 
