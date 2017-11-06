@@ -12,7 +12,7 @@
 
 	<meta name="description" content="{get_bloginfo('description')|noescape}">
 
-	{use_google_fonts([ 'Open+Sans:400,400i,700,700i'])}
+	{use_google_fonts([ 'Open+Sans:400,400i,700,700i&amp;subset=latin-ext'])}
 
 	{var $stylesheet = !empty($_COOKIE['style']) ? explode(' ', $_COOKIE['style'])[0] : 'first'}
 	<link rel="stylesheet" href="{$assetsPath}/styles/{$stylesheet}.css" media="screen">
