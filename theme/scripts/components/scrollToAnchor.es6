@@ -1,7 +1,7 @@
 var Component = require('./component')
 var $ = window.jQuery
 
-class LogoSwitcher extends Component {
+class ScrollToAnchor extends Component {
 
 	get listeners() {
 		return {
@@ -18,4 +18,4 @@ class LogoSwitcher extends Component {
 	}
 }
 
-module.exports = LogoSwitcher
+module.exports = ScrollToAnchor
