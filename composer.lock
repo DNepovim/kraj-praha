@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d2f7a911c484b15402384c49b39e912",
+    "content-hash": "4e8e9c69d7c54196ba5604e6339c1781",
     "packages": [
         {
             "name": "composer/installers",
@@ -340,12 +340,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/manGoweb/MangoPressTemplating.git",
-                "reference": "a849820e1c31cf899c2107d7f0435613e6fd4f75"
+                "reference": "6af7509391d0747b89324a13b81fc3afe18fee38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/a849820e1c31cf899c2107d7f0435613e6fd4f75",
-                "reference": "a849820e1c31cf899c2107d7f0435613e6fd4f75",
+                "url": "https://api.github.com/repos/manGoweb/MangoPressTemplating/zipball/6af7509391d0747b89324a13b81fc3afe18fee38",
+                "reference": "6af7509391d0747b89324a13b81fc3afe18fee38",
                 "shasum": ""
             },
             "require": {
@@ -372,7 +372,7 @@
             ],
             "description": "Prepared templating workflow with filters and macros.",
             "homepage": "https://github.com/mangoweb/MangoPressTemplating",
-            "time": "2017-09-21T08:26:10+00:00"
+            "time": "2017-10-17T08:56:06+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2038,10 +2038,10 @@
         },
         {
             "name": "wordpress/wordpress",
-            "version": "4.8.2",
+            "version": "4.8.3",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/4.8.2.zip",
+                "url": "https://github.com/WordPress/WordPress/archive/4.8.3.zip",
                 "reference": null,
                 "shasum": null
             },
