@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e8e9c69d7c54196ba5604e6339c1781",
+    "content-hash": "d168afcfd0f11c7f035e230e15962676",
     "packages": [
         {
             "name": "composer/installers",
@@ -2089,26 +2089,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/blue-admin/"
-        },
-        {
-            "name": "wpackagist-plugin/skautis-integration",
-            "version": "1.1.5",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/skautis-integration/",
-                "reference": "trunk"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/skautis-integration.zip?timestamp=1506624413",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/skautis-integration/"
         },
         {
             "name": "wpackagist-plugin/wp-smushit",

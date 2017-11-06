@@ -13,7 +13,6 @@
     "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.2.4",
     "wpackagist-plugin/wp-smushit": "^2.6.1",
     "wpackagist-plugin/zalomeni": "^1.4.7",
-    "wpackagist-plugin/skautis-integration": "^1.1.2",
     "wpackagist-plugin/blue-admin": "^16.10"
   },
   "require-dev": {
