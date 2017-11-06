@@ -89,3 +89,10 @@ function exclude_cpt_from_search() {
 		$wp_post_types['fb']->exclude_from_search = true;
 	}
 }
+
+function add_table_container_to_content($content) {
+	$content = str_replace('<table', '</div></div><div class="table-container"><table', $content);
+	$content = str_replace('</table>', '</table></div><div class="content__content"><div class="text">', $content);
+	return $content;
+}
+add_filter('the_content', 'add_table_container_to_content');

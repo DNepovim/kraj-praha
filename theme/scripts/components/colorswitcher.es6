@@ -6,7 +6,7 @@ class ColorSwitcher extends Component {
 	constructor(element, data) {
 		super(element, data)
 
-		$('#color-switcher').show()
+		$('#color-switcher').addClass('is-active')
 
 	}
 

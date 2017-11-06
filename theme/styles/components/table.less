@@ -1,0 +1,22 @@
+.table {
+	&-container {
+		max-width: 100%;
+
+		table {
+			max-width: 100%;
+		}
+	}
+  @media @media-s-max {
+		&-container {
+			max-width: calc(100% + 40px);
+			overflow-x: scroll;
+			margin-left: -20px;
+			margin-right: -20px;
+
+			table {
+			margin-left: 20px;
+			margin-right: 20px;
+			}
+		}
+	}
+}
