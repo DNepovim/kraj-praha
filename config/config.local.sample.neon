@@ -12,7 +12,7 @@ parameters:
 
 	# Universal Analytics ID
 	UA: 'UA-XXXXXXX-X'
-	GTM 'GTM-xxxxxxx'
+	GTM: 'GTM-xxxxxxx'
 
 	# forceDebug: on # off
 
