@@ -48,6 +48,14 @@
 		display: block;
 	}
   @media @media-m-max {
-		display: none;
+		position:relative;
+		text-align: center;
+		&.is-active {
+			position: relative;
+		}
+		.color-switcher-button {
+			display: inline-block;
+			transform: none;
+		}
 	}
 }
