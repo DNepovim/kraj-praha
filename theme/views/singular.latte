@@ -1,7 +1,7 @@
 {extends layouts/one-column.latte}
 
 {block main}
-    {each}
+		{each}
 			<article n:class="post, content-box__post, view-singular, content, get_thumbnail_url($Post->ID) ? 'thumb', get_post_type(), is_single()||is_page() ? 'single wysiwyg'">
 				<header class="content__header">
 					<figure class="thumbnail content__thumbnail" style="background-image: url({get_thumbnail_url($Post->ID, 'post_singular')|noescape})" n:if="get_thumbnail_url($Post->ID)">
@@ -15,17 +15,17 @@
 					<div class="text content__text">{$Post|wp_content}</div>
 				</div>
 			</article>
-    {/each}
+		{/each}
 
-    {if $taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true)}
-        {var $relatedQuery = new WP_Query(array('cat' => $taxonomy, 'posts_per_page' => 3))}
+		{if $taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true)}
+				{var $relatedQuery = new WP_Query(array('cat' => $taxonomy, 'posts_per_page' => 3))}
 				<div n:if="$relatedQuery->have_posts()" class="grid-s-20 grid-s-offset-2">
-            <h3 class="title title--wrapper">Články k tématu:</h3>
-            {each $relatedQuery}
-                {include parts/entry/content.latte Post => $Post}
-            {/each}
-        </div>
-    {/if}
+						<h3 class="title title--wrapper">Články k tématu:</h3>
+						{each $relatedQuery}
+								{include parts/entry/content.latte Post => $Post}
+						{/each}
+				</div>
+		{/if}
 
 	<script>
 		initComponents.push({
