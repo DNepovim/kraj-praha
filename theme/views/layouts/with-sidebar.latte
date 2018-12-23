@@ -25,6 +25,7 @@
 
 	<section class="content-box content-box--aside content-box--fb fb">
 		{include ../components/shape.latte name => rect, class => "content-box__background"}
+		<img src="/images/source/logotype-facebook.svg" class="sidebar-logotype">
 		<a class="label label--facebook" href="https://facebook.com/skautipraha" targer="_blank">Z našeho facebooku</a>
 		{var $Query = new WP_Query(array('post_type' => 'fb', 'showposts' => 5))}
 		{each $Query}
@@ -41,6 +42,7 @@
 
 	<section class="content-box content-box--aside content-box--krizovatka rss">
 		{include ../components/shape.latte name => rect, class => "content-box__background"}
+		<object type="image/svg+xml" data="/images/source/logotype-krizovatka.svg" class="sidebar-logotype"></object>
 		<a class="label label--first" href="http://krizovatka.skaut.cz" target="_blank">Novinky ze skautské křižovatky</a>
 		{var $Query = new WP_Query([
 			'post_type' => 'rss',
