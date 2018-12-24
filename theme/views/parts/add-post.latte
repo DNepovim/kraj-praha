@@ -64,7 +64,7 @@
 			{/foreach}
 
 			<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[captcha]->errors as $error">{$error}</div>
-			{input captcha}
+			{if !is_user_logged_in()}{input captcha}{/if}
 		</fieldset>
 	</div>
 
