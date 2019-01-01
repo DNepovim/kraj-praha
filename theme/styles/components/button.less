@@ -1,4 +1,5 @@
 .button {
+	display: inline-block;
 	position: relative;
 	margin: -1rem 0 0;
 	cursor: pointer;
@@ -24,7 +25,7 @@
 		display: block;
 		z-index: 5;
 		color: @second;
-		font-size: @mobilebutton-font-size;
+		font-size: @base-font-size;
 		text-align: center;
 		letter-spacing: 0.05em;
 		margin: 0;
@@ -55,10 +56,6 @@
 	}
 
 	@media @media-m-min {
-		&__link {
-			font-size: @base-font-size;
-		}
-
 		&:hover & {
 			&__link {
 				color: @second;

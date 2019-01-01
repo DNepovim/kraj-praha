@@ -18,12 +18,21 @@
 
 		{if $taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true)}
 				{var $relatedQuery = new WP_Query(array('cat' => $taxonomy, 'posts_per_page' => 3))}
-				<div n:if="$relatedQuery->have_posts()" class="grid-s-20 grid-s-offset-2">
-						<h3 class="title title--wrapper">Články k tématu:</h3>
+				<section n:if="$relatedQuery->have_posts()" class="feed grid-s-20 grid-s-offset-2">
+						<h3 class="title title--wrapper feed__title">Články k tématu:</h3>
 						{each $relatedQuery}
 								{include parts/entry/content.latte Post => $Post}
 						{/each}
-				</div>
+					<footer class="feed__footer" n:if="$relatedQuery->found_posts > 3">
+						{include components/button.latte
+							label => 'Všechny články k&nbsp;tématu',
+							tag => 'a',
+							attrs => [
+								href => get_category_link($taxonomy)
+							]
+						}
+					</footer>
+				</section>
 		{/if}
 
 	<script>

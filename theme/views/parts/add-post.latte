@@ -71,16 +71,14 @@
 
 	<input id="submitted" type="hidden" name="submitted" value="true">
 
-	<button class="button button--call form__button" type="submit">
-		{include ../components/shape.latte name => rect, class => "button__background"}
-		<p class="link button__link">
-			{if is_user_logged_in()}
-				Přidat příspěvek
-			{else}
-				Odeslat ke schválení
-			{/if}
-		</p>
-	</button>
+	{include ../components/button.latte
+		label => is_user_logged_in() ? 'Přidat příspěvek' : 'Odeslat ke schválení',
+		class => 'button--call form__button',
+		tag => 'button',
+		attrs => [
+			type => 'submit'
+		]
+	}
 </form>
 
 <script>

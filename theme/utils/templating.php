@@ -64,3 +64,11 @@ MangoFilters::$set['wp_contexcerpt'] = function($id, $length = 55, $more = '&hel
 
 	return safe($output);
 };
+
+MangoFilters::$set['attrs'] = function($array) {
+	return safe(implode(', ', array_map(
+		function ($v, $k) { return sprintf("%s='%s'", $k, $v); },
+		$array,
+		array_keys($array)
+	)));
+};
