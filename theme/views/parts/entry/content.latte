@@ -25,12 +25,9 @@
         <p class="date content__date">{$Post|wp_pubdate}|<a href="{get_author_posts_url($Post->post_author)}">{$Post|wp_author}</a></p>
     {/if}
 
-    {if is_single($Post->ID)||is_page($Post->ID)}
-        <div class="excerpt text content__excerpt" n:if="has_excerpt($Post->ID)">{$Post|wp_excerpt}</div>
+    {if is_single($Post->ID) || is_page($Post->ID)}
         <div class="text content__text">{$Post|wp_content}</div>
     {else}
-        <div class="excerpt text content__excerpt wrapper">
-            {$Post|wp_contexcerpt}
-        </div>
+        <div class="excerpt text content__excerpt wrapper">{$Post|wp_contexcerpt}</div>
     {/if}
 </article>

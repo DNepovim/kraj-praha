@@ -50,7 +50,7 @@ MangoFilters::$set['wp_contexcerpt'] = function($id, $length = 55, $more = '&hel
 	if(!$post) return $id;
 
 	if (!empty($post->post_excerpt)) {
-		$output = $post->excerpt;
+		$output = $post->post_excerpt;
 	} else {
 
 		$output = strip_shortcodes($post->post_content);
