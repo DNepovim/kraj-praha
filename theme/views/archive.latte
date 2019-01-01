@@ -1,5 +1,13 @@
 {extends layouts/with-sidebar.latte}
 
 {block main}
-  <h1 class="title" n:if="!empty($title)">{$title}</h1>
-  {include parts/wrapper.latte}
+  	<h1 class="title" n:if="!empty($title)">{$title}</h1>
+		<p class="subtitle" n:if="!empty($subtitle)">{$subtitle|noescape}</p>
+    {each}
+        {var $thumb = wp_get_attachment_url( get_post_thumbnail_id($Post->ID))}
+        {var $classes = get_post_type()}
+        {if !empty($thumb)}
+            {var $classes .= ' thumb'}
+        {/if}
+        {include parts/entry/content.latte Post => $Post}
+    {/each}
