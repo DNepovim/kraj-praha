@@ -1,130 +1,130 @@
 .form {
-  padding: 10px 5% 30px;
+	padding: 10px 5% 30px;
 
-  &__background {
-    use {
-      fill: @second;
-    }
-  }
+	&__background {
+		use {
+			fill: @second;
+		}
+	}
 
-  &__title {
-    text-align: center;
-    margin-bottom: 0.1em;
-  }
+	&__title {
+		text-align: center;
+		margin-bottom: 0.1em;
+	}
 
-  &__label {
-    display: block;
-    color: @first;
-    margin: 2em 0 0.2em;
+	&__label {
+		display: block;
+		color: @first;
+		margin: 2em 0 0.2em;
 
-    &--checkbox {
-      display: inline-block;
-      margin: 0 0 0 0.5em;
-      color: @text;
-    }
+		&--checkbox {
+			display: inline-block;
+			margin: 0 0 0 0.5em;
+			color: @text;
+		}
 
-    &--center {
-    	text-align: center;
-    }
-  }
+		&--center {
+			text-align: center;
+		}
+	}
 
-  &__input {
-    background: @blank;
-    width: 100%;
-    padding: 0.5em 1rem;
-    border: none;
-    border-radius: @radius;
-    font-size: 1.2rem;
-    border: @blank solid 1px;
+	&__input {
+		background: @blank;
+		width: 100%;
+		padding: 0.5em 1rem;
+		border: none;
+		border-radius: @radius;
+		font-size: 1.2rem;
+		border: @blank solid 1px;
 
-    &--title {
-      font-size: @title-font-size-2;
-    }
+		&--title {
+			font-size: @title-font-size-2;
+		}
 
-    &--hidden {
-      display: none;
-    }
+		&--hidden {
+			display: none;
+		}
 
-    &--checkbox {
-      position: relative;
-      appearance: none;
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      border-radius: 9px 5px 9px 5px;
-      background: @first;
-      border-color: @second;
-      transition: border-color 300ms;
+		&--checkbox {
+			position: relative;
+			appearance: none;
+			display: inline-block;
+			width: 1em;
+			height: 1em;
+			border-radius: 9px 5px 9px 5px;
+			background: @first;
+			border-color: @second;
+			transition: border-color 300ms;
 
-      &:focus, &:hover {
-        border-color: @first;
-      }
+			&:focus, &:hover {
+				border-color: @first;
+			}
 
-      &:checked:before {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        content: '';
-        display: block;
-        width: 0.2em;
-        height: 0.3em;
-        border-left: 2px solid @second;
-        border-bottom: 2px solid @second;
-        transform: rotate(-45deg) translate(20%, -70%);
-      }
-    }
+			&:checked:before {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				content: '';
+				display: block;
+				width: 0.2em;
+				height: 0.3em;
+				border-left: 2px solid @second;
+				border-bottom: 2px solid @second;
+				transform: rotate(-45deg) translate(20%, -70%);
+			}
+		}
 
-    &:focus {
-      outline: none;
-      border: @first solid 1px;
-    }
-  }
+		&:focus {
+			outline: none;
+			border: @first solid 1px;
+		}
+	}
 
-  &__button {
-    clear: both;
-    display: block;
-    background: none;
-    margin: 1rem;
-    border: none;
-    .center(x);
-  }
+	&__button {
+		clear: both;
+		display: block;
+		background: none;
+		margin: 1rem;
+		border: none;
+		.center(x);
+	}
 
-  &__close {
-    position: absolute;
-    top: 3rem;
-    left: 3.4rem;
-  }
+	&__close {
+		position: absolute;
+		top: 3rem;
+		left: 3.4rem;
+	}
 
-  &__thumbnail {
-    cursor: pointer;
-    background-color: fade(@first, 50%);
-    width: 200px;
-    height: 250px;
-    margin: 0 auto;
-  }
+	&__thumbnail {
+		cursor: pointer;
+		background-color: fade(@first, 50%);
+		width: 200px;
+		height: 250px;
+		margin: 0 auto;
+	}
 
-  &__legend {
-    color: @first;
-  }
+	&__legend {
+		color: @first;
+	}
 
-  &__fieldset {
-    border: none;
+	&__fieldset {
+		border: none;
 
-    &--inline {
-      float: left;
-    }
+		&--inline {
+			float: left;
+		}
 
-    &--half {
-    	width: 50%;
-    	margin: 0;
-    }
-  }
+		&--half {
+			width: 50%;
+			margin: 0;
+		}
+	}
 
-  &__row {
-  	display: flex;
-  }
+	&__row {
+		display: flex;
+	}
 
-  .g-recaptcha {
-  	margin: 20px 0 0 -10px;
-  }
+	.g-recaptcha {
+		margin: 20px 0 0 -10px;
+	}
 }

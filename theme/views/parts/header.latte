@@ -1,66 +1,66 @@
 <header class="main-header" role="banner">
-  <div class="row main-header__row">
-    <div class="grid-s-24 grid-m-10">
-      <a class="logotype" href={esc_url(home_url( '/' ))}>
-        {var $logotype = !empty($_COOKIE['logotype']) ? explode(' ', $_COOKIE['logotype'])[0] : 'logotype-skaut'}
-        {include ../components/shape.latte name => $logotype, class => "logotype__logo", id => 'logotyp'}
-        <div class="logotype-toggler" id="logotype-toggler"></div>
-      </a>
-    </div>
-    <div class="grid-s-8 grid-s-offset-6">
-      {include ../components/search-form.latte}
-    </div>
-  </div>
+	<div class="row main-header__row">
+		<div class="grid-s-24 grid-m-10">
+			<a class="logotype" href={esc_url(home_url('/'))}>
+				{var $logotype = !empty($_COOKIE['logotype']) ? explode(' ', $_COOKIE['logotype'])[0] : 'logotype-skaut'}
+				{include ../components/shape.latte name => $logotype, class => "logotype__logo", id => 'logotyp'}
+				<div class="logotype-toggler" id="logotype-toggler"></div>
+			</a>
+		</div>
+		<div class="grid-s-8 grid-s-offset-6">
+			{include ../components/search-form.latte}
+		</div>
+	</div>
 
-  <div class="row">
-    <input id="menu-check" class="main-nav__check hamburger__check" type="checkbox">
-    <nav class="main-nav grid-s-24" role="navigation">
-      <label class="hamburger main-nav__hamburger" for="menu-check">
-        <span class="hamburger__spin hamburger__spin--1"></span>
-        <span class="hamburger__spin hamburger__spin--2"></span>
-        <span class="hamburger__spin hamburger__spin--3"></span>
-      </label>
-      <form class="search-form" role="search" method="get" action={esc_url(home_url('/'))}>
-        {include ../components/shape.latte name => rect, class => "search-form__background"}
-        {if (isset($_GET['s']) && $_GET['s'])}
-          {var $value = $_GET['s']}
-        {else}
-          {var $value = ''}
-        {/if}
-        <input class="search-form__input" type="search" placeholder="Hledat" value={$value} name="s">
-        <label class="search-form__button" for="search-submit">
-          {include ../components/shape.latte name => search, class => "search-form__icon"}
-        </label>
-        <input id="search-submit" class="search-form__submit" type="submit" value="Hledat">
-      </form>
-      {var $menu_name = 'main_menu'}
-      {var $locations = get_nav_menu_locations()}
-      {if !empty($locations)}
-        {var $menu = wp_get_nav_menu_object( $locations[ $menu_name ] )}
-        {var $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) )}
-        <ul class="main-nav__items" n:if="!empty($menuitems)">
-          {include ../components/shape.latte name => rect, class => "main-nav__background"}
-          {var $first = true}
-          {foreach $menuitems as $item}
-            {var $classes='main-nav__item'}
+	<div class="row">
+		<input id="menu-check" class="main-nav__check hamburger__check" type="checkbox">
+		<nav class="main-nav grid-s-24" role="navigation">
+			<label class="hamburger main-nav__hamburger" for="menu-check">
+				<span class="hamburger__spin hamburger__spin--1"></span>
+				<span class="hamburger__spin hamburger__spin--2"></span>
+				<span class="hamburger__spin hamburger__spin--3"></span>
+			</label>
+			<form class="search-form" role="search" method="get" action={esc_url(home_url('/'))}>
+				{include ../components/shape.latte name => rect, class => "search-form__background"}
+				{if (isset($_GET['s']) && $_GET['s'])}
+					{var $value = $_GET['s']}
+				{else}
+					{var $value = ''}
+				{/if}
+				<input class="search-form__input" type="search" placeholder="Hledat" value={$value} name="s">
+				<label class="search-form__button" for="search-submit">
+					{include ../components/shape.latte name => search, class => "search-form__icon"}
+				</label>
+				<input id="search-submit" class="search-form__submit" type="submit" value="Hledat">
+			</form>
+			{var $menu_name = 'main_menu'}
+			{var $locations = get_nav_menu_locations()}
+			{if !empty($locations)}
+				{var $menu = wp_get_nav_menu_object($locations[$menu_name])}
+				{var $menuitems = wp_get_nav_menu_items($menu->term_id, array('order' => 'DESC'))}
+				<ul class="main-nav__items" n:if="!empty($menuitems)">
+					{include ../components/shape.latte name => rect, class => "main-nav__background"}
+					{var $first = true}
+					{foreach $menuitems as $item}
+						{var $classes='main-nav__item'}
 						{php global $wp}
-            {if str_replace('/', '', parse_url($item->url)['path']) == $wp->request}
-              {var $classes .=' active'}
-            {/if}
-            <li n:class="$classes">
-              {include ../components/shape.latte name => rect, class => "main-nav__item__background"}
-              <a class="link main-nav__item__link" href={$item->url}>
-                {if $first}
-                  {include ../components/shape.latte name => home, class => "main-nav__item__icon"}
-                  {var $first = false}
-                {else}
-                  {$item->title}
-                {/if}
-              </a>
-            </li>
-          {/foreach}
-        </ul>
-      {/if}
-    </nav>
-  </div>
+						{if str_replace('/', '', parse_url($item->url)['path']) == $wp->request}
+							{var $classes .=' active'}
+						{/if}
+						<li n:class="$classes">
+							{include ../components/shape.latte name => rect, class => "main-nav__item__background"}
+							<a class="link main-nav__item__link" href={$item->url}>
+								{if $first}
+									{include ../components/shape.latte name => home, class => "main-nav__item__icon"}
+									{var $first = false}
+								{else}
+									{$item->title}
+								{/if}
+							</a>
+						</li>
+					{/foreach}
+				</ul>
+			{/if}
+		</nav>
+	</div>
 </header>

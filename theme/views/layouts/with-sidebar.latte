@@ -26,15 +26,11 @@
 	<section class="content-box content-box--aside content-box--fb fb">
 		{include ../components/shape.latte name => rect, class => "content-box__background"}
 		<a class="label label--facebook" href="https://facebook.com/skautipraha" targer="_blank">Z našeho facebooku</a>
-		{var $Query = new WP_Query(array('post_type' => 'fb', 'showposts' => 5))}
+		{var $Query = new WP_Query(['post_type' => 'fb', 'showposts' => 5])}
 		{each $Query}
-			{var $link = 'https://www.facebook.com/'}
-			{var $link .= get_option( 'fptc_option' )['page_id']}
-			{var $link .= '/posts/'}
-			{var $link .= explode('_', meta($Post->ID, 'fptc_fb_id'))[1]}
-
+			{var $link = 'https://www.facebook.com/' . get_option( 'fptc_option' )['page_id'] . '/posts/' . explode('_', meta($Post->ID, 'fptc_fb_id'))[1]}
 			<article class="content content-box__post facebook">
-				<a href={$link} target="_blank">{$Post|wp_meta:fptc_message|truncate:200}</a>
+				<a href={$link} target="_blank" rel="noreferrer">{$Post|wp_meta:fptc_message|truncate:200}</a>
 			</article>
 		{/each}
 	</section>
@@ -51,7 +47,7 @@
 		])}
 		{each $Query}
 			<article class="content content-box__post rss">
-				<a href={meta($Post->ID, rtc_guid)} target="_blank">
+				<a href="{meta($Post->ID, rtc_guid)}" target="_blank" rel="noreferrer">
 					{$Post|wp_title}
 				</a>
 			</article>

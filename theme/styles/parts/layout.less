@@ -1,56 +1,57 @@
 body {
-  background: @second;
-  transition: background 300ms;
-  @media @media-m-min {
-    background: @first
-  }
+	background: @second;
+	transition: background 300ms;
+
+	@media @media-m-min {
+		background: @first
+	}
 }
 
 .container {
-  background: @second;
-  margin-top: 30px;
-  padding: 50px 20px 100px;
-  transition: background 300ms;
+	background: @second;
+	margin-top: 30px;
+	padding: 50px 20px 100px;
+	transition: background 300ms;
 
-  &__border {
-    display: none;
-    position: absolute;
-    left: -1px;
-    right: -1px;
-    z-index: 10;
-    width: calc(~"100% + 2px");
-    height: 100px;
+	&__border {
+		display: none;
+		position: absolute;
+		left: -1px;
+		right: -1px;
+		z-index: 10;
+		width: calc(~"100% + 2px");
+		height: 100px;
 
-    use {
-      fill: @first;
-      transition: fill 300ms;
-    }
+		use {
+			fill: @first;
+			transition: fill 300ms;
+		}
 
-    &--top {
-      top: -1px;
-    }
+		&--top {
+			top: -1px;
+		}
 
-    &--bottom {
-      bottom: -1px;
-    }
-  }
+		&--bottom {
+			bottom: -1px;
+		}
+	}
 
-  @media @media-m-min {
-    &__border {
-      display: block;
-    }
-  }
+	@media @media-m-min {
+		&__border {
+			display: block;
+		}
+	}
 }
 
 .aside {
-  margin: 1.5rem 0;
-  clear: both;
+	margin: 1.5rem 0;
+	clear: both;
 
-  @media @media-m-min {
-    clear: none;
-  }
+	@media @media-m-min {
+		clear: none;
+	}
 }
 
 .main {
-  margin-top: 1.5rem;
+	margin-top: 1.5rem;
 }

@@ -1,10 +1,11 @@
 .main-header {
-  &__row {
-    display: flex;
-    align-items: flex-end;
+	&__row {
+		display: flex;
+		align-items: flex-end;
 	}
 
-  @media @media-m-max {
+
+	@media @media-m-max {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -15,9 +16,10 @@
 		box-shadow: 0 0 10px fade(@first, 50%)
 	}
 
-  @media @media-m-min {
-    &__hamburger {
-      display: none;
-    }
-  }
+
+	@media @media-m-min {
+		&__hamburger {
+			display: none;
+		}
+	}
 }
