@@ -1,5 +1,12 @@
-<footer class="footer" role="contentinfo">
-  <a class="footer__link" href="http://www.skaut.cz" target="_blank">Junák - český skaut, z. s.</a>,
-  <a class="footer__link" href="http://www.dombl.cz" target="_blank">Dominik Bláha</a>,
-  <a class="footer__link" href="https://github.com/DNepovim/better-wordpress" target="_blank">GitHub</a>.
+{var $menu_name = 'footer_menu'}
+{var $locations = get_nav_menu_locations()}
+<footer class="footer" role="contentinfo" n:if="!empty($locations)">
+	{var $menu = wp_get_nav_menu_object( $locations[ $menu_name ] )}
+	{var $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) )}
+	<ul class="footer__list" n:if="!empty($menuitems)">
+		<li class="footer__item" n:foreach="$menuitems as $item">
+			{include ../components/shape.latte name => rect, class => "main-nav__item__background"}
+			<a class="footer__link" href="{$item->url}" target="_blank" rel="noreferrer">{$item->title}</a>{if !$iterator->isLast()}&nbsp;&bull;&nbsp;{/if}
+		</li>
+	</ul>
 </footer>

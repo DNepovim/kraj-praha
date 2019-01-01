@@ -16,6 +16,7 @@ if ($App->parameters['wpCron']) {
 
 // Register menu
 register_nav_menu('main_menu', 'Hlavní menu');
+register_nav_menu('footer_menu', 'Menu v patičce');
 
 // Disable html editor
 function editor_settings($settings) {
