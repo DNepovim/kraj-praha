@@ -8,7 +8,7 @@
 							{include components/shape.latte name => frame, class => "thumbnail__frame"}
 					</figure>
 					<h1 class="title title--medium content__title">{$Post|wp_title}</h1>
-					<p class="date content__date" n:if="!is_page($Post->ID)">{$Post|wp_pubdate}|{$Post|wp_author}</p>
+					<p class="date content__date" n:if="!is_page($Post->ID)">{$Post|wp_pubdate}|<a href="{get_author_posts_url($Post->post_author)}">{$Post|wp_author}</a></p>
 				</header>
 				<div class="content__content">
 					<div class="excerpt text content__excerpt" n:if="has_excerpt($Post->ID)">{$Post|wp_excerpt}</div>

@@ -22,7 +22,7 @@
     {/if}
 
     {if !is_page($Post->ID)}
-        <p class="date content__date">{$Post|wp_pubdate}|{$Post|wp_author}</p>
+        <p class="date content__date">{$Post|wp_pubdate}|<a href="{get_author_posts_url($Post->post_author)}">{$Post|wp_author}</a></p>
     {/if}
 
     {if is_single($Post->ID)||is_page($Post->ID)}

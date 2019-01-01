@@ -1,4 +1,5 @@
-{extends layouts/one-column.latte}
+{extends layouts/with-sidebar.latte}
 
 {block main}
-    {include parts/wrapper.latte}
+  <h1 class="title" n:if="!empty($title)">{$title}</h1>
+  {include parts/wrapper.latte}
