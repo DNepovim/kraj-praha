@@ -97,3 +97,6 @@ function add_table_container_to_content($content) {
 	return $content;
 }
 add_filter('the_content', 'add_table_container_to_content');
+
+// disable Gutenberg
+add_filter('use_block_editor_for_post_type', '__return_false', 10);
