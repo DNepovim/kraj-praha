@@ -4,5 +4,5 @@
 	<h1 class="title title--medium">Stránka, kterou hledáte, neexistuje.</h1>
 	{var $Query = new WP_Query(array('post_type' => ['post'], 'showposts' => 6))}
 	{each $Query}
-		{include parts/entry/content.latte Post => $Post}
+		{include components/content.latte Post => $Post}
 	{/each}

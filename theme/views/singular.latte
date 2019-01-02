@@ -19,7 +19,7 @@
 		<section class="feed grid-s-20 grid-s-offset-2" n:if="$relatedQuery->have_posts()">
 			<h3 class="title title--wrapper feed__title">Články k tématu:</h3>
 			{each $relatedQuery}
-				{include parts/entry/content.latte Post => $Post}
+				{include components/content.latte Post => $Post}
 			{/each}
 			<footer class="feed__footer" n:if="$relatedQuery->found_posts > 3">
 				{include components/button.latte
