@@ -1,6 +1,1 @@
-<svg height="16px" version="1.1" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg"
-     xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g transform="translate(-768.000000, -432.000000)">
-        <path d="M769,446 L781,446 L781,443 L783,443 L783,446 L783,448 L769,448 Z M769,443 L771,443 L771,446 L769,446 Z M778,438 L778,445 L774,445 L774,438 L772,438 L776,433 L780,438 Z M778,438"/>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg"><path d="M1 14h12v-3h2v5H1zm0-3h2v3H1zm9-5v7H6V6H4l4-5 4 5zm0 0"/></svg>

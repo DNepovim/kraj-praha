@@ -1,9 +1,1 @@
-<svg preserveAspectRatio="none"  width="241px" height="156px" viewBox="19 413 241 156" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <path d="M19,413.982435 L260,413.982435 L260,568.853956 L19,568.853956 L19,413.982435 Z M241.121545,420.267836 C246.432843,420.71212 254.254937,422.4004 254.93092,431.819224 C256.765732,459.453699 255.703472,545.111685 255.606903,551.242807 C255.510334,557.285071 251.068158,560.39506 246.819119,560.750488 C189.070824,564.926759 53.3913022,565.193329 40.740756,564.926759 C28.0902098,564.571331 25,558.529067 25,552.486802 C25,552.486802 25.9656905,440.171767 26.5451049,431.908081 C27.0279502,423.644396 29.3456075,420.889834 35.7191651,420.267836 C42.1892918,419.734695 89.3149906,418.4907 137.020104,418.046416 C184.628648,417.690988 231.850916,419.468125 241.121545,420.267836 Z" id="path-1"></path>
-        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="241" height="154.871521" fill="white">
-            <use xlink:href="#path-1"></use>
-        </mask>
-    </defs>
-    <use id="mask" mask="url(#mask-2)" stroke-width="2" fill-rule="evenodd" xlink:href="#path-1"></use>
-</svg>
+<svg preserveAspectRatio="none" viewBox="19 413 241 156" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M19 413.982h241v154.872H19V413.982zm222.122 6.286c5.31.444 13.133 2.132 13.809 11.551 1.835 27.635.772 113.293.676 119.424-.097 6.042-4.539 9.152-8.788 9.507-57.748 4.177-193.428 4.443-206.078 4.177C28.09 564.57 25 558.529 25 552.487c0 0 .966-112.315 1.545-120.579.483-8.264 2.8-11.018 9.174-11.64 6.47-.533 53.596-1.777 101.301-2.222 47.609-.355 94.83 1.422 104.102 2.222z" id="a"/><mask id="b" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="241" height="154.872" fill="#fff"><use xlink:href="#a"/></mask></defs><use mask="url(#b)" stroke-width="2" fill-rule="evenodd" xlink:href="#a"/></svg>
