@@ -1,5 +1,7 @@
 <?php
 
+ob_clean(); ob_start();
+
 global $App;
 if ($App->parameters['wpCron']) {
 	if (!wp_next_scheduled('refres_streams_hook')) {
@@ -88,3 +90,27 @@ add_filter('the_content', function($content) {
 
 // disable Gutenberg
 add_filter('use_block_editor_for_post_type', '__return_false', 10);
+
+// custom pagination
+add_action('pre_get_posts', function($query) {
+	if($query->is_main_query() && $query->post_count > 0) {
+		global $wp;
+		$current_url = home_url($wp->request);
+		$current_page = $_GET['strana'];
+		$pages_count = intval($query->max_num_pages);
+
+		if (!isset($current_page)) {
+			$current_page = 1;
+		} else if ($current_page <= 1) {
+			wp_redirect(remove_query_arg('strana'));
+			exit();
+		} else if ($current_page > $pages_count) {
+			wp_redirect(add_query_arg('strana', $pages_count));
+			exit();
+		}
+
+		$query->set('paged', $current_page);
+		remove_all_actions ( '__after_loop');
+	}
+});
+
