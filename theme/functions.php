@@ -31,7 +31,6 @@ add_filter('wp_editor_settings', 'editor_settings');
 // Redirect blank search to frontpage
 function change_blank_search( $query_variables ) {
 	if(isset( $_GET['s'] ) && (strlen(preg_replace('/\s+/u','', $_GET['s'])) == 0)) {
-		bdump('serach');
 		wp_redirect(home_url());
 	} else {
 		return $query_variables;
