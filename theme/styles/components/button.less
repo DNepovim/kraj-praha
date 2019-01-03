@@ -4,6 +4,7 @@
 	margin: -1rem 0 0;
 	cursor: pointer;
 	outline: none;
+	font-size: @base-font-size;
 
 	&__background {
 		position: absolute;
@@ -25,7 +26,6 @@
 		display: block;
 		z-index: 5;
 		color: @second;
-		font-size: @base-font-size;
 		text-align: center;
 		letter-spacing: 0.05em;
 		margin: 0;
@@ -103,6 +103,10 @@
 				}
 			}
 		}
+	}
+
+	&--small {
+		font-size: 0.8em;
 	}
 
 	@media @media-m-min {

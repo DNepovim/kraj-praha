@@ -14,8 +14,9 @@
 	<nav class="paging" n:if="$prev_url || $next_url">
 		{if $prev_url}
 			{include components/button.latte
-				label => 'Předchozí příspěvky',
+				label => '< Předchozí příspěvky',
 				tag => 'a',
+				class => 'button--small',
 				attrs => [
 					href => $prev_url,
 					rel => 'prev'
@@ -24,8 +25,9 @@
 		{/if}
 		{if $next_url}
 			{include components/button.latte
-				label => 'Další příspěvky',
+				label => 'Další příspěvky >',
 				tag => 'a',
+				class => 'button--small',
 				attrs => [
 					href => $next_url,
 					rel => 'next'
