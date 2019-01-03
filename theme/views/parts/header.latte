@@ -1,38 +1,38 @@
 <header class="main-header" role="banner">
 	<div class="row main-header__row">
-		<div class="grid-s-24 grid-m-10">
+		<div class="grid-xs-12 grid-s-24 grid-m-10">
 			<a class="logotype" href={esc_url(home_url('/'))}>
+				{include ../components/shape.latte name => "shape-1", class => "logotype__background"}
 				{var $logotype = !empty($_COOKIE['logotype']) ? explode(' ', $_COOKIE['logotype'])[0] : 'logotype-skaut'}
 				{include ../components/shape.latte name => $logotype, class => "logotype__logo", id => 'logotyp'}
 				<div class="logotype-toggler" id="logotype-toggler"></div>
 			</a>
 		</div>
+		{include ../components/button.latte
+			label => 'MENU',
+			tag => 'label',
+			class => 'button--inv button--bold main-nav__open',
+			attrs => [
+				for => 'menu-check'
+			]
+		}
 		<div class="grid-s-8 grid-s-offset-6">
 			{include ../components/search-form.latte}
 		</div>
 	</div>
 
 	<div class="row">
-		<input id="menu-check" class="main-nav__check hamburger__check" type="checkbox">
+		<input id="menu-check" class="main-nav__check" type="checkbox">
 		<nav class="main-nav grid-s-24" role="navigation">
-			<label class="hamburger main-nav__hamburger" for="menu-check">
-				<span class="hamburger__spin hamburger__spin--1"></span>
-				<span class="hamburger__spin hamburger__spin--2"></span>
-				<span class="hamburger__spin hamburger__spin--3"></span>
-			</label>
-			<form class="search-form" role="search" method="get" action={esc_url(home_url('/'))}>
-				{include ../components/shape.latte name => rect, class => "search-form__background"}
-				{if (isset($_GET['s']) && $_GET['s'])}
-					{var $value = $_GET['s']}
-				{else}
-					{var $value = ''}
-				{/if}
-				<input class="search-form__input" type="search" placeholder="Hledat" value={$value} name="s">
-				<label class="search-form__button" for="search-submit">
-					{include ../components/shape.latte name => search, class => "search-form__icon"}
-				</label>
-				<input id="search-submit" class="search-form__submit" type="submit" value="Hledat">
-			</form>
+			{include ../components/button.latte
+				label => 'ZAVŘÍT',
+				tag => 'label',
+				class => 'button--inv button--bold main-nav__close',
+				attrs => [
+					for => 'menu-check'
+				]
+			}
+
 			{var $menu_name = 'main_menu'}
 			{var $locations = get_nav_menu_locations()}
 			{if !empty($locations)}
@@ -61,6 +61,20 @@
 					{/foreach}
 				</ul>
 			{/if}
+
+			<form class="search-form" role="search" method="get" action={esc_url(home_url('/'))}>
+				{include ../components/shape.latte name => rect, class => "search-form__background"}
+				{if (isset($_GET['s']) && $_GET['s'])}
+					{var $value = $_GET['s']}
+				{else}
+					{var $value = ''}
+				{/if}
+				<input class="search-form__input" type="search" placeholder="Hledat" value={$value} name="s">
+				<label class="search-form__button" for="search-submit">
+					{include ../components/shape.latte name => search, class => "search-form__icon"}
+				</label>
+				<input id="search-submit" class="search-form__submit" type="submit" value="Hledat">
+			</form>
 		</nav>
 	</div>
 </header>

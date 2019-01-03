@@ -1,25 +1,27 @@
 .main-header {
-	&__row {
-		display: flex;
-		align-items: flex-end;
-	}
-
-
 	@media @media-s-max {
-		position: fixed;
-		top: 0;
+		position: absolute;
+		top: -50px;
 		left: 0;
-		z-index: 50;
-		width: 100vw;
-		background: @second;
-		margin: 0;
-		box-shadow: 0 0 10px fade(@first, 50%)
-	}
+		right: 0;
+		z-index: 20;
 
+		&__row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-right: 12px;
+
+			div:last-of-type {
+				display: none;
+			}
+		}
+	}
 
 	@media @media-m-min {
-		&__hamburger {
-			display: none;
+		&__row {
+			display: flex;
+			align-items: flex-end;
 		}
 	}
 }

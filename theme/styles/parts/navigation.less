@@ -7,10 +7,22 @@
 	width: 85vw;
 	height: 100vh;
 	transition: right 300ms;
+	overflow: scroll;
 
 	.search-form {
 		display: block;
-		margin: 1rem 1rem 0;
+		margin: 0 20px;
+	}
+
+	&__close {
+		position: absolute;
+		z-index: 10;
+		top: 1rem;
+		right: 1rem;
+	}
+
+	&__check {
+		display: none;
 	}
 
 	&__check:checked ~ & {
@@ -19,14 +31,10 @@
 	}
 
 	&__items {
-		position: absolute;
-		left: 0;
-		overflow: scroll;
 		list-style: none;
 		width: 100%;
-		height: 100%;
 		margin: 0;
-		padding: 30px 20px;
+		padding: 30px 20px 10px;
 	}
 
 	&__background {
@@ -48,10 +56,7 @@
 			left: 0;
 			width: 100%;
 			height: 60%;
-
-			use {
-				fill: rgba(0, 0, 0, 0.39);
-			}
+			fill: rgba(0, 0, 0, 0.39);
 		}
 
 		&__link {
@@ -67,11 +72,8 @@
 			width: 1.2rem;
 			height: 1.2rem;
 			margin: -0.2rem;
-
-			use {
-				fill: none;
-				stroke: @blank;
-			}
+			fill: none;
+			stroke: @blank;
 		}
 	}
 
@@ -85,6 +87,11 @@
 		background: none;
 
 		.search-form {
+			display: none;
+		}
+
+		&__close,
+		&__open {
 			display: none;
 		}
 
@@ -119,9 +126,7 @@
 					}
 
 					&__icon {
-						use {
-							stroke: @second;
-						}
+						stroke: @second;
 					}
 				}
 			}

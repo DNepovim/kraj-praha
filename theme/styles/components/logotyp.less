@@ -10,6 +10,10 @@
 		max-height: 150px;
 	}
 
+	&__background {
+		display: none;
+	}
+
 	&-toggler {
 		position: absolute;
 		bottom: 18%;
@@ -20,10 +24,29 @@
 
 
 	@media @media-m-max {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 60px;
+		max-width: 12rem;
+
 		&__logo {
-			width: 150px;
-			height: 50px;
-			margin: 10px;
+			width: 80%;
+			height: 80%;
+			margin: 10%;
+		}
+
+		&__background {
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: -1;
+			width: 100%;
+			height: 100%;
+			fill: @second;
 		}
 	}
 }

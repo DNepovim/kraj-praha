@@ -1,10 +1,11 @@
 .button {
 	display: inline-block;
 	position: relative;
-	margin: -1rem 0 0;
+	margin: 0.1em 0.2em;
 	cursor: pointer;
 	outline: none;
 	font-size: @base-font-size;
+	font-family: @font-themix;
 
 	&__background {
 		position: absolute;
@@ -13,12 +14,8 @@
 		left: 0;
 		height: 100%;
 		width: 100%;
-		cursor: pointer;
-
-		use {
-			stroke: @first;
-			fill: @first;
-		}
+		stroke: @first;
+		fill: @first;
 	}
 
 	&__link {
@@ -30,12 +27,8 @@
 		letter-spacing: 0.05em;
 		margin: 0;
 		padding: 0.6em 1em;
-		cursor: pointer;
-
-		use {
-			stroke: @second;
-			fill: none;
-		}
+		stroke: @second;
+		fill: none;
 	}
 
 	&__icon {
@@ -49,67 +42,33 @@
 		font-style: normal;
 	}
 
-	.event & {
-		&__button {
-			float: right;
+	&--call & {
+		&__background {
+			fill: @third;
+			stroke: @third;
+		}
+
+		&__link {
+			color: @blank;
 		}
 	}
 
-	@media @media-m-min {
-		&:hover & {
-			&__link {
-				color: @second;
-				text-decoration: underline;
-			}
+	&--inv & {
+		&__link {
+			color: @first;
+		}
 
-			&__icon {
-				fill: @second;
-				use {
-					stroke: @second;
-				}
-			}
+		&__background {
+			fill: @second;
+			stroke: @second;
 		}
 	}
 
-	&--call {
-		.button {
-			&__background {
-				use {
-					fill: @third;
-					stroke: @third;
-				}
-			}
-
-			&__link {
-				color: @blank;
-			}
-		}
-	}
-
-	&--inv {
-		.button {
-			&__link {
-				color: @second;
-			}
-		}
-
-		@media @media-m-min {
-			&:hover .button {
-				&__background {
-					use {
-						fill: @first;
-						stroke: @first;
-					}
-				}
-			}
-		}
+	&--bold {
+		font-weight: bold;
 	}
 
 	&--small {
 		font-size: 0.8em;
-	}
-
-	@media @media-m-min {
-		margin: 0.1em 0.2em;
 	}
 }

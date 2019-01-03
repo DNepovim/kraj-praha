@@ -1,5 +1,4 @@
 .cross {
-	position: absolute;
 	display: block;
 	width: 2rem;
 	height: 2rem;
@@ -24,13 +23,21 @@
 		transform: rotate(-45deg);
 	}
 
-	&:hover{
-		&:before {
-			transform: rotate(-45deg);
+	&--light {
+		&:before, &:after {
+			background: @second;
 		}
+	}
 
-		&:after {
-			transform: rotate(45deg);
+	@media @media-m-min {
+		&:hover{
+			&:before {
+				transform: rotate(-45deg);
+			}
+
+			&:after {
+				transform: rotate(45deg);
+			}
 		}
 	}
 }
