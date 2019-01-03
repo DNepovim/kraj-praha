@@ -114,3 +114,14 @@ add_action('pre_get_posts', function($query) {
 	}
 });
 
+function get_next_page_url($query) {
+	$pages_count = intval($query->max_num_pages);
+	$next_page = !empty($_GET['strana']) ? $_GET['strana'] + 1 : 2;
+	return $next_page <= $pages_count ? add_query_arg( 'strana', $next_page) : false;
+}
+
+function get_prev_page_url($query) {
+	$pages_count = intval($query->max_num_pages);
+	$prev_page = !empty($_GET['strana']) ? $_GET['strana'] - 1 : 0;
+	return $prev_page == 1 ? remove_query_arg('strana') : ($prev_page < 1 ? false : add_query_arg( 'strana', $prev_page));
+}
