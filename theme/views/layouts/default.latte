@@ -16,7 +16,7 @@
 	{use_google_fonts([ 'Open+Sans:400,400i,700,700i&amp;subset=latin-ext'])}
 
 	{var $stylesheet = !empty($_COOKIE['style']) ? explode(' ', $_COOKIE['style'])[0] : 'first'}
-	<link rel="stylesheet" href="{$assetsPath}/styles/{$stylesheet}.css" media="screen">
+	<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp|noescape}{$stylesheet}.css" media="screen">
 
 	<link rel="shortcut icon" type="image/x-icon" href="{$basePath}/favicon.ico">
 
@@ -54,7 +54,7 @@
 
 	<script>
 		initComponents = [
-			{ name: 'shapes', data: { url: {$assetsPath}+'/sprites/shapes.svg' } },
+			{ name: 'shapes', data: { url: {$assetsPath}+'/sprites/{$buildstamp|noescape}shapes.svg' } },
 			{ name: 'colorswitcher', place: 'body' },
 			{ name: 'logoswitcher', place: 'body' }
 		]
@@ -95,7 +95,7 @@
 		{*eu_cookies($activeLang)*}
 				<script src='https://www.google.com/recaptcha/api.js'></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" defer></script>
-		<script src="{$assetsPath}/scripts/index.js" defer></script>
+		<script src="{$assetsPath}/scripts/{$buildstamp|noescape}index.js" defer></script>
 	{/block}
 
 	{wp_footer()}

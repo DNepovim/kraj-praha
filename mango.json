@@ -28,10 +28,11 @@
     }
   ],
   "buildstamp": [
-    "public/assets/styles/index.css",
-    "public/assets/styles/oldie.css",
-    "public/assets/styles/print.css",
-    "public/assets/scripts/index.js"
+    "public/assets/styles/first.css",
+    "public/assets/styles/second.css",
+    "public/assets/styles/third.css",
+    "public/assets/scripts/index.js",
+    "public/assets/sprites/shapes.svg"
   ],
   "dependencies": [
     "bootstrap-styl",
