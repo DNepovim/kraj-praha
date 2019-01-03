@@ -6,7 +6,9 @@ $form = new Form;
 
 $form->addProtection('Detected robot activity.');
 
-$form->addReCaptcha('captcha', NULL, 'Prokaž, že nejsi robot.');
+if ( is_user_logged_in){
+	$form->addReCaptcha('captcha', NULL, 'Prokaž, že nejsi robot.');
+}
 
 $form->addText('title', 'Nadpis:')
 	->setRequired('Musíš svůj článek nějak nazvat.');
