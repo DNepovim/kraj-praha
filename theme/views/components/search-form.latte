@@ -1,11 +1,12 @@
 <form class="search-form" role="search" method="get" action={esc_url(home_url('/'))}>
-	{include shape.latte name => rect, class => "search-form__background"}
 	{if isset($_GET['s']) && $_GET['s']}
 		{var $value = $_GET['s']}
 	{else}
 		{var $value = ''}
 	{/if}
 	<input class="search-form__input" type="search" placeholder="Hledat" value={$value} name="s">
+	{include shape.latte name => rect, class => "search-form__overlay"}
+	{include shape.latte name => rect, class => "search-form__background"}
 	<label class="search-form__button" for="search-submit">
 		{include shape.latte name => search, class => "search-form__icon"}
 	</label>
