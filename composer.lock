@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c6148b1f0b943726df376c9276e9a3e",
+    "content-hash": "f75465037aa3312680af65818cf5223b",
     "packages": [
         {
             "name": "composer/installers",
@@ -2086,10 +2086,10 @@
         },
         {
             "name": "wordpress/wordpress",
-            "version": "5.0.1",
+            "version": "5.0.2",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/5.0.1.zip",
+                "url": "https://github.com/WordPress/WordPress/archive/5.0.2.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2100,15 +2100,15 @@
         },
         {
             "name": "wpackagist-plugin/all-in-one-wp-security-and-firewall",
-            "version": "4.3.7.2",
+            "version": "4.3.8.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/all-in-one-wp-security-and-firewall/",
-                "reference": "tags/4.3.7.2"
+                "reference": "tags/4.3.8.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.4.3.7.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.4.3.8.3.zip",
                 "reference": null,
                 "shasum": null
             },
