@@ -91,9 +91,7 @@
 	{block bottom}{/block}
 
 	{block scripts}
-		{analytics()}
-		{*eu_cookies($activeLang)*}
-				<script src='https://www.google.com/recaptcha/api.js'></script>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" defer></script>
 		<script src="{$assetsPath}/scripts/{$buildstamp|noescape}index.js" defer></script>
 	{/block}
