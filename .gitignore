@@ -16,3 +16,4 @@
 /public/wp-content/uploads
 /public/wp-content/cache
 .idea
+deploy.sh
