@@ -97,7 +97,14 @@
 	<div class="clearfix"></div>
 
 	<script>
-		initComponents.push(
-			{ name: 'imageupload', place: 'body'}
-		)
+		initComponents.push({
+			name: 'imageupload',
+			place: 'body'
+		})
 	</script>
+{/block}
+
+{block script}
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	{include #parent}
+{/block}
