@@ -16,9 +16,9 @@
 	{use_google_fonts([ 'Open+Sans:400,400i,700,700i&amp;subset=latin-ext'])}
 
 	{var $stylesheet = !empty($_COOKIE['style']) ? explode(' ', $_COOKIE['style'])[0] : 'first'}
-	<link rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp|noescape}{$stylesheet}.css" media="screen">
+	<link id="main-stylesheet" rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp|noescape}{$stylesheet}.css" media="screen">
 
-	<link rel="shortcut icon" type="image/x-icon" href="{$assetsPath}/images/favicon-{$stylesheet}.png">
+	<link id="main-icon" rel="shortcut icon" type="image/x-icon" href="{$assetsPath}/images/favicon-{$stylesheet}.png">
 
 	{php global $wp}
 	{if !empty($wp->request)}

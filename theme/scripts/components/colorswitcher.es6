@@ -36,7 +36,7 @@ class ColorSwitcher extends Component {
 	}
 
 	updateLink(url, rel) {
-		$(`link[rel*="${rel}"]`).attr('href', url)
+		$(`#main-${rel}`).attr('href', url)
 	}
 
 }
