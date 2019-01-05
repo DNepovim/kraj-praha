@@ -21,10 +21,6 @@
 		&--fb {
 			fill: @facebookBackground;
 		}
-
-		.is-sticky & {
-			fill: @highlighted;
-		}
 	}
 
 	&__container {
@@ -49,5 +45,14 @@
 		left: 30%;
 		width: 40%;
 		fill: @first;
+	}
+
+
+	@media @media-s-min {
+		&__frame {
+			.is-sticky & {
+				fill: @highlighted;
+			}
+		}
 	}
 }

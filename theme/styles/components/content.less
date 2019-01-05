@@ -55,6 +55,7 @@
 	}
 
 	&__background {
+		display: none;
 		position: absolute;
 		top: -1rem;
 		left: -0.8rem;
@@ -95,6 +96,10 @@
 
 
 	@media @media-s-min {
+		&__background {
+			display: block;
+		}
+
 		&__thumbnail {
 			width: 150px;
 			height: 150px;
