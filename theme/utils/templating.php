@@ -1,5 +1,7 @@
 <?php
 
+use Nette\Utils\Html;
+
 MangoPressTemplating::init();
 
 // czech number format
@@ -71,4 +73,16 @@ MangoFilters::$set['attrs'] = function($array) {
 		$array,
 		array_keys($array)
 	)));
+};
+
+MangoFilters::$set['imgsrcset'] = function($img, $class = '',  $sizes = '100%', $srcset = ['100', '150', '200', '300', '500', '700', '900', '1200', '1600'], $alt = '') {
+	return Html::el('img', [
+		'src' => wp_get_attachment_image_src($img, 'post_feed')[0],
+		'srcset' => implode(', ', array_map(function($size) use($img) {
+				return wp_get_attachment_image_src($img, $size)[0] . ' ' . $size .'w';
+			}, $srcset)),
+		'sizes' => $sizes,
+		'class' => $class,
+		'alt' => $alt
+	]);
 };

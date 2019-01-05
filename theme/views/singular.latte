@@ -3,7 +3,9 @@
 {block main}
 	<article n:class="post, content-box__post, view-singular, content, get_thumbnail_url($Post->ID) ? 'thumb', get_post_type(), is_single()||is_page() ? 'single wysiwyg'" n:each>
 		<header class="content__header">
-			<figure class="thumbnail content__thumbnail" style="background-image: url({get_thumbnail_url($Post->ID, 'post_singular')|noescape})" n:if="get_thumbnail_url($Post->ID)">
+			{var $thumbnailID = get_post_thumbnail_id($Post->ID)}
+			<figure class="thumbnail content__thumbnail" n:if="$thumbnailID">
+				<img class="thumbnail__frame" src="{wp_get_attachment_image_src($thumbnailID, 'post_detail')[0]}" alt="">
 				{include components/shape.latte name => frame, class => "thumbnail__frame"}
 			</figure>
 			<h1 class="title title--hight content__title">{$Post|wp_title}</h1>
@@ -16,7 +18,7 @@
 
 
 
-	<section class="feed grid-s-20 grid-s-offset-2" n:if="$relatedQuery->have_posts()">
+	<section class="feed grid-xs-24 grid-m-20 grid-m-offset-2" n:if="$relatedQuery->have_posts()">
 		<h3 class="title title--medium feed__title" n:if="!empty($relatedTitle)">{$relatedTitle|noescape}</h3>
 		{each $relatedQuery}
 			{include components/content.latte Post => $Post, highlighted_sitky => false}

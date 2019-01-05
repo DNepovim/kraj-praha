@@ -1,20 +1,19 @@
 .thumbnail {
 	display: block;
 	position: relative;
+	overflow: hidden;
 	background-color: @third;
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
-	margin: 0 1rem 1rem 0;
 
 	&__frame {
 		position: absolute;
-		top: 0;
-		left: 0;
+		top: -1%;
+		left: -1%;
 		z-index: 5;
 		width: 102%;
-		height: 104%;
-		margin: -1%;
+		height: 102%;
 		fill: @second;
 		transition: fill 300ms;
 
@@ -23,9 +22,10 @@
 		}
 	}
 
-	&__container {
-		position: relative;
-		display: inline-block;
+	&__image {
+		object-fit: cover;
+		object-position: top center;
+		width: 100%;
 	}
 
 	&__remover {

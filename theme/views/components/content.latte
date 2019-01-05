@@ -1,36 +1,19 @@
-<article n:class="post, content-box__post, content, get_thumbnail_url($Post->ID) ? 'thumb', get_post_type(), is_single()||is_page() ? 'single wysiwyg', is_sticky($Post->ID) ? 'is-sticky'">
-	{if is_sticky($Post->ID)}
-		{include ../components/shape.latte name => rect, class => "content__background"}
-	{/if}
-	{if $thumb = get_thumbnail_url($Post->ID, 'post_feed')}
-		{if is_single($Post->ID)||is_page($Post->ID)}
-			<figure class="thumbnail content__thumbnail" style="background-image: url({$thumb|noescape})">
-				{include shape.latte name => frame, class => "thumbnail__frame"}
-			</figure>
-		{else}
-			<a class="link" href="{$Post|wp_permalink}">
-				<figure class="thumbnail content__thumbnail" style="background-image: url({$thumb|noescape})">
-					{include shape.latte name => frame, class => "thumbnail__frame"}
-				</figure>
-			</a>
-		{/if}
-	{/if}
+{default $highlighted_sitky = true}
+{var $thumbnailID = get_post_thumbnail_id($Post->ID)}
+<article n:class="post, content-box__post, content, $thumbnailID ? 'thumb', get_post_type(), is_sticky($Post->ID) ? 'is-sticky'">
 
-	{if is_single($Post->ID)||is_page($Post->ID)}
-		<h1 class="title title--medium content__title">{$Post|wp_title}</h1>
-	{else}
-		<h2 class="title content__title">
-			<a class="link" href="{$Post|wp_permalink}">{$Post|wp_title}</a>
-		</h2>
-	{/if}
+	{if is_sticky($Post->ID) && $highlighted_sitky}{include ../components/shape.latte name => rect, class => "content__background"}{/if}
 
-	{if !is_page($Post->ID)}
-		<p class="date content__date">{$Post|wp_pubdate}&nbsp;|&nbsp;<a href="{get_author_posts_url($Post->post_author)}">{$Post|wp_author}</a></p>
-	{/if}
+	<a class="content__thumbnail thumbnail" href="{$Post|wp_permalink}" n:if="$thumbnailID">
+		{$thumbnailID|imgsrcset:'thumbnail__image':'(min-width: 500px) 150px, calc(100vw - 44px)'}
+		{include shape.latte name => frame, class => "thumbnail__frame"}
+	</a>
 
-	{if is_single($Post->ID) || is_page($Post->ID)}
-		<div class="text content__text">{$Post|wp_content}</div>
-	{else}
-		<div class="excerpt text content__excerpt wrapper">{$Post|wp_contexcerpt}</div>
-	{/if}
+	<h2 class="title content__title">
+		<a href="{$Post|wp_permalink}">{$Post|wp_title}</a>
+	</h2>
+
+	<p class="content__date">{$Post|wp_pubdate}&nbsp;|&nbsp;<a href="{get_author_posts_url($Post->post_author)}">{$Post|wp_author}</a></p>
+
+	<div class="content__excerpt">{$Post|wp_contexcerpt}</div>
 </article>
