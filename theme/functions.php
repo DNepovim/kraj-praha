@@ -1,6 +1,9 @@
 <?php
 
-ob_clean(); ob_start();
+if (ob_get_contents()) {
+	ob_clean(); ob_start();
+}
+
 
 global $App;
 if ($App->parameters['wpCron']) {
@@ -96,7 +99,7 @@ add_action('pre_get_posts', function($query) {
 	if($query->is_main_query() && $query->post_count > 0) {
 		global $wp;
 		$current_url = home_url($wp->request);
-		$current_page = $_GET['strana'];
+		$current_page = !empty($_GET['strana']) ? $_GET['strana'] : null;
 		$pages_count = intval($query->max_num_pages);
 
 		if (!isset($current_page)) {
