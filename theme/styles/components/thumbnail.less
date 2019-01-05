@@ -16,9 +16,14 @@
 		height: 104%;
 		margin: -1%;
 		fill: @second;
+		transition: fill 300ms;
 
 		&--fb {
 			fill: @facebookBackground;
+		}
+
+		.is-sticky & {
+			fill: @highlighted;
 		}
 	}
 

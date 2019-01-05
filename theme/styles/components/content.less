@@ -56,18 +56,15 @@
 
 	&__background {
 		position: absolute;
-		top: 0;
-		left: 0;
+		top: -1rem;
+		left: -0.8rem;
 		z-index: -1;
-		height: 100%;
-		width: 100%;
+		width: calc(100% + 1.6rem);
+		height: calc(100% + 2rem);
+		transition: fill 300ms;
 
-		&--shadow {
-			z-index: -2;
-			top: 1rem;
-			left: 1rem;
-			fill: @shadow;
-			transform: rotate(180deg);
+		.is-sticky & {
+			fill: @highlighted;
 		}
 	}
 
