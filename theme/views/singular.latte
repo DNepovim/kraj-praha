@@ -18,7 +18,7 @@
 
 
 
-	<section class="feed grid-xs-24 grid-m-20 grid-m-offset-2" n:if="$relatedQuery->have_posts()">
+	<section class="feed grid-xs-24 grid-m-20 grid-m-offset-2" n:if="isset($relatedQuery)">
 		<h3 class="title title--medium feed__title" n:if="!empty($relatedTitle)">{$relatedTitle|noescape}</h3>
 		{each $relatedQuery}
 			{include components/content.latte Post => $Post, highlighted_sitky => false}
