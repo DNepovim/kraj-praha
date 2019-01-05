@@ -18,7 +18,8 @@ class ColorSwitcher extends Component {
 
 	handleClick(e, self) {
 		const $target = $(e.currentTarget)
-		self.getCSS($target.data('stylesheet'))
+		self.updateLink($target.data('stylesheet'), 'stylesheet')
+		self.updateLink($target.data('icon'), 'icon')
 		self.createCookie('style', $target.attr('title'), 365)
 		$('.color-switcher-button').removeClass('active')
 		$target.addClass('active')
@@ -34,15 +35,8 @@ class ColorSwitcher extends Component {
 	  document.cookie = name + '=' + value + '' + expires + '; path=/'
 	}
 
-	getCSS( url, callback ) {
-		$(document.createElement('link')).attr({
-			href: url,
-			media: 'screen',
-			type: 'text/css',
-			rel: 'stylesheet'
-		}).appendTo('head')
-
-		$(document.createElement('img')).attr('src', url)
+	updateLink(url, rel) {
+		$(`link[rel*="${rel}"]`).attr('href', url)
 	}
 
 }
