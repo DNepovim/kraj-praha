@@ -1,7 +1,7 @@
 {var $menu_name = 'footer_menu'}
 {var $locations = get_nav_menu_locations()}
-<footer class="footer" role="contentinfo" n:if="!empty($locations)">
-	{var $menu = wp_get_nav_menu_object( $locations[ $menu_name ] )}
+<footer class="footer" role="contentinfo" n:if="!empty($locations) && !empty($locations[$menu_name])">
+	{var $menu = wp_get_nav_menu_object($locations[$menu_name])}
 	{var $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) )}
 	<ul class="footer__list" n:if="!empty($menuitems)">
 		<li class="footer__item" n:foreach="$menuitems as $item">
