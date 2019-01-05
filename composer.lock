@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f75465037aa3312680af65818cf5223b",
+    "content-hash": "932467f30a44b1ab8fcdb9de9149cdd5",
     "packages": [
         {
             "name": "composer/installers",
@@ -2140,15 +2140,15 @@
         },
         {
             "name": "wpackagist-plugin/bugsnag",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/bugsnag/",
-                "reference": "tags/1.3.0"
+                "reference": "tags/1.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/bugsnag.1.3.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/bugsnag.1.3.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2157,6 +2157,46 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/bugsnag/"
+        },
+        {
+            "name": "wpackagist-plugin/html-editor-syntax-highlighter",
+            "version": "2.2.6",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/html-editor-syntax-highlighter/",
+                "reference": "tags/2.2.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/html-editor-syntax-highlighter.2.2.6.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/html-editor-syntax-highlighter/"
+        },
+        {
+            "name": "wpackagist-plugin/regenerate-thumbnails",
+            "version": "3.1.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/regenerate-thumbnails/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/regenerate-thumbnails.zip?timestamp=1546642223",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/regenerate-thumbnails/"
         },
         {
             "name": "wpackagist-plugin/wp-smushit",
