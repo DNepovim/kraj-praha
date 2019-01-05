@@ -33,10 +33,14 @@
 	}
 
 	&__remover {
-		display: none;
+		visibility: hidden;
 		cursor: pointer;
 		color: @third;
 		text-align: center;
+
+		&.is-active {
+			visibility: visible
+		}
 	}
 
 	&__icon {

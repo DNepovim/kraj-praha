@@ -6,8 +6,6 @@ $form = new Form;
 
 $form->addProtection('Detected robot activity.');
 
-$form->addReCaptcha('captcha', NULL, 'Prokaž, že nejsi robot.');
-
 $form->addText('title', 'Nadpis:')
 	->setRequired('Musíš svůj článek nějak nazvat.');
 
@@ -18,7 +16,7 @@ $form->addUpload('thumb', 'Náhledový obrázek:')
 	->setRequired(FALSE)
 	->addRule(Form::IMAGE, 'Obrázek musí být JPEG, PNG nebo GIF.');
 
-$categories = get_categories(array("hide_empty" => false));
+$categories = get_categories(['hide_empty' => false]);
 $options = [];
 foreach ($categories as $category) {
 	$options[$category->term_id] =  $category->name;
@@ -26,7 +24,13 @@ foreach ($categories as $category) {
 
 $form->addCheckboxList('category', 'Kategorie:', $options);
 
-if ( !is_user_logged_in() ) {
+if (is_user_logged_in()) {
+	$form->addCheckbox('sticky', 'Zvýraznit');
+}
+
+if (!is_user_logged_in()) {
+	$form->addReCaptcha('captcha', NULL, 'Prokaž, že nejsi robot.');
+
 	$form->addText('nickname', 'Přezdívka:')
 		->setRequired('Napiš nám sem svou přezdívku.');
 
@@ -40,7 +44,7 @@ $form->addSubmit('send', 'Odeslat ke schválení');
 if(isFormValid($form, __FILE__)) {
 	$values = $form->getValues();
 
-	if ( is_user_logged_in() ) {
+	if (is_user_logged_in()) {
 		$post_status = 'publish';
 		$meta = '';
 		$user = get_current_user_id();
@@ -51,24 +55,28 @@ if(isFormValid($form, __FILE__)) {
 	}
 
 	try {
-		$post_information = array(
-			'post_title'    => wp_strip_all_tags( $values['title'] ),
+		$post_information = [
+			'post_title'    => wp_strip_all_tags($values['title']),
 			'post_content'  => $values['content'],
 			'post_type'     => 'post',
 			'post_status'   => $post_status,
 			'post_category' => $values['category'],
 			'post_author'   => $user,
 			'meta_input'    => $meta
-		);
+		];
 
-		$post_id = wp_insert_post( $post_information );
+		$post_id = wp_insert_post($post_information);
 
-		if ( !is_user_logged_in() ) {
+		if (is_user_logged_in() && $values['sticky']) {
+			stick_post($post_id);
+		}
+
+		if (!is_user_logged_in()) {
 			$body = 'Jupí! Na náš krajský web někdo přidal příspěvek.<br>';
 			$body .= 'Co nejdřív na něj jukni ať není ' . $values['nickname'] . ' nervózní.<br>';
 			$body .= 'Kdyby něco neštymovalo, tak mu napiš na mail <a href="mailto:' . $values['mail'] . '" target="_blank">' . $values['mail'] . '</a>.<br>';
 			$body .= 'Když bude všechno v pohodě, tak článek publikuj v <a href="' . home_url('api/editpost/' . $post_id) . '" target="_blank">administraci</a>.<br><br>';
-			$body .= '<h1>' . wp_strip_all_tags( $values['title'] ) . '</h1>';
+			$body .= '<h1>' . wp_strip_all_tags($values['title']) . '</h1>';
 			$body .= $values['content'];
 
 			$email = new \Nette\Mail\Message();
@@ -105,19 +113,19 @@ if(isFormValid($form, __FILE__)) {
 				}
 			}
 
-			require_once( ABSPATH . 'wp-admin/includes/image.php' );
-			$attach_data = wp_generate_attachment_metadata( $attach_id, $upload['file'] );
-			$res1        = wp_update_attachment_metadata( $attach_id, $attach_data );
-			$res2        = set_post_thumbnail( $post_id, $attach_id );
+			require_once(ABSPATH . 'wp-admin/includes/image.php');
+			$attach_data = wp_generate_attachment_metadata($attach_id, $upload['file']);
+			$res1        = wp_update_attachment_metadata($attach_id, $attach_data);
+			$res2        = set_post_thumbnail($post_id, $attach_id);
 		}
 
 		if ($post_id) {
-			wp_redirect(add_query_arg('success', true, remove_query_arg('do')));
+			wp_redirect(add_query_arg('success', true, get_home_url()));
 			die;
 		}
 	} catch (SendException $e) {
 		$form->addError('Něco se pokazilo. Zkuste to znovu');
-		wp_redirect(add_query_arg('success', false, remove_query_arg('do')));
+		wp_redirect(add_query_arg('success', false, get_home_url()));
 	}
 }
 

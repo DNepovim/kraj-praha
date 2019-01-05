@@ -1,6 +1,7 @@
 {extends layouts/with-sidebar.latte}
 
 {block main}
+	{include #parent}
 	<h1 class="title" n:if="!empty($title)">{$title}</h1>
 	<p class="subtitle" n:if="!empty($subtitle)">{$subtitle|noescape}</p>
 	{each}

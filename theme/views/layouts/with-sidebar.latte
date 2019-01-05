@@ -1,18 +1,11 @@
 {extends two-column.latte}
 
-{block #top}
-	<input id="addPost" class="modal__check" type="checkbox"{if (isset($_GET['modal']) && $_GET['modal'])||!empty($Forms[add-post]->errors)} checked="checked"{/if}>
-
-	{include ../parts/add-post.latte}
-	<label class="modal__outside" for="addPost"></label>
-{/block}
-
 {block #main}
 	<div class="post content-box__post content-box__post--success content-box__post--message content" n:if="!empty($_GET['success']) && $_GET['success']">
 		{if !is_user_logged_in()}
 			Příspěvek byl odeslán ke schválení.<br> Pokud se do jednoho dne na webu nezobrazí, napiš na <a href="mailto:kancelar@praha.skauting.cz">kancelar@praha.skauting.cz</a>.
 		{else}
-			Příspěvek byl úspěšně uložen.
+			Příspěvek byl úspěšně přidán.
 		{/if}
 	</div>
 {/block}
@@ -20,7 +13,7 @@
 {block #aside}
 	<div class="button button--call modal__button">
 		{include ../components/shape.latte name => rect, class => "button__background"}
-		<label class="link button__link modal__label" for="addPost">Přidat příspěvek</label>
+		<a class="link button__link modal__label" href="/napsat-prispevek">Přidat příspěvek</a>
 	</div>
 
 	<section class="content-box content-box--aside content-box--fb fb">

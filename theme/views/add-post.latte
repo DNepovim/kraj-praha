@@ -1,0 +1,103 @@
+{extends layouts/default.latte}
+
+{block content}
+	{var $user = get_user_by("ID", wp_get_current_user()->ID)}
+	<div class="row">
+		<main class="main grid-xs-24" role="main" n:each>
+			{include components/button.latte
+				label => '< Zpět',
+				class => 'form__back button--small',
+				tag => 'a',
+				attrs => [
+					href => '/'
+				]
+			}
+
+			<form n:name="$Forms[add-post]" class="form">
+
+				<h3 class="title title--medium form__title">{$Post|wp_title}</h3>
+				<p class="subtitle form__subtitle" n:if="is_user_logged_in()">Jsi přihlášen jako <strong clas="name">{$user->display_name}</strong></p>
+
+				<fieldset class="form__fieldset">
+					<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[title]->errors as $error">{$error}</div>
+					{label title class => "form__label"}
+					{input title class => "required form__input form__input--text form__input--title"}
+				</fieldset>
+
+				<fieldset class="form__fieldset">
+					<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[content]->errors as $error">{$error}</div>
+					{label content class => "form__label"}
+					{php wp_editor($form[content]->value ?: '', $form[content]->name, [
+						'editor_class' => "required form__input form__input--text form__input--textarea",
+						'drag_drop_upload' => true,
+					])}
+				</fieldset>
+
+				<div class="form__row" n:if="!is_user_logged_in()">
+					<fieldset class="form__fieldset form__fieldset--half">
+						<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[nickname]->errors as $error">{$error}</div>
+						{label nickname class => "form__label"}
+						{input nickname class => "required form__input form__input--text"}
+					</fieldset>
+
+					<fieldset class="form__fieldset form__fieldset--half">
+						<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[nickname]->errors as $error">{$error}</div>
+						{label mail class => "form__label"}
+						{input mail class => "required form__input form__input--text"}
+					</fieldset>
+				</div>
+
+				<div class="form__row">
+					<fieldset class="thumbnail__container form__fieldset form__fieldset--half">
+						<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[thumb]->errors as $error">{$error}</div>
+						{input thumb class => "form__input form__input--upload form__input--hidden", data-label => "#form-thumbanil"}
+						{label thumb class => "form__label form__label--center"}
+						{label thumb id => "form-thumbanil", class => "thumbnail form__thumbnail"}
+							{include components/shape.latte name => frame, class => "thumbnail__frame form__thumbnail__frame"}
+							{include components/shape.latte name => upload, class => "thumbnail__icon form__thumbnail__icon", id => upload_icon}
+						{/label}
+						<div class="remover thumbnail__remover" data-for="#frm-thumb">(smazat)</div>
+					</fieldset>
+
+					<fieldset class="form__fieldset form__fieldset--half">
+						<p class="form__legend form__label">Rubriky:</p>
+						{var $categories = get_categories(array("hide_empty" => false))}
+						{foreach $form['category']->items as $key => $name}
+							{input category:$key class => "form__input form__input--checkbox"}
+							{label category:$key class => "form__label form__label--checkbox"}
+							<br>
+						{/foreach}
+
+						{if is_user_logged_in()}
+							<p class="form__legend form__label">Další volby:</p>
+							<input n:name="sticky" class="form__input form__input--checkbox">
+							<label n:name="sticky" class="form__label form__label--checkbox">Zvýraznit tento příspěvek</label>
+						{/if}
+
+						{if !is_user_logged_in()}
+							<div class="post content-box__post content-box__post--error content-box__post--message content" n:foreach="$form[captcha]->errors as $error">{$error}</div>
+							{input captcha}
+						{/if}
+					</fieldset>
+				</div>
+
+				<input id="submitted" type="hidden" name="submitted" value="true">
+				{include components/button.latte
+					label => is_user_logged_in() ? 'Přidat příspěvek' : 'Odeslat ke schválení',
+					class => 'button--call form__button',
+					tag => 'button',
+					attrs => [
+						type => 'submit'
+					]
+				}
+			</form>
+		</main>
+	</div>
+
+	<div class="clearfix"></div>
+
+	<script>
+		initComponents.push(
+			{ name: 'imageupload', place: 'body'}
+		)
+	</script>

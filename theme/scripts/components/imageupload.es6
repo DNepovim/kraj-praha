@@ -18,23 +18,22 @@ class ImageUpload extends Component {
 
 		$label.css('background-image', 'url(' + image + ')')
 
-		$('.remover').show()
+		$('.remover').addClass('is-active')
 		$('#upload_icon').hide()
 	}
 
 	handleClick(e, self) {
-        const $input = $($(e.currentTarget).data('for'))
-        const label = $input.data('label')
+		const $input = $($(e.currentTarget).data('for'))
+		const label = $input.data('label')
 
-        $input.wrap('<form>').closest('form').get(0).reset()
-        $input.unwrap()
+		$input.wrap('<form>').closest('form').get(0).reset()
+		$input.unwrap()
 
-        $(label).css('background-image', 'none')
+		$(label).css('background-image', 'none')
 
-        $('.remover').hide()
+		$('.remover').removeClass('is-active')
 		$('#upload_icon').show()
 	}
-
 }
 
 module.exports = ImageUpload
