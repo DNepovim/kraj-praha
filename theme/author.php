@@ -1,11 +1,14 @@
 <?php
+
+$authorName = trim(wp_title('', false));
+
 if (have_posts()) {
 	$atts = [
-		'title' => 'Příspěvky od autora „' . trim(wp_title('', false)) . '“:',
+		'title' => 'Články od autora ' . $authorName . '“:',
 	];
 } else {
 	$atts = [
-		'title' => 'Autor „' . trim(wp_title('', false)) . '“ nenapsal žádné příspěvky.',
+		'title' => 'Autor ' . $authorName . ' nenapsal žádné články.',
 	];
 }
 

@@ -1,12 +1,14 @@
 <?php
 
+$categoryName = strtolower(trim(wp_title('', false)));
+
 if (have_posts()) {
 	$atts = [
-		'title' => 'Příspěvky v rubrice „' . trim(wp_title('', false)) . '“:',
+		'title' => 'Články k tématu ' . $categoryName . ':',
 	];
 } else {
 	$atts = [
-		'title' => 'V rubrice „' . trim(wp_title('', false)) . '“ nejsou žádné příspěvky.',
+		'title' => 'K tématu ' . $categoryName . ' nejsou žádné články.',
 	];
 }
 
