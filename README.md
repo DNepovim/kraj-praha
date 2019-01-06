@@ -1,22 +1,28 @@
-# MangoPress
 
-Fine tuned WordPress structure with the horse power of the Nette Framework, all utilizing the [Composer](https://getcomposer.org) and [mango-cli](https://github.com/manGoweb/mango-cli).
+# Junák - český skaut
+We are a part of the largest non-formal educational NGO for children and youth in the Czech Republic [Junák - český skaut](https://www.skaut.cz/en).
 
+This repo contains the website for scouts from Prague - capital city of the Czech Republic - [praha.skauting.cz](https://praha.skauting.cz) (czech only).
 
-## Starting a new project
+All contributors are welcome. Send me an e-mail to [nik@skaut.cz](mailto://nik@skaut.cz).
 
-```sh
-mango init --source manGoweb/MangoPress your-project-name
-cd your-project-name
-composer install
-```
+All issue reports and feature requests are welcome to.
+
+## Run project
 
 Requirements: PHP stack,  [Composer](https://getcomposer.org), [mango-cli](https://github.com/manGoweb/mango-cli)
 
+```sh
+git clone git@github.com:DNepovim/kraj-praha.git
+cd kraj-praha
+composer install
+npm install
+mango dev
+```
+
 Additional steps:
-- Create a new database for WordPress installation
+- Create a new database
 - Create your `config/config.local.neon` based on `config.local.sample.neon`.
-  - update `parameters.s3.enabled` to `false` for development
 - Make directories `log/`,  `temp/`, `public/wp-content/*` writeable for web process
 
 ## Project structure
@@ -38,12 +44,6 @@ You are going to spent the most of your time in the `theme` directory. Follow th
 * Use templates `views/*.latte` as views. All the HTML chunks belong here. Work with given context only and do not execute unnecessary php code.
 * Assets source directories are `styles`, `scripts` and `images` and the [mango-cli](https://github.com/manGoweb/mango-cli) compiles them to the `public/assets` distribution directory.
 
-## Scaling
-
-Mangopress has *wordpress-s3-media* plugin installed by default. It uploads to and serves all media from aws s3.
-For local development, you should have `parameters.s3.enabled` set to `false` and use filesystem as usual.
-Don't forget to set `parameters.s3.secret` in production config.
-
 ## Manage WP plugins
 
 ```sh
@@ -57,12 +57,7 @@ Beware: not all plugins can work that way, especially ones that need some sort o
 
 Applications deployed to production servers cannot install, update, or remove plugins at all. All changes must be tested, versioned and properly deployed instead.
 
-## Troubleshooting
-### Nette generates links that lead to the 404 page
-Go to the Wordpress admin panel, then click Settings and go to the permailnks secion. From there just submit the form.
-That might resolve the issue.
-
-## Copyright
+## Based on MangoPress
+Fine tuned WordPress structure with the horse power of the Nette Framework, all utilizing the [Composer](https://getcomposer.org) and [mango-cli](https://github.com/manGoweb/mango-cli).
 
 Copyright 2014 by [manGoweb s.r.o.](http://www.mangoweb.cz) Code released under [the MIT license](LICENSE).
-
