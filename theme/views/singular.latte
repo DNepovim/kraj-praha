@@ -5,7 +5,7 @@
 		<header class="content__header">
 			{var $thumbnailID = get_post_thumbnail_id($Post->ID)}
 			<figure class="thumbnail content__thumbnail" n:if="$thumbnailID">
-				<img class="thumbnail__frame" src="{wp_get_attachment_image_src($thumbnailID, 'post_detail')[0]}" alt="">
+				{$thumbnailID|imgsrcset:'thumbnail__image':'330px':['300', '500', '700']}
 				{include components/shape.latte name => frame, class => "thumbnail__frame"}
 			</figure>
 			<h1 class="title title--hight content__title">{$Post|wp_title}</h1>
