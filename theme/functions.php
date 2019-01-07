@@ -86,7 +86,7 @@ add_action('init', function() {
 }, 99);
 
 add_filter('the_content', function($content) {
-	$content = str_replace('<table', '</div></div><div class="table-container"><table', $content);
+	$content = str_replace('<table', '</div></div><div class="table-container wysiwyg"><table', $content);
 	$content = str_replace('</table>', '</table></div><div class="content__content"><div class="text">', $content);
 	return $content;
 });
