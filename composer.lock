@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "932467f30a44b1ab8fcdb9de9149cdd5",
+    "content-hash": "433a54495136110ac61e366a3e860ae3",
     "packages": [
         {
             "name": "composer/installers",
@@ -2086,10 +2086,10 @@
         },
         {
             "name": "wordpress/wordpress",
-            "version": "5.0.2",
+            "version": "5.0.3",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/5.0.2.zip",
+                "url": "https://github.com/WordPress/WordPress/archive/5.0.3.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -2160,15 +2160,15 @@
         },
         {
             "name": "wpackagist-plugin/html-editor-syntax-highlighter",
-            "version": "2.2.6",
+            "version": "2.3.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/html-editor-syntax-highlighter/",
-                "reference": "tags/2.2.6"
+                "reference": "tags/2.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/html-editor-syntax-highlighter.2.2.6.zip",
+                "url": "https://downloads.wordpress.org/plugin/html-editor-syntax-highlighter.2.3.1.zip",
                 "reference": null,
                 "shasum": null
             },
