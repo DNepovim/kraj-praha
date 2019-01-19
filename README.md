@@ -66,6 +66,11 @@ Beware: not all plugins can work that way, especially ones that need some sort o
 
 Applications deployed to production servers cannot install, update, or remove plugins at all. All changes must be tested, versioned and properly deployed instead.
 
+## Testing
+We use [Browserstack Pro](https://www.browserstack.com/) for free which is possible thanks to the fact that they [love open source](https://www.browserstack.com/open-source).
+[![browserstack-logo 2x](https://user-images.githubusercontent.com/16031721/51429896-01679500-1c14-11e9-9fdb-9b8df4ab1b76.png)](https://www.browserstack.com/)
+
+
 ## Based on MangoPress
 Fine tuned WordPress structure with the horse power of the Nette Framework, all utilizing the [Composer](https://getcomposer.org) and [mango-cli](https://github.com/manGoweb/mango-cli).
 
