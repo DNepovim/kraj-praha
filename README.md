@@ -20,15 +20,24 @@ npm install
 mango dev
 ```
 
-Additional steps:
+**Additional steps:**
 - Create a new database
 - Create your `config/config.local.neon` based on `config.local.sample.neon`.
 - Make directories `log/`,  `temp/`, `public/wp-content/*` writeable for web process
+
+**Use Docker for local development**
+
+Install [Docker](https://www.docker.com/get-started) and run `docker-compose up -d`.
+
+Web is now exposed on [`localhost:8000`](http://localhost:8000), [Adminer](https://www.adminer.org/cs/) is on [`localhost:8080`](http://localhost:8080).
+
+Database access is configured in `.env` file.
 
 ## Project structure
 
 * `app` - Nette MVC application
 * `config` - All configuration in one place
+* `docker` - Docker server config files
 * `public` - Public directory to be set as document_root dir
   * `assets` - compiled theme assets, do not edit them here
   * `wp-content` - WP content directory

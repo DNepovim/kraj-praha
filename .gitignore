@@ -17,3 +17,4 @@
 /public/wp-content/cache
 .idea
 deploy.sh
+/docker/data
