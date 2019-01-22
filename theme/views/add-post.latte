@@ -1,5 +1,9 @@
 {extends layouts/default.latte}
 
+{block head}
+	<meta name="robots" content="noindex">
+{/block}
+
 {block content}
 	{var $user = get_user_by("ID", wp_get_current_user()->ID)}
 	<div class="row">
