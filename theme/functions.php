@@ -128,3 +128,9 @@ function get_prev_page_url($query) {
 	$prev_page = !empty($_GET['strana']) ? $_GET['strana'] - 1 : 0;
 	return $prev_page == 1 ? remove_query_arg('strana') : ($prev_page < 1 ? false : add_query_arg( 'strana', $prev_page));
 }
+
+// Dont load Gutenberg styles
+add_action('wp_print_styles', function() {
+	wp_dequeue_style( 'wp-block-library' );
+	wp_deregister_style( 'wp-block-library' );
+}, 100);
