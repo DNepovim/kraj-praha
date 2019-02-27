@@ -1,7 +1,10 @@
 {default $name = 'example'}
 {default $class = ''}
 {default $id = ''}
+{default $critical = false}
+
+{var $href = $critical ? $assetsPath.'/sprites/'.$buildstamp.'shapes-critical.svg#shape-critical-'.$name : '#shape-'.$name}
 
 <svg class="shape shape-{$name} {$class}" {if !empty($id)}id="{$id}"{/if}>
-	<use xlink:href="#shape-{$name}" />
+	<use xlink:href="{$href}" />
 </svg>

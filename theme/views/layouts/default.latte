@@ -46,6 +46,9 @@
 		<meta property="og:description" content="{bloginfo("description")}">
 	{/if}
 
+	  <link rel="preload" href="{$assetsPath}/sprites/{$buildstamp|noescape}shapes-critical.svg" as="style">
+
+
 	{block head}{/block}
 
 
@@ -73,12 +76,12 @@
 	{block top}{/block}
 
 	<div class="container">
-		{include ../components/shape.latte name => border-top, class => "container__border container__border--top"}
+		{include ../components/shape.latte name => border-top, class => "container__border container__border--top", critical => true}
 
 
 		{block content}{/block}
 
-		{include ../components/shape.latte name => border-bottom, class => "container__border container__border--bottom"}
+		{include ../components/shape.latte name => border-bottom, class => "container__border container__border--bottom", critical => true}
 
 		<div class="color-switcher" id="color-switcher">
 			<button n:class="color-switcher-button, first, $stylesheet=='first' ? 'active'" title="first"

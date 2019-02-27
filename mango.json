@@ -23,8 +23,12 @@
   ],
   "sprites":[
     {
-      "path" : "theme/images/sources/*.svg",
+      "path" : "theme/images/sources/general/*.svg",
       "name" : false
+    },
+    {
+      "path" : "theme/images/sources/critical/*.svg",
+      "name" : "critical"
     }
   ],
   "buildstamp": [
@@ -32,7 +36,8 @@
     "public/assets/styles/second.css",
     "public/assets/styles/third.css",
     "public/assets/scripts/index.js",
-    "public/assets/sprites/shapes.svg"
+    "public/assets/sprites/shapes.svg",
+    "public/assets/sprites/shapes-critical.svg"
   ],
   "dependencies": [
     "bootstrap-styl",
