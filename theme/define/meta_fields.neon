@@ -9,3 +9,24 @@ register:
 			taxonomy:
 				name:  Kategorie
 				type: taxonomy_advanced
+
+	frontend_author:
+		title: Neregistrovaný autor
+		post_types: post
+		context: side
+		fields:
+			post_author_name:
+				name: Přezdívka
+				type: text
+				attributes:
+					disabled: true
+			post_author_mail:
+				name: E-mail
+				type: mail
+				attributes:
+					disabled: true
+			post_author_key:
+				name: Klíč k editaci
+				type: text
+				attributes:
+					disabled: true

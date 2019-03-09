@@ -2,15 +2,26 @@
 
 use Nette\Forms\Form;
 
+
+$currentPost = $_GET && $_GET['key'] ? get_posts([
+	'post_status' => 'any',
+	'meta_key' => 'praha_post_author_key',
+	'meta_value' => $_GET['key'],
+])[0] : null;
+
+$currentPostCategories = $currentPost ? wp_get_post_categories($currentPost->ID) : null;
+
 $form = new Form;
 
 $form->addProtection('Detected robot activity.');
 
 $form->addText('title', 'Nadpis:')
-	->setRequired('Musíš svůj článek nějak nazvat.');
+	->setRequired('Musíš svůj článek nějak nazvat.')
+	->setValue($currentPost->post_title ?: '');
 
 $form->addTextarea('content', 'Obsah:')
-	->setRequired('Napiš nějaký text.');
+	->setRequired('Napiš nějaký text.')
+	->setValue($currentPost->post_content ?: '');
 
 $form->addUpload('thumb', 'Náhledový obrázek:')
 	->setRequired(FALSE)
@@ -22,7 +33,8 @@ foreach ($categories as $category) {
 	$options[$category->term_id] =  $category->name;
 }
 
-$form->addCheckboxList('category', 'Kategorie:', $options);
+$form->addCheckboxList('category', 'Kategorie:', $options)
+	->setValue($currentPostCategories);
 
 if (is_user_logged_in()) {
 	$form->addCheckbox('sticky', 'Zvýraznit');
@@ -32,14 +44,17 @@ if (!is_user_logged_in()) {
 	$form->addReCaptcha('captcha', NULL, 'Prokaž, že nejsi robot.');
 
 	$form->addText('nickname', 'Přezdívka:')
-		->setRequired('Napiš nám sem svou přezdívku.');
+		->setRequired('Napiš nám sem svou přezdívku.')
+		->setValue(get_post_meta($currentPost->ID, 'praha_post_author_name', true));
 
 	$form->addText('mail', 'E-mail:')
 		->addRule(Form::EMAIL, 'Napiš e-mail ve správném tvaru.')
-		->setRequired('Napiš nám sem svůj e-mail.');
+		->setRequired('Napiš nám sem svůj e-mail.')
+		->setValue(get_post_meta($currentPost->ID, 'praha_post_author_mail', true));
 }
 
 $form->addSubmit('send', 'Odeslat ke schválení');
+
 
 if(isFormValid($form, __FILE__)) {
 	$values = $form->getValues();
@@ -50,7 +65,12 @@ if(isFormValid($form, __FILE__)) {
 		$user = get_current_user_id();
 	} else {
 		$post_status = 'pending';
-		$meta = ['praha_post_author_name' => $values['nickname'], 'praha_post_author_mail' => $values['mail']];
+		$meta = [
+			'praha_post_author_name' => $values['nickname'],
+			'praha_post_author_mail' => $values['mail'],
+			'praha_post_author_key' => uniqid(),
+
+		];
 		$user = get_user_by('login', 'frontend')->ID;
 	}
 
