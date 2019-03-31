@@ -1,6 +1,8 @@
 <?php
 
 use Nette\Forms\Form;
+use Nette\Utils\Html;
+
 
 $form = new Form;
 
@@ -12,7 +14,7 @@ $form->addText('title', 'Nadpis:')
 $form->addTextarea('content', 'Obsah:')
 	->setRequired('Napiš nějaký text.');
 
-$form->addUpload('thumb', 'Náhledový obrázek:')
+$form->addUpload('thumb', HTML::el('span')->addHTML('Náhledový obrázek:<br><small>(čtverec alespoň 330×330px)</small>'))
 	->setRequired(FALSE)
 	->addRule(Form::IMAGE, 'Obrázek musí být JPEG, PNG nebo GIF.');
 

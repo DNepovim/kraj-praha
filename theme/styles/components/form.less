@@ -101,8 +101,8 @@
 	&__thumbnail {
 		cursor: pointer;
 		background-color: fade(@first, 50%);
-		width: 200px;
-		height: 250px;
+		max-width: 330px;
+		height: 330px;
 		margin: 0 auto;
 	}
 
@@ -116,18 +116,23 @@
 		&--inline {
 			float: left;
 		}
-
-		&--half {
-			width: 50%;
-			margin: 0;
-		}
-	}
-
-	&__row {
-		display: flex;
 	}
 
 	.g-recaptcha {
 		margin: 20px 0 0 -10px;
+	}
+
+
+	@media @media-s-min {
+		&__row {
+			display: flex;
+		}
+
+		&__fieldset {
+			&--half {
+				width: 50%;
+				margin: 0;
+			}
+		}
 	}
 }

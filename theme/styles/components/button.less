@@ -23,7 +23,7 @@
 		position: relative;
 		display: block;
 		z-index: 5;
-		color: @blank;
+		color: fade(@blank, 80%);
 		text-align: center;
 		letter-spacing: 0.05em;
 		margin: 0;
@@ -43,14 +43,14 @@
 		font-style: normal;
 	}
 
+	&:hover &__link {
+		color: @blank;
+	}
+
 	&--call & {
 		&__background {
 			fill: @third;
 			stroke: @third;
-		}
-
-		&__link {
-			color: @blank;
 		}
 	}
 
