@@ -71,7 +71,7 @@ We use [Browserstack Pro](https://www.browserstack.com/) for free which is possi
 [![browserstack-logo 2x](https://user-images.githubusercontent.com/16031721/51429896-01679500-1c14-11e9-9fdb-9b8df4ab1b76.png)](https://www.browserstack.com/)
 
 Also we use [Bugsnag](https://www.bugsnag.com/) for free thanks to their [support of opensource projects](https://www.bugsnag.com/open-source/).
-[![bugsnag_logo_navy](https://user-images.githubusercontent.com/16031721/56165065-511aea00-5fd2-11e9-91e9-622f1207ba9d.png))](https://www.bugsnag.com/)
+[![bugsnag_logo_navy](https://user-images.githubusercontent.com/16031721/56165065-511aea00-5fd2-11e9-91e9-622f1207ba9d.png)](https://www.bugsnag.com/)
 
 
 
