@@ -4,7 +4,6 @@ if (ob_get_contents()) {
 	ob_clean(); ob_start();
 }
 
-
 global $App;
 if ($App->parameters['wpCron']) {
 	if (!wp_next_scheduled('refres_streams_hook')) {
@@ -71,6 +70,9 @@ remove_action('admin_print_scripts', 'print_emoji_detection_script');
 remove_action('admin_print_styles', 'print_emoji_styles');
 
 require __DIR__ . '/theme-init.php';
+
+global $wp;
+$View->wp = $wp;
 
 // Exclude rss and fb post types from wp search
 add_action('init', function() {

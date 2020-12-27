@@ -20,7 +20,6 @@
 
 	<link id="main-icon" rel="shortcut icon" type="image/x-icon" href="{$assetsPath}/images/favicon-{$stylesheet}.png">
 
-	{php global $wp}
 	{if !empty($wp->request)}
 		{var $currentUrl = home_url(add_query_arg(array(),$wp->request))}
 	{else}

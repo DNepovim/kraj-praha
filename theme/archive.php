@@ -1,5 +1,9 @@
 <?php
 
+global $wp_query;
+
+$wp_query['wp_query'] = $wp_query;
+
 $categoryName = strtolower(trim(wp_title('', false)));
 
 if (have_posts()) {

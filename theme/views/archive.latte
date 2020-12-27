@@ -8,7 +8,6 @@
 		{include components/content.latte Post => $Post}
 	{/each}
 
-	{php global $wp_query}
 	{var $prev_url = get_prev_page_url($wp_query)}
 	{var $next_url = get_next_page_url($wp_query)}
 

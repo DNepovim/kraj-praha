@@ -43,7 +43,6 @@
 					{var $first = true}
 					{foreach $menuitems as $item}
 						{var $classes='main-nav__item'}
-						{php global $wp}
 						{if str_replace('/', '', parse_url($item->url)['path']) == $wp->request}
 							{var $classes .=' active'}
 						{/if}
