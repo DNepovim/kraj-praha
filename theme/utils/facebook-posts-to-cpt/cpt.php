@@ -12,6 +12,7 @@ function fptc_create_post_type() {
 			'has_archive' => true,
 			'menu_icon'   => 'dashicons-facebook',
 			'supports'    => array( 'title' ),
+			'publicly_queryable' => false,
 		)
 	);
 }
