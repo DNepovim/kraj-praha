@@ -1,5 +1,8 @@
 {default $highlighted_sitky = true}
+{var $author = !empty(($Post|wp_meta:praha_post_author_name)) ? ($Post|wp_meta:praha_post_author_name) : ($Post|wp_author)}
+{var $author_archive_url = empty(($Post|wp_meta:praha_post_author_name)) ? get_author_posts_url($Post->post_author) : false}
 {var $thumbnailID = get_post_thumbnail_id($Post->ID)}
+
 <article n:class="post, content-box__post, content, $thumbnailID ? 'thumb', get_post_type(), is_sticky($Post->ID) ? 'is-sticky'">
 
 	{if is_sticky($Post->ID) && $highlighted_sitky}{include ../components/shape.latte name => rect, class => "content__background"}{/if}
@@ -15,7 +18,7 @@
 		<a href="{$Post|wp_permalink}">{$Post|wp_title}</a>
 	</h2>
 
-	<p class="content__date">{$Post|wp_pubdate}&nbsp;•&nbsp;<a href="{get_author_posts_url($Post->post_author)}">{$Post|wp_author}</a>{edit_post_link('upravit', '&nbsp;•&nbsp;', null, $Post->ID)}</p>
+	<p class="content__date">{$Post|wp_pubdate}&nbsp;•&nbsp;<a href="{$author_archive_url}" n:tag-if="$author_archive_url">{$author}</a>{edit_post_link('upravit', '&nbsp;•&nbsp;', null, $Post->ID)}</p>
 
 	<div class="content__excerpt">{$Post|wp_contexcerpt}</div>
 </article>

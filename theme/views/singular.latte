@@ -1,5 +1,8 @@
 {extends layouts/one-column.latte}
 
+{var $author = !empty(($post|wp_meta:praha_post_author_name)) ? ($post|wp_meta:praha_post_author_name) : ($post|wp_author)}
+{var $author_archive_url = empty(($post|wp_meta:praha_post_author_name)) ? get_author_posts_url($post->post_author) : false}
+
 {block main}
 	<article n:class="post, content-box__post, view-singular, content, get_thumbnail_url($Post->ID) ? 'thumb'" n:each>
 		<header class="content__header">
@@ -9,7 +12,7 @@
 				{include components/shape.latte name => frame, class => "thumbnail__frame"}
 			</figure>
 			<h1 class="title title--hight content__title">{$Post|wp_title}</h1>
-			<p class="date content__date" n:if="!is_page($Post->ID)">{$Post|wp_pubdate}|<a href="{get_author_posts_url($Post->post_author)}">{$Post|wp_author}</a></p>
+			<p class="date content__date" n:if="!is_page($Post->ID)">{$Post|wp_pubdate}&nbsp;•&nbsp;<a href="{$author_archive_url}" n:tag-if="$author_archive_url">{$author}</a></p>
 		</header>
 		<div class="content__content wysiwyg">
 			<div class="text content__text">{$Post|wp_content}</div>
