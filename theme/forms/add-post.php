@@ -9,7 +9,8 @@ $form = new Form;
 $form->addProtection('Detected robot activity.');
 
 $form->addText('title', 'Nadpis:')
-	->setRequired('Musíš svůj článek nějak nazvat.');
+	->setRequired('Musíš svůj článek nějak nazvat.')
+	->addRule($form::MAX_LENGTH, "Název článku nemůže být delší nšž 40 znaků.", 40);
 
 $form->addTextarea('content', 'Obsah:')
 	->setRequired('Napiš nějaký text.');
