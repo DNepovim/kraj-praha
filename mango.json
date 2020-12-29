@@ -41,7 +41,8 @@
     "theme/**/*.{latte,php}"
   ],
   "hooks": {
-    "init": "mango install"
+    "init": "mango install",
+    "dev": "cp -u ./config/config.local.sample.neon ./config/config.local.neon"
   },
   "snippet": "yes please",
   "version": ">=0.24"

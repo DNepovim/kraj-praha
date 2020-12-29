@@ -28,10 +28,10 @@ parameters:
 		NONCE_SALT:       "bZWrihs6uo CHANGE ON PRODUCTION bZWrihs6up"
 
 	database:
-		host: localhost
-		username:
-		password:
-		database:
+		host: mysqldb
+		username: root
+		password: root
+		database: test
 
 	s3:
 		enabled: false # disable on dev, enable on production
