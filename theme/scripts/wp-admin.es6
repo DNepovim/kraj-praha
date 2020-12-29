@@ -1,3 +1,0 @@
-//
-// Admin section bundle
-//

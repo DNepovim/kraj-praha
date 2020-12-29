@@ -9,8 +9,7 @@
     "theme/styles/wp-editor.styl"
   ],
   "scripts": [
-    "theme/scripts/index.es6",
-    "theme/scripts/wp-admin.es6"
+    "theme/scripts/index.es6"
   ],
   "images": [
     "theme/images/**/*.{jpg,png,gif}"
@@ -18,8 +17,7 @@
   "static": [
     "theme/libs/**",
     "theme/images/**/*.svg",
-    "theme/fonts/**",
-    "node_modules/lt-ie-9/lt-ie-9.min.js"
+    "theme/fonts/**"
   ],
   "sprites":[
     {
@@ -38,11 +36,6 @@
     "public/assets/scripts/index.js",
     "public/assets/sprites/shapes.svg",
     "public/assets/sprites/shapes-critical.svg"
-  ],
-  "dependencies": [
-    "bootstrap-styl",
-    "jquery",
-    "lt-ie-9"
   ],
   "watch": [
     "theme/**/*.{latte,php}"
