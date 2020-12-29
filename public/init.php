@@ -24,7 +24,7 @@ if(file_exists(LIBS_DIR . '/autoload.php')) {
 }
 
 // start debugging
-Tracy\Debugger::enable(Tracy\Debugger::DETECT, LOG_DIR);
+Tracy\Debugger::enable(getenv('DEBUG_MODE') === "true" ? Tracy\Debugger::DEVELOPMENT : Tracy\Debugger::DETECT, LOG_DIR);
 Tracy\Debugger::$maxDepth = 6;
 define('SCRIPT_DEBUG', TRUE);
 
