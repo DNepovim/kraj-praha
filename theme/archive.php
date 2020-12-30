@@ -2,7 +2,7 @@
 
 global $wp_query;
 
-$wp_query['wp_query'] = $wp_query;
+$atts['wp_query'] = $wp_query;
 
 $categoryName = strtolower(trim(wp_title('', false)));
 
