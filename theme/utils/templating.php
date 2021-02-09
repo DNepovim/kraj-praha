@@ -47,7 +47,7 @@ MangoFilters::$set['wp_pubdate'] = function($id) {
 	return safe( get_the_time( get_option( 'date_format' ), $post));
 };
 
-MangoFilters::$set['wp_contexcerpt'] = function($id, $length = 55, $more = '&hellip;') {
+MangoFilters::$set['wp_contexcerpt'] = function($id, $length = 45, $more = '&hellip;') {
 	$post = lazy_post($id);
 	if(!$post) return $id;
 
