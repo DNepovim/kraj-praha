@@ -18,7 +18,7 @@
 
 	<section class="content-box content-box--aside content-box--fb fb">
 		{include ../components/shape.latte name => rect, class => "content-box__background"}
-		<a class="label label--facebook" href="https://facebook.com/skautipraha" targer="_blank">Z našeho facebooku</a>
+		<a class="label label--facebook" href="https://facebook.com/skautipraha" target="_blank">Z našeho facebooku</a>
 		{var $Query = new WP_Query(['post_type' => 'fb', 'showposts' => 5])}
 		{each $Query}
 			{var $link = 'https://www.facebook.com/' . get_option( 'fptc_option' )['page_id'] . '/posts/' . explode('_', meta($Post->ID, 'fptc_fb_id'))[1]}
