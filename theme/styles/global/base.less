@@ -48,3 +48,15 @@ h1, h2, h3, h4, h5, h6 {
 input[type=checkbox], input[type=radio], label {
 	cursor: pointer;
 }
+
+a[href$=".pdf"]::before {
+    content: "";
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 0.1em;
+    vertical-align: sub;
+    background-image: url(/assets/images/pdf-icon.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
