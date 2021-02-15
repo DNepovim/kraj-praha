@@ -52,11 +52,17 @@ input[type=checkbox], input[type=radio], label {
 a[href$=".pdf"]::before {
     content: "";
     display: inline-block;
-    width: 1.1em;
-    height: 1.1em;
-    margin-right: 0.1em;
-    vertical-align: sub;
+    height: 1.2em;
+    width: calc(1.2em * 1 / 1.414);
+    margin: 0.2em 0.1em;
+    margin-right: 0.25em;
+    vertical-align: bottom;
     background-image: url(/assets/images/pdf-icon.svg);
-    background-size: contain;
+    background-size: auto 200%;
+	background-position: top;
     background-repeat: no-repeat;
+}
+
+a[href$=".pdf"]:hover::before {
+	background-position: bottom;
 }
