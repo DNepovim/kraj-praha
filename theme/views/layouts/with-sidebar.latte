@@ -21,7 +21,7 @@
 		{include ../components/shape.latte name => rect, class => "content-box__background"}
 		<a class="label label--facebook" href="https://facebook.com/skautipraha" targer="_blank">Z našeho facebooku</a>
 		<article class="content content-box__post facebook" n:foreach="$facebookPosts as $post">
-			<a href={"https://www.facebook.com/" . $post["id"]} target="_blank" rel="noreferrer">
+			<a href="https://www.facebook.com/{$post['id']}" target="_blank" rel="noreferrer">
 				{var $text = empty($post["story"]) ? $post["message"] : $post["message"] . " — " . $post["story"]}
 				{$text|truncate:200}
 			</a>
