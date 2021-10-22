@@ -11,9 +11,9 @@ class FPTCSettingsPage {
 
 	public function add_plugin_page() {
 		add_submenu_page(
-			'edit.php?post_type=fb',
-			'Nastavení fb',
-			'Nastavení',
+			'options-general.php',
+			'Nastavení FB',
+			'Nastavení FB',
 			'manage_options',
 			'options',
 			array( $this, 'create_admin_page' )

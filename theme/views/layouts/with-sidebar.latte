@@ -16,34 +16,26 @@
 		<a class="link button__link" href="/napsat-prispevek">Přidat příspěvek</a>
 	</div>
 
-	<section class="content-box content-box--aside content-box--fb fb">
+	{var $facebookPosts = get_facebook_posts()}
+	<section class="content-box content-box--aside content-box--fb fb" n:if="!empty($facebookPosts)">
 		{include ../components/shape.latte name => rect, class => "content-box__background"}
 		<a class="label label--facebook" href="https://facebook.com/skautipraha" targer="_blank">Z našeho facebooku</a>
-		{var $Query = new WP_Query(['post_type' => 'fb', 'showposts' => 5])}
-		{each $Query}
-			{var $link = 'https://www.facebook.com/' . get_option( 'fptc_option' )['page_id'] . '/posts/' . explode('_', meta($Post->ID, 'fptc_fb_id'))[1]}
-			<article class="content content-box__post facebook">
-				<a href={$link} target="_blank" rel="noreferrer">{$Post|wp_meta:fptc_message|truncate:200}</a>
-			</article>
-		{/each}
+		<article class="content content-box__post facebook" n:foreach="$facebookPosts as $post">
+			<a href={"https://www.facebook.com/" . $post["id"]} target="_blank" rel="noreferrer">
+				{var $text = empty($post["story"]) ? $post["message"] : $post["message"] . " — " . $post["story"]}
+				{$text|truncate:200}
+			</a>
+		</article>
 	</section>
 
-	<section class="content-box content-box--aside content-box--krizovatka rss">
+	{var $rssPosts = get_rss_posts()}
+	<section class="content-box content-box--aside content-box--krizovatka rss" n:if="!empty($rssPosts)">
 		{include ../components/shape.latte name => rect, class => "content-box__background"}
 		<a class="label label--first" href="http://krizovatka.skaut.cz" target="_blank">Novinky ze skautské křižovatky</a>
-		{var $Query = new WP_Query([
-			'post_type' => 'rss',
-			'showposts' => 5,
-			'meta_key'  => 'rtc_pub_date',
-			'orderby'   => 'date',
-			'order'     => 'DESC'
-		])}
-		{each $Query}
-			<article class="content content-box__post rss">
-				<a href="{meta($Post->ID, rtc_guid)}" target="_blank" rel="noreferrer">
-					{$Post|wp_title}
-				</a>
-			</article>
-		{/each}
+		<article class="content content-box__post rss" n:foreach="$rssPosts as $post">
+			<a href="{$post['link']}" target="_blank" rel="noreferrer">
+				{$post['title']}
+			</a>
+		</article>
 	</section>
 

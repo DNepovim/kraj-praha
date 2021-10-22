@@ -136,3 +136,56 @@ add_action('wp_print_styles', function() {
 	wp_dequeue_style( 'wp-block-library' );
 	wp_deregister_style( 'wp-block-library' );
 }, 100);
+
+
+function get_rss_posts($count = 5) {
+	$rss = simplexml_load_file('https://zpravodajstvi.skaut.cz/feed');
+
+	if (empty($rss)) {
+		return [];
+	}
+
+	$resutl = [];
+	$index = 0;
+	foreach ($rss->channel->item as $item) {
+		$result[$index] = [
+			"title" => (string) $item->title,
+			"link" => (string) $item->link
+		];
+		$index++;
+		if ($index == $count) {
+			break;
+		}
+	}
+
+	return $result;
+}
+
+function get_facebook_posts($limit = 5) {
+	$options = get_option( 'fptc_option' );
+
+	if (!($options['app_id'] && $options['app_secret'] && $options['page_id'] && $options['access_token'])) {
+		return false;
+	}
+
+	$fb = new Facebook\Facebook( [
+		'app_id'                => $options['app_id'],
+		'app_secret'            => $options['app_secret'],
+		'default_graph_version' => 'v2.8',
+	] );
+
+	try {
+		$response = $fb->get( '/' . $options['page_id'] . '/posts?locale=cs_CZ&fields=id,message,story&limit=' . $limit, $options['access_token'] );
+		return $response->getDecodedBody()['data'];
+	} catch ( Facebook\Exceptions\FacebookResponseException $e ) {
+		// TODO: Error handling
+		return false;
+	} catch ( Facebook\Exceptions\FacebookSDKException $e ) {
+		// TODO: Error handling
+		return false;
+	}
+}
+
+if ( is_admin() ) {
+	$settings_page = new FPTCSettingsPage();
+};
