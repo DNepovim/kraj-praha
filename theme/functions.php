@@ -4,18 +4,6 @@ if (ob_get_contents()) {
 	ob_clean(); ob_start();
 }
 
-global $App;
-if ($App->parameters['wpCron']) {
-	if (!wp_next_scheduled('refres_streams_hook')) {
-		wp_schedule_event(time(), 'hourly', 'refres_streams_hook');
-	}
-
-	add_action('refres_streams_hook', function() {
-		rtc_load();
-		fptc_load();
-	});
-}
-
 // Register menu
 register_nav_menu('main_menu', 'Hlavní menu');
 register_nav_menu('footer_menu', 'Menu v patičce');
