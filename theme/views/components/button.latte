@@ -1,12 +1,12 @@
 {default $label = null}
 {default $class = null}
-{default $tag = 'button'}
+{default $style = "call"}
+{default $tag = 'div'}
+{default $link = ""}
 {default $attrs = []}
 
 
-<{$tag} class="button {$class}" {$attrs|attrs}>
+<{$tag} class="button button--{$style} {$class}" {$attrs|attrs}>
 	{include ../components/shape.latte name => rect, class => "button__background"}
-	<span class="link button__link">
-		{$label|noescape}
-	</span>
+	<a class="link button__link" href="{$link}">{$label|noescape}</a>
 </{$tag}>

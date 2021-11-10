@@ -11,8 +11,6 @@
 {/block}
 
 {block #aside}
-	{include ../components/button.latte tag => a, label => "Přidat příspěvek", class => "button--call"}
-
 	{if (!function_exists('dynamic_sidebar') || !dynamic_sidebar("Hlavní sidebar"))  }
 		{dynamic_sidebar("Hlavní sidebar")}
 	{/if}
