@@ -11,31 +11,8 @@
 {/block}
 
 {block #aside}
-	<div class="button button--call">
-		{include ../components/shape.latte name => rect, class => "button__background"}
-		<a class="link button__link" href="/napsat-prispevek">Přidat příspěvek</a>
-	</div>
+	{include ../components/button.latte tag => a, label => "Přidat příspěvek", class => "button--call"}
 
-	{var $facebookPosts = get_facebook_posts()}
-	<section class="content-box content-box--aside content-box--fb fb" n:if="!empty($facebookPosts)">
-		{include ../components/shape.latte name => rect, class => "content-box__background"}
-		<a class="label label--facebook" href="https://facebook.com/skautipraha" targer="_blank">Z našeho facebooku</a>
-		<article class="content content-box__post facebook" n:foreach="$facebookPosts as $post">
-			<a href="https://www.facebook.com/{$post['id']}" target="_blank" rel="noreferrer">
-				{var $text = empty($post["story"]) ? $post["message"] : $post["message"] . " — " . $post["story"]}
-				{$text|truncate:200}
-			</a>
-		</article>
-	</section>
-
-	{var $rssPosts = get_rss_posts()}
-	<section class="content-box content-box--aside content-box--krizovatka rss" n:if="!empty($rssPosts)">
-		{include ../components/shape.latte name => rect, class => "content-box__background"}
-		<a class="label label--first" href="http://krizovatka.skaut.cz" target="_blank">Novinky ze skautské křižovatky</a>
-		<article class="content content-box__post rss" n:foreach="$rssPosts as $post">
-			<a href="{$post['link']}" target="_blank" rel="noreferrer">
-				{$post['title']}
-			</a>
-		</article>
-	</section>
-
+	{if (!function_exists('dynamic_sidebar') || !dynamic_sidebar("Hlavní sidebar"))  }
+		{dynamic_sidebar("Hlavní sidebar")}
+	{/if}

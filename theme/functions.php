@@ -82,7 +82,8 @@ add_filter('the_content', function($content) {
 });
 
 // disable Gutenberg
-add_filter('use_block_editor_for_post_type', '__return_false', 10);
+add_filter('use_block_editor_for_post', '__return_false', 10);
+add_filter('use_widgets_block_editor', '__return_false', 10 );
 
 // custom pagination
 add_action('pre_get_posts', function($query) {
@@ -126,54 +127,20 @@ add_action('wp_print_styles', function() {
 }, 100);
 
 
-function get_rss_posts($count = 5) {
-	$rss = simplexml_load_file('https://zpravodajstvi.skaut.cz/feed');
-
-	if (empty($rss)) {
-		return [];
-	}
-
-	$resutl = [];
-	$index = 0;
-	foreach ($rss->channel->item as $item) {
-		$result[$index] = [
-			"title" => (string) $item->title,
-			"link" => (string) $item->link
-		];
-		$index++;
-		if ($index == $count) {
-			break;
-		}
-	}
-
-	return $result;
-}
-
-function get_facebook_posts($limit = 5) {
-	$options = get_option( 'fptc_option' );
-
-	if (!($options['app_id'] && $options['app_secret'] && $options['page_id'] && $options['access_token'])) {
-		return false;
-	}
-
-	$fb = new Facebook\Facebook( [
-		'app_id'                => $options['app_id'],
-		'app_secret'            => $options['app_secret'],
-		'default_graph_version' => 'v2.8',
-	] );
-
-	try {
-		$response = $fb->get( '/' . $options['page_id'] . '/posts?locale=cs_CZ&fields=id,message,story&limit=' . $limit, $options['access_token'] );
-		return $response->getDecodedBody()['data'];
-	} catch ( Facebook\Exceptions\FacebookResponseException $e ) {
-		// TODO: Error handling
-		return false;
-	} catch ( Facebook\Exceptions\FacebookSDKException $e ) {
-		// TODO: Error handling
-		return false;
-	}
-}
-
-if ( is_admin() ) {
+if (is_admin()) {
 	$settings_page = new FPTCSettingsPage();
 };
+
+// sidebar
+if (function_exists('register_sidebar'))
+	register_sidebar(array(
+		'id' => 1,
+		'name' => 'Hlavní sidebar',
+		'before_widget' => '<div class = "widgetizedArea">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3>',
+		'after_title' => '</h3>',
+	)
+);
+
+add_action( 'widgets_init', 'wpdocs_register_widgets' );

@@ -13,6 +13,7 @@ define('THEME_UTILS_DIR', THEME_DIR . '/utils');
 define('ADMIN_UTILS_DIR', THEME_DIR . '/admin');
 define('API_DIR', THEME_DIR . '/api');
 define('FORMS_DIR', THEME_DIR . '/forms');
+define('WIDGETS_DIR', THEME_DIR . '/widgets');
 define('THEME_VIEWS_DIR', THEME_DIR . '/views');
 define('NEON_WP_DIR', __DIR__ . '/define');
 
@@ -25,6 +26,10 @@ foreach(glob(FORMS_DIR . '/*.php') as $filename) {
 	$Forms[basename($filename, '.php')] = require_once $filename;
 }
 $View->Forms = $Forms;
+
+foreach(glob(WIDGETS_DIR . '/*.php') as $filename) {
+	require_once $filename;
+}
 
 if(is_admin()) foreach(glob(ADMIN_UTILS_DIR . '/*.php') as $filename) {
 	require_once $filename;
