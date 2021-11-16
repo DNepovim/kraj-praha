@@ -81,10 +81,6 @@ add_filter('the_content', function($content) {
 	return $content;
 });
 
-// disable Gutenberg
-add_filter('use_block_editor_for_post', '__return_false', 10);
-add_filter('use_widgets_block_editor', '__return_false', 10 );
-
 // custom pagination
 add_action('pre_get_posts', function($query) {
 	if($query->is_main_query() && $query->post_count > 0) {
