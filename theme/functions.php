@@ -129,14 +129,8 @@ if (is_admin()) {
 
 // sidebar
 if (function_exists('register_sidebar'))
-	register_sidebar(array(
-		'id' => 1,
+	register_sidebar([
+		'id' => 'main-sidebar',
 		'name' => 'Hlavní sidebar',
-		'before_widget' => '<div class = "widgetizedArea">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
-	)
+	]
 );
-
-add_action( 'widgets_init', 'wpdocs_register_widgets' );
