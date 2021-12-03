@@ -3,11 +3,6 @@
 // $ApiRequest = [ 'param1', 'param2', ... ]
 
 switch($ApiRequest[0]) {
-	case 'refresh-streams':
-		rtc_load();
-		fptc_load();
-		$payload = ['status' => 'ok'];
-		break;
 	case 'editpost':
 		$adminurl = admin_url('/post.php?post=' . $ApiRequest[1] . '&action=edit');
 		if (is_user_logged_in()) {
