@@ -2,10 +2,13 @@ prefix: praha_
 
 register:
 	related:
-		title:  Související články
+		title: Zobrazení
 		post_types: page
 		context: side
 		fields:
 			taxonomy:
-				name:  Kategorie
+				name: Kategorie
 				type: taxonomy_advanced
+			hide_title:
+				name: Skrýt nadpis
+				type: checkbox

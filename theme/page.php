@@ -2,6 +2,8 @@
 
 $args = [];
 $taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true);
+$hideTitle = get_post_meta(get_the_ID(), 'praha_hide_title', true);
+$args['hideTitle'] = $hideTitle;
 
 if ($taxonomy) {
 
