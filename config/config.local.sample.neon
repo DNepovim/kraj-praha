@@ -28,9 +28,9 @@ parameters:
 		NONCE_SALT:       "bZWrihs6uo CHANGE ON PRODUCTION bZWrihs6up"
 
 	database:
-		host: mysqldb
-		username: root
-		password: root
+		host: mariadb
+		username: test
+		password: test
 		database: test
 
 	s3:
