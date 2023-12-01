@@ -6,17 +6,15 @@
     "nette/nette": "^2.4.0",
     "mangoweb/mangopress-sql-panel": "dev-master",
     "mangoweb/mangopress-templating": "dev-master",
-    "sentry/sentry": "^0.16.0",
     "roots/wp-password-bcrypt": "^1.0",
-    "facebook/graph-sdk": "^5.2",
     "uestla/recaptcha-control": "^6.0",
     "wpackagist-plugin/all-in-one-wp-security-and-firewall": "^4.2.4",
     "wpackagist-plugin/wp-smushit": "^2.6.1",
     "wpackagist-plugin/zalomeni": "^1.4.7",
     "wpackagist-plugin/bugsnag": "^1.3.0",
-    "wpackagist-plugin/regenerate-thumbnails":"^3.1.0",
-    "wpackagist-plugin/html-editor-syntax-highlighter":"^2.2.6",
-    "wpackagist-plugin/webp-express":"^0.13.0",
+    "wpackagist-plugin/regenerate-thumbnails": "^3.1.0",
+    "wpackagist-plugin/html-editor-syntax-highlighter": "^2.2.6",
+    "wpackagist-plugin/webp-express": "^0.13.0",
     "wpackagist-plugin/classic-widgets": "^0.2.0",
     "wpackagist-plugin/classic-editor": "^1.6"
   },
@@ -57,19 +55,34 @@
   ],
   "extra": {
     "installer-paths": {
-      "public/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin", "type:wordpress-plugin"],
-      "public/wp-content/themes/{$name}": ["type:wordpress-theme"]
+      "public/wp-content/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin",
+        "type:wordpress-plugin"
+      ],
+      "public/wp-content/themes/{$name}": [
+        "type:wordpress-theme"
+      ]
     },
     "webroot-dir": "public/wp-core",
     "webroot-package": "wordpress/wordpress"
   },
   "config": {
     "preferred-install": "dist",
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "composer/installers": true,
+      "fancyguy/webroot-installer": true
+    }
   },
   "minimum-stability": "stable",
   "scripts": {
-    "post-update-cmd": ["echo Warning: Deleting all .git dirs under vendor ", "rm -rf vendor/**/**/.git"],
-    "post-install-cmd": ["echo Warning: Deleting all .git dirs under vendor", "rm -rf vendor/**/**/.git"]
+    "post-update-cmd": [
+      "echo Warning: Deleting all .git dirs under vendor ",
+      "rm -rf vendor/**/**/.git"
+    ],
+    "post-install-cmd": [
+      "echo Warning: Deleting all .git dirs under vendor",
+      "rm -rf vendor/**/**/.git"
+    ]
   }
 }

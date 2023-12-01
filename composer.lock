@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ac99b621e939ce67a038aa17bc5ac84",
+    "content-hash": "92cb0b9874b41f56042c42860ec9b40a",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v2.0.1",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "a241e78aaeb09781f5f5b92ac01ffd13ab43e5e8"
+                "reference": "c29dc4b93137acb82734f672c37e029dfbd95b35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/a241e78aaeb09781f5f5b92ac01ffd13ab43e5e8",
-                "reference": "a241e78aaeb09781f5f5b92ac01ffd13ab43e5e8",
+                "url": "https://api.github.com/repos/composer/installers/zipball/c29dc4b93137acb82734f672c37e029dfbd95b35",
+                "reference": "c29dc4b93137acb82734f672c37e029dfbd95b35",
                 "shasum": ""
             },
             "require": {
@@ -37,7 +37,8 @@
                 "class": "Composer\\Installers\\Plugin",
                 "branch-alias": {
                     "dev-main": "2.x-dev"
-                }
+                },
+                "plugin-modifies-install-path": true
             },
             "autoload": {
                 "psr-4": {
@@ -104,6 +105,7 @@
                 "magento",
                 "majima",
                 "mako",
+                "matomo",
                 "mediawiki",
                 "miaoxing",
                 "modulework",
@@ -131,7 +133,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v2.0.1"
+                "source": "https://github.com/composer/installers/tree/v2.2.0"
             },
             "funding": [
                 {
@@ -147,69 +149,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-13T08:21:20+00:00"
-        },
-        {
-            "name": "facebook/graph-sdk",
-            "version": "5.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facebook/php-graph-sdk.git",
-                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/2d8250638b33d73e7a87add65f47fabf91f8ad9b",
-                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.4|^7.0"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "~5.0",
-                "mockery/mockery": "~0.8",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
-                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Facebook\\": "src/Facebook/"
-                },
-                "files": [
-                    "src/Facebook/polyfills.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Facebook Platform"
-            ],
-            "authors": [
-                {
-                    "name": "Facebook",
-                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
-                }
-            ],
-            "description": "Facebook SDK for PHP",
-            "homepage": "https://github.com/facebook/php-graph-sdk",
-            "keywords": [
-                "facebook",
-                "sdk"
-            ],
-            "support": {
-                "issues": "https://github.com/facebook/php-graph-sdk/issues",
-                "source": "https://github.com/facebook/php-graph-sdk/tree/5.7.0"
-            },
-            "time": "2018-12-11T22:56:31+00:00"
+            "time": "2022-08-20T06:45:11+00:00"
         },
         {
             "name": "fancyguy/webroot-installer",
@@ -259,31 +199,31 @@
         },
         {
             "name": "latte/latte",
-            "version": "v2.10.5",
+            "version": "v2.11.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "0138a26efe7a2a448769f6ba490bfaae8fe7ab50"
+                "reference": "0ac0843a459790d471821f6a82f5d13db831a0d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/0138a26efe7a2a448769f6ba490bfaae8fe7ab50",
-                "reference": "0138a26efe7a2a448769f6ba490bfaae8fe7ab50",
+                "url": "https://api.github.com/repos/nette/latte/zipball/0ac0843a459790d471821f6a82f5d13db831a0d3",
+                "reference": "0ac0843a459790d471821f6a82f5d13db831a0d3",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-tokenizer": "*",
-                "php": ">=7.1 <8.2"
+                "php": "7.1 - 8.3"
             },
             "conflict": {
                 "nette/application": "<2.4.1"
             },
             "require-dev": {
                 "nette/php-generator": "^3.3.4",
-                "nette/tester": "~2.0",
+                "nette/tester": "^2.0",
                 "nette/utils": "^3.0",
-                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan": "^1",
                 "tracy/tracy": "^2.3"
             },
             "suggest": {
@@ -299,7 +239,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.10-dev"
+                    "dev-master": "2.11-dev"
                 }
             },
             "autoload": {
@@ -337,9 +277,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/latte/issues",
-                "source": "https://github.com/nette/latte/tree/v2.10.5"
+                "source": "https://github.com/nette/latte/tree/v2.11.7"
             },
-            "time": "2021-10-26T17:36:38+00:00"
+            "time": "2023-10-18T17:16:11+00:00"
         },
         {
             "name": "mangoweb/mangopress-sql-panel",
@@ -431,133 +371,34 @@
             "time": "2020-02-06T11:54:52+00:00"
         },
         {
-            "name": "monolog/monolog",
-            "version": "2.3.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "fd4380d6fc37626e2f799f29d91195040137eba9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd4380d6fc37626e2f799f29d91195040137eba9",
-                "reference": "fd4380d6fc37626e2f799f29d91195040137eba9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2",
-                "psr/log": "^1.0.1 || ^2.0 || ^3.0"
-            },
-            "provide": {
-                "psr/log-implementation": "1.0.0 || 2.0.0 || 3.0.0"
-            },
-            "require-dev": {
-                "aws/aws-sdk-php": "^2.4.9 || ^3.0",
-                "doctrine/couchdb": "~1.0@dev",
-                "elasticsearch/elasticsearch": "^7",
-                "graylog2/gelf-php": "^1.4.2",
-                "mongodb/mongodb": "^1.8",
-                "php-amqplib/php-amqplib": "~2.4 || ^3",
-                "php-console/php-console": "^3.1.3",
-                "phpspec/prophecy": "^1.6.1",
-                "phpstan/phpstan": "^0.12.91",
-                "phpunit/phpunit": "^8.5",
-                "predis/predis": "^1.1",
-                "rollbar/rollbar": "^1.3",
-                "ruflin/elastica": ">=0.90@dev",
-                "swiftmailer/swiftmailer": "^5.3|^6.0"
-            },
-            "suggest": {
-                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
-                "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
-                "elasticsearch/elasticsearch": "Allow sending log messages to an Elasticsearch server via official client",
-                "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-                "ext-curl": "Required to send log messages using the IFTTTHandler, the LogglyHandler, the SendGridHandler, the SlackWebhookHandler or the TelegramBotHandler",
-                "ext-mbstring": "Allow to work properly with unicode symbols",
-                "ext-mongodb": "Allow sending log messages to a MongoDB server (via driver)",
-                "ext-openssl": "Required to send log messages using SSL",
-                "ext-sockets": "Allow sending log messages to a Syslog server (via UDP driver)",
-                "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "mongodb/mongodb": "Allow sending log messages to a MongoDB server (via library)",
-                "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
-                "php-console/php-console": "Allow sending log messages to Google Chrome",
-                "rollbar/rollbar": "Allow sending log messages to Rollbar",
-                "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Monolog\\": "src/Monolog"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jordi Boggiano",
-                    "email": "j.boggiano@seld.be",
-                    "homepage": "https://seld.be"
-                }
-            ],
-            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
-            "homepage": "https://github.com/Seldaek/monolog",
-            "keywords": [
-                "log",
-                "logging",
-                "psr-3"
-            ],
-            "support": {
-                "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/2.3.5"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/Seldaek",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/monolog/monolog",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2021-10-01T21:08:31+00:00"
-        },
-        {
             "name": "nette/application",
-            "version": "v2.4.17",
+            "version": "v2.4.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/application.git",
-                "reference": "c2d4def8fce2602d74f03ff29204da0ee708c9dc"
+                "reference": "e32c04de211873c792d13d9a00c50083b8e05a23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/application/zipball/c2d4def8fce2602d74f03ff29204da0ee708c9dc",
-                "reference": "c2d4def8fce2602d74f03ff29204da0ee708c9dc",
+                "url": "https://api.github.com/repos/nette/application/zipball/e32c04de211873c792d13d9a00c50083b8e05a23",
+                "reference": "e32c04de211873c792d13d9a00c50083b8e05a23",
                 "shasum": ""
             },
             "require": {
                 "nette/component-model": "^2.3",
                 "nette/http": "^2.2",
                 "nette/reflection": "^2.2",
-                "nette/utils": "^2.4.3",
-                "php": ">=5.6 <8.1"
+                "nette/utils": "^2.4",
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "nette/di": "<2.4",
                 "nette/forms": "<2.4",
-                "nette/latte": "<2.4 >=3.0",
+                "nette/latte": "<2.4",
                 "nette/nette": "<2.2"
             },
             "require-dev": {
-                "latte/latte": "^2.4.3 <2.8",
+                "latte/latte": "^2.4.3",
                 "mockery/mockery": "^1.0",
                 "nette/di": "^2.4",
                 "nette/forms": "^2.4",
@@ -613,9 +454,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/application/issues",
-                "source": "https://github.com/nette/application/tree/v2.4.17"
+                "source": "https://github.com/nette/application/tree/v2.4"
             },
-            "time": "2020-11-24T19:05:35+00:00"
+            "time": "2020-08-25T01:51:49+00:00"
         },
         {
             "name": "nette/bootstrap",
@@ -837,23 +678,23 @@
         },
         {
             "name": "nette/database",
-            "version": "v2.4.11",
+            "version": "v2.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/database.git",
-                "reference": "3da05623ddba950dbff5b71c73dec63ba88788c5"
+                "reference": "0ead09615f06d1ca77ae28d1eba0fe153d590ee0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/database/zipball/3da05623ddba950dbff5b71c73dec63ba88788c5",
-                "reference": "3da05623ddba950dbff5b71c73dec63ba88788c5",
+                "url": "https://api.github.com/repos/nette/database/zipball/0ead09615f06d1ca77ae28d1eba0fe153d590ee0",
+                "reference": "0ead09615f06d1ca77ae28d1eba0fe153d590ee0",
                 "shasum": ""
             },
             "require": {
                 "ext-pdo": "*",
                 "nette/caching": "^2.2",
                 "nette/utils": "^2.4",
-                "php": ">=5.6 <8.1"
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "nette/nette": "<2.2"
@@ -907,22 +748,22 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/database/issues",
-                "source": "https://github.com/nette/database/tree/v2.4.11"
+                "source": "https://github.com/nette/database/tree/v2.4"
             },
-            "time": "2020-11-06T00:55:49+00:00"
+            "time": "2020-03-19T14:46:46+00:00"
         },
         {
             "name": "nette/di",
-            "version": "v2.4.17",
+            "version": "v2.4.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/di.git",
-                "reference": "aa25fa3dfcb0fc40af8da1f2495af75b63b5db1d"
+                "reference": "2d5c53d74ae4e65dc943a212d849e30bef011a4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/di/zipball/aa25fa3dfcb0fc40af8da1f2495af75b63b5db1d",
-                "reference": "aa25fa3dfcb0fc40af8da1f2495af75b63b5db1d",
+                "url": "https://api.github.com/repos/nette/di/zipball/2d5c53d74ae4e65dc943a212d849e30bef011a4e",
+                "reference": "2d5c53d74ae4e65dc943a212d849e30bef011a4e",
                 "shasum": ""
             },
             "require": {
@@ -930,7 +771,7 @@
                 "nette/neon": "^2.3.3 || ~3.0.0",
                 "nette/php-generator": "^2.6.1 || ^3.0.0",
                 "nette/utils": "^2.5.0 || ~3.0.0",
-                "php": ">=5.6 <8.1"
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "nette/bootstrap": "<2.4",
@@ -980,22 +821,22 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/di/issues",
-                "source": "https://github.com/nette/di/tree/v2.4.17"
+                "source": "https://github.com/nette/di/tree/v2.4.16"
             },
-            "time": "2020-11-06T00:28:18+00:00"
+            "time": "2019-11-19T18:25:17+00:00"
         },
         {
             "name": "nette/finder",
-            "version": "v2.5.2",
+            "version": "v2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/finder.git",
-                "reference": "4ad2c298eb8c687dd0e74ae84206a4186eeaed50"
+                "reference": "991aefb42860abeab8e003970c3809a9d83cb932"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/finder/zipball/4ad2c298eb8c687dd0e74ae84206a4186eeaed50",
-                "reference": "4ad2c298eb8c687dd0e74ae84206a4186eeaed50",
+                "url": "https://api.github.com/repos/nette/finder/zipball/991aefb42860abeab8e003970c3809a9d83cb932",
+                "reference": "991aefb42860abeab8e003970c3809a9d83cb932",
                 "shasum": ""
             },
             "require": {
@@ -1013,7 +854,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -1024,8 +865,8 @@
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
+                "GPL-2.0-only",
+                "GPL-3.0-only"
             ],
             "authors": [
                 {
@@ -1047,29 +888,29 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/finder/issues",
-                "source": "https://github.com/nette/finder/tree/v2.5.2"
+                "source": "https://github.com/nette/finder/tree/v2.6.0"
             },
-            "time": "2020-01-03T20:35:40+00:00"
+            "time": "2022-10-13T01:31:15+00:00"
         },
         {
             "name": "nette/forms",
-            "version": "v2.4.11",
+            "version": "v2.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/forms.git",
-                "reference": "f29624795d77b155d5de82f186d0f63c8ebe03fe"
+                "reference": "c38d0bc1d627c983075bf64560f8528c8e265d87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/forms/zipball/f29624795d77b155d5de82f186d0f63c8ebe03fe",
-                "reference": "f29624795d77b155d5de82f186d0f63c8ebe03fe",
+                "url": "https://api.github.com/repos/nette/forms/zipball/c38d0bc1d627c983075bf64560f8528c8e265d87",
+                "reference": "c38d0bc1d627c983075bf64560f8528c8e265d87",
                 "shasum": ""
             },
             "require": {
                 "nette/component-model": "~2.3",
                 "nette/http": "^2.3.8",
                 "nette/utils": "^2.4.6",
-                "php": ">=5.6 <8.1"
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "nette/nette": "<2.2"
@@ -1119,27 +960,27 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/forms/issues",
-                "source": "https://github.com/nette/forms/tree/v2.4.11"
+                "source": "https://github.com/nette/forms/tree/v2.4.10"
             },
-            "time": "2020-11-06T00:25:25+00:00"
+            "time": "2019-11-19T15:39:27+00:00"
         },
         {
             "name": "nette/http",
-            "version": "v2.4.12",
+            "version": "v2.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/http.git",
-                "reference": "a5adfb1746f1d21d75e8b77f84a3d7f84977dcb6"
+                "reference": "3d75d11a880fe223bfa6bc7ca9822bdfe789e5a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/http/zipball/a5adfb1746f1d21d75e8b77f84a3d7f84977dcb6",
-                "reference": "a5adfb1746f1d21d75e8b77f84a3d7f84977dcb6",
+                "url": "https://api.github.com/repos/nette/http/zipball/3d75d11a880fe223bfa6bc7ca9822bdfe789e5a6",
+                "reference": "3d75d11a880fe223bfa6bc7ca9822bdfe789e5a6",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^2.4 || ~3.0.0",
-                "php": ">=5.6 <8.1"
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "nette/nette": "<2.2"
@@ -1180,7 +1021,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "🌐 Nette Http: abstraction for HTTP request, response and session. Provides careful data sanitization and utility for URL and cookies manipulation.",
+            "description": "? Nette Http: abstraction for HTTP request, response and session. Provides careful data sanitization and utility for URL and cookies manipulation.",
             "homepage": "https://nette.org",
             "keywords": [
                 "cookies",
@@ -1195,9 +1036,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/http/issues",
-                "source": "https://github.com/nette/http/tree/v2.4.12"
+                "source": "https://github.com/nette/http/tree/v2.4"
             },
-            "time": "2020-11-06T00:17:53+00:00"
+            "time": "2019-03-13T19:04:45+00:00"
         },
         {
             "name": "nette/mail",
@@ -1548,23 +1389,23 @@
         },
         {
             "name": "nette/robot-loader",
-            "version": "v3.1.3",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/robot-loader.git",
-                "reference": "d9a653a1f0f347fe4c12e98b39b2adeb59ba0d96"
+                "reference": "3e8d75d6d976e191bdf46752ca40a286671219d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/robot-loader/zipball/d9a653a1f0f347fe4c12e98b39b2adeb59ba0d96",
-                "reference": "d9a653a1f0f347fe4c12e98b39b2adeb59ba0d96",
+                "url": "https://api.github.com/repos/nette/robot-loader/zipball/3e8d75d6d976e191bdf46752ca40a286671219d2",
+                "reference": "3e8d75d6d976e191bdf46752ca40a286671219d2",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
                 "nette/finder": "^2.3 || ^3.0",
                 "nette/utils": "^2.4 || ^3.0",
-                "php": ">=5.6 <8.1"
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "nette/nette": "<2.2"
@@ -1600,7 +1441,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "🍀 Nette RobotLoader: high performance and comfortable autoloader that will search and autoload classes within your application.",
+            "description": "? Nette RobotLoader: high performance and comfortable autoloader that will search and autoload classes within your application.",
             "homepage": "https://nette.org",
             "keywords": [
                 "autoload",
@@ -1611,22 +1452,22 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/robot-loader/issues",
-                "source": "https://github.com/nette/robot-loader/tree/v3.1.3"
+                "source": "https://github.com/nette/robot-loader/tree/v3.1"
             },
-            "time": "2021-03-06T15:39:14+00:00"
+            "time": "2019-03-01T20:23:02+00:00"
         },
         {
             "name": "nette/safe-stream",
-            "version": "v2.4.2",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/safe-stream.git",
-                "reference": "921bd889860cf697a022642e628d086c9048ca67"
+                "reference": "96c57055927d0f2b4d0fe545896a7a0335adbeb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/safe-stream/zipball/921bd889860cf697a022642e628d086c9048ca67",
-                "reference": "921bd889860cf697a022642e628d086c9048ca67",
+                "url": "https://api.github.com/repos/nette/safe-stream/zipball/96c57055927d0f2b4d0fe545896a7a0335adbeb5",
+                "reference": "96c57055927d0f2b4d0fe545896a7a0335adbeb5",
                 "shasum": ""
             },
             "require": {
@@ -1640,7 +1481,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -1664,19 +1505,21 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "Nette SafeStream: atomic and safe manipulation with files via native PHP functions.",
+            "description": "Nette SafeStream: provides isolation for thread safe manipulation with files via native PHP functions.",
             "homepage": "https://nette.org",
             "keywords": [
                 "atomic",
                 "filesystem",
+                "isolation",
                 "nette",
-                "safe"
+                "safe",
+                "thread safe"
             ],
             "support": {
                 "issues": "https://github.com/nette/safe-stream/issues",
-                "source": "https://github.com/nette/safe-stream/tree/v2.4.2"
+                "source": "https://github.com/nette/safe-stream/tree/v2.5.1"
             },
-            "time": "2021-06-02T14:42:24+00:00"
+            "time": "2022-12-12T17:17:33+00:00"
         },
         {
             "name": "nette/security",
@@ -1803,6 +1646,7 @@
                 "issues": "https://github.com/nette/tokenizer/issues",
                 "source": "https://github.com/nette/tokenizer/tree/v2.3.0"
             },
+            "abandoned": true,
             "time": "2017-09-08T14:16:06+00:00"
         },
         {
@@ -1844,11 +1688,11 @@
                 }
             },
             "autoload": {
-                "classmap": [
-                    "src/"
-                ],
                 "files": [
                     "src/loader.php"
+                ],
+                "classmap": [
+                    "src/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1890,56 +1734,6 @@
                 "source": "https://github.com/nette/utils/tree/v2.5.7"
             },
             "time": "2020-12-13T14:12:17+00:00"
-        },
-        {
-            "name": "psr/log",
-            "version": "1.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
-                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for logging libraries",
-            "homepage": "https://github.com/php-fig/log",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "support": {
-                "source": "https://github.com/php-fig/log/tree/1.1.4"
-            },
-            "time": "2021-05-03T11:20:27+00:00"
         },
         {
             "name": "roots/wp-password-bcrypt",
@@ -2021,76 +1815,17 @@
             "time": "2021-10-31T01:18:58+00:00"
         },
         {
-            "name": "sentry/sentry",
-            "version": "0.16.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "4f0c25064f9c50f67a810d1891bfd161bd906250"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/4f0c25064f9c50f67a810d1891bfd161bd906250",
-                "reference": "4f0c25064f9c50f67a810d1891bfd161bd906250",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "monolog/monolog": "*",
-                "php": ">=5.2.4"
-            },
-            "require-dev": {
-                "fabpot/php-cs-fixer": "^1.8.0",
-                "phpunit/phpunit": "^4.6.6"
-            },
-            "bin": [
-                "bin/sentry"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.16.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Raven_": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "David Cramer",
-                    "email": "dcramer@gmail.com"
-                }
-            ],
-            "description": "A PHP client for Sentry (http://getsentry.com)",
-            "homepage": "http://getsentry.com",
-            "keywords": [
-                "log",
-                "logging"
-            ],
-            "support": {
-                "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/0.16.0"
-            },
-            "time": "2016-05-03T20:11:27+00:00"
-        },
-        {
             "name": "tracy/tracy",
             "version": "v2.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "d3bb9f43692df5e3b83ab8004d3e6208034ac0ca"
+                "reference": "08710e2708a67e360b82e243c09489b2af2e3f54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/d3bb9f43692df5e3b83ab8004d3e6208034ac0ca",
-                "reference": "d3bb9f43692df5e3b83ab8004d3e6208034ac0ca",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/08710e2708a67e360b82e243c09489b2af2e3f54",
+                "reference": "08710e2708a67e360b82e243c09489b2af2e3f54",
                 "shasum": ""
             },
             "require": {
@@ -2114,11 +1849,11 @@
                 }
             },
             "autoload": {
-                "classmap": [
-                    "src"
-                ],
                 "files": [
                     "src/Tracy/shortcuts.php"
+                ],
+                "classmap": [
+                    "src"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2148,7 +1883,7 @@
                 "issues": "https://github.com/nette/tracy/issues",
                 "source": "https://github.com/nette/tracy/tree/v2.6.8"
             },
-            "time": "2020-05-17T09:37:45+00:00"
+            "time": "2022-02-15T16:14:57+00:00"
         },
         {
             "name": "uestla/recaptcha-control",
@@ -2216,54 +1951,54 @@
         },
         {
             "name": "wpackagist-plugin/all-in-one-wp-security-and-firewall",
-            "version": "4.4.9",
+            "version": "4.4.12",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/all-in-one-wp-security-and-firewall/",
-                "reference": "trunk"
+                "reference": "tags/4.4.12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.zip?timestamp=1626741605"
+                "url": "https://downloads.wordpress.org/plugin/all-in-one-wp-security-and-firewall.4.4.12.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/all-in-one-wp-security-and-firewall/"
         },
         {
             "name": "wpackagist-plugin/bugsnag",
-            "version": "1.6.1",
+            "version": "1.6.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/bugsnag/",
-                "reference": "tags/1.6.1"
+                "reference": "tags/1.6.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/bugsnag.1.6.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/bugsnag.1.6.3.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/bugsnag/"
         },
         {
             "name": "wpackagist-plugin/classic-editor",
-            "version": "1.6.2",
+            "version": "1.6.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/classic-editor/",
-                "reference": "tags/1.6.2"
+                "reference": "tags/1.6.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/classic-editor.1.6.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/classic-editor.1.6.3.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/classic-editor/"
@@ -2281,7 +2016,7 @@
                 "url": "https://downloads.wordpress.org/plugin/classic-widgets.0.2.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/classic-widgets/"
@@ -2299,25 +2034,25 @@
                 "url": "https://downloads.wordpress.org/plugin/html-editor-syntax-highlighter.2.4.4.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/html-editor-syntax-highlighter/"
         },
         {
             "name": "wpackagist-plugin/regenerate-thumbnails",
-            "version": "3.1.5",
+            "version": "3.1.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/regenerate-thumbnails/",
-                "reference": "tags/3.1.5"
+                "reference": "tags/3.1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/regenerate-thumbnails.3.1.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/regenerate-thumbnails.3.1.6.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/regenerate-thumbnails/"
@@ -2335,7 +2070,7 @@
                 "url": "https://downloads.wordpress.org/plugin/webp-express.0.13.2.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/webp-express/"
@@ -2353,25 +2088,25 @@
                 "url": "https://downloads.wordpress.org/plugin/wp-smushit.2.9.1.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-smushit/"
         },
         {
             "name": "wpackagist-plugin/zalomeni",
-            "version": "1.4.7",
+            "version": "1.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/zalomeni/",
-                "reference": "tags/1.4.7"
+                "reference": "tags/1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/zalomeni.1.4.7.zip"
+                "url": "https://downloads.wordpress.org/plugin/zalomeni.1.5.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/zalomeni/"
@@ -2455,5 +2190,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.6.0"
 }
