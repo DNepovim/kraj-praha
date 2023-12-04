@@ -5,7 +5,7 @@
 {default $attrs = []}
 
 
-<{$tag} class="button button--{$style} {$class}" {$attrs|attrs}>
+<{$tag} class="button button--{$style} {$attrs[fullWidth] ? 'view-full'} {$class}" {$attrs|attrs}>
 	{include ../components/shape.latte name => rect, class => "button__background"}
 	<span class="link button__link"">{$label|noescape}</a>
 </{$tag}>

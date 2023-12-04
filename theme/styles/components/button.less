@@ -1,5 +1,5 @@
 .button {
-	display: block;
+	display: inline-block;
 	position: relative;
 	margin: 0.1em 0.2em;
 	cursor: pointer;
@@ -7,6 +7,10 @@
 	font-size: @base-font-size;
 	font-family: @font-themix;
 	font-weight: bold;
+
+	&.view-full {
+		display: block;
+	}
 
 	&__background {
 		position: absolute;
