@@ -12,3 +12,6 @@ register:
 			hide_title:
 				name: Skrýt nadpis
 				type: checkbox
+			full_width_content:
+				name: Plná šířka obsahu
+				type: checkbox

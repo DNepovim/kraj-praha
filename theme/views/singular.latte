@@ -14,7 +14,7 @@
 			<h1 class="title title--hight content__title" n:if="empty($hideTitle) || !$hideTitle">{$Post|wp_title}</h1>
 			<p class="date content__date" n:if="!is_page($Post->ID)">{$Post|wp_pubdate}&nbsp;•&nbsp;<a href="{$author_archive_url}" n:tag-if="$author_archive_url">{$author}</a></p>
 		</header>
-		<div class="content__content wysiwyg">
+		<div n:class="content__content, wysiwyg, !empty($fullWidthContent) && $fullWidthContent ? 'view-full'">
 			<div class="text content__text">{$Post|wp_content}</div>
 		</div>
 	</article>

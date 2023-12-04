@@ -3,7 +3,9 @@
 $args = [];
 $taxonomy = get_post_meta(get_the_ID(), 'praha_taxonomy', true);
 $hideTitle = get_post_meta(get_the_ID(), 'praha_hide_title', true);
+$fullWidthContent = get_post_meta(get_the_ID(), 'praha_full_width_content', true);
 $args['hideTitle'] = $hideTitle;
+$args['fullWidthContent'] = $fullWidthContent;
 
 if ($taxonomy) {
 
