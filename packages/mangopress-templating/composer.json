@@ -1,0 +1,25 @@
+{
+    "name": "mangoweb/mangopress-templating",
+    "description": "Prepared templating workflow with filters and macros.",
+    "homepage": "https://github.com/mangoweb/MangoPressTemplating",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ViliamKopecky",
+            "email": "vk@viliamkopecky.cz"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "latte/latte": "^2.11",
+        "nette/utils": ">=3.0",
+        "nette/http": ">=3.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src"
+        ]
+    },
+    "minimum-stability": "stable",
+    "version": "dev-master"
+}

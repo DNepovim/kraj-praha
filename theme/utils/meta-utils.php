@@ -2,7 +2,7 @@
 
 function get_field($id, $key, $as = null, $single = true) {
 	$id = ($id instanceof WP_Post) ? $id->ID : $id;
-	$as = strtolower($as);
+	$as = strtolower((string) $as);
 	$val = get_post_meta($id, $key, $single);
 	if(!$val) {
 		return $val;
@@ -13,7 +13,7 @@ function get_field($id, $key, $as = null, $single = true) {
 		case 'time':
 			return new \DateTime($val);
 		case 'number':
-			return (double) $val;
+			return (float) $val;
 		case 'string':
 			return (string) $val;
 		case 'post':

@@ -38,8 +38,9 @@ parameters:
 		key:
 		secret:
 
-mail:
-	host:
-	secure:
-	username:
-	password:
+# mail:
+# 	smtp: true
+# 	host: smtp.example.com
+# 	secure: ssl
+# 	username: user
+# 	password: secret

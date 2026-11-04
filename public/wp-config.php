@@ -70,5 +70,6 @@ if (isset($s3['basePath'])) {
 }
 
 define('WP_DEBUG', !Tracy\Debugger::$productionMode);
+define('WP_DEBUG_DISPLAY', false); // warnings go to the Tracy bar, printing them would send headers early (breaks Nette Forms CSRF)
 
 require_once WP_DIR . '/wp-settings.php';

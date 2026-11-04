@@ -18,7 +18,8 @@ services:
       - composer
       - mysqldb
   php:
-    image: nanoninja/php-fpm:latest
+    build:
+      context: ./docker/php
     restart: always
     environment:
       - DEBUG_MODE=true
@@ -45,7 +46,7 @@ services:
     ports:
       - 8080:8080
   composer:
-    image: composer:2.0.8
+    image: composer:2.8
     command: install
     working_dir: /var/www/html
     volumes:

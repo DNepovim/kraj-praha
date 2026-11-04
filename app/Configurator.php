@@ -32,7 +32,7 @@ class Configurator extends Nette\Configurator
 	/**
 	 * @param NULL|array $params
 	 */
-	public function __construct(array $params = NULL)
+	public function __construct(?array $params = NULL)
 	{
 		parent::__construct();
 
@@ -93,7 +93,7 @@ class Configurator extends Nette\Configurator
 	/**
 	 * @return RobotLoader
 	 */
-	public function createRobotLoader()
+	public function createRobotLoader(): RobotLoader
 	{
 		$params = $this->getParameters();
 		$loader = parent::createRobotLoader();
@@ -112,7 +112,7 @@ class Configurator extends Nette\Configurator
 	 */
 	public function getParameters()
 	{
-		return $this->parameters;
+		return $this->staticParameters;
 	}
 
 	/**
@@ -121,14 +121,20 @@ class Configurator extends Nette\Configurator
 	 * @throws \Nette\FileNotFoundException
 	 * @return Container
 	 */
-	public function createContainer()
+	public function createContainer(bool $initialize = true): Container
 	{
-		$this->onInit($this);
+		foreach ($this->onInit as $callback)
+		{
+			$callback($this);
+		}
 		$this->onInit = [];
 
 		try {
-			$container = parent::createContainer();
-			$this->onAfter($container);
+			$container = parent::createContainer($initialize);
+			foreach ($this->onAfter as $callback)
+			{
+				$callback($container);
+			}
 
 			return $container;
 		}
@@ -147,12 +153,12 @@ class Configurator extends Nette\Configurator
 
 	protected function isConsoleMode()
 	{
-		return $this->parameters['consoleMode'];
+		return $this->staticParameters['consoleMode'];
 	}
 
 	protected function isTestMode()
 	{
-		return $this->parameters['testMode'];
+		return $this->staticParameters['testMode'];
 	}
 
 }
@@ -166,7 +172,7 @@ class MissingLocalConfigException extends RuntimeException
 	 */
 	public function __construct(FileNotFoundException $e)
 	{
-		parent::__construct('Copy "app/config/config.local.sample.neon" to "app/config/config.local.neon" and update credentials.', NULL, $e);
+		parent::__construct('Copy "config/config.local.sample.neon" to "config/config.local.neon" and update credentials.', 0, $e);
 	}
 
 }

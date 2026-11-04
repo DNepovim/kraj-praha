@@ -10,8 +10,8 @@ if(substr($cwd, 0, strlen($wpdir)) === $wpdir) {
 	$scriptPath = '/';
 	$basePathTest = str_replace('\\', '/', str_replace(realpath($_SERVER['DOCUMENT_ROOT']), '', realpath(WWW_DIR))) . '/';
 	if(strpos(strtolower($Url->getPath()), strtolower($basePathTest)) === FALSE) {
-		$Url->setScriptPath($scriptPath);
+		$Url = new Nette\Http\UrlScript($Url, $scriptPath);
 	} else {
-		$Url->setScriptPath($basePathTest);
+		$Url = new Nette\Http\UrlScript($Url, $basePathTest);
 	}
 }
