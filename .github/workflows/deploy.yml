@@ -1,0 +1,117 @@
+name: Deploy
+
+on:
+  # Manual only until a dry run and a supervised deploy worked.
+  # To deploy on every push to master, add:  push: { branches: [master] }
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Only list what would be uploaded
+        type: boolean
+        default: true
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # configure required reviewers on this environment for a manual approval step
+    environment: production
+    env:
+      # manual runs default to a dry run; untick it to deploy for real
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+      FTP_DIR: ${{ vars.FTP_SERVER_DIR }} # e.g. /www/ (ends with slash)
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          tools: composer:v2
+          extensions: mbstring, intl, gd, mysqli, xml, zip
+
+      - name: Install PHP dependencies (WordPress core, plugins, vendor)
+        run: composer install --no-dev --no-interaction --optimize-autoloader --no-scripts
+
+      - name: Build assets
+        run: |
+          docker run --rm -v "$PWD":/var/www/html -w /var/www/html --entrypoint sh \
+            mangoweb/mango-cli -c "npm install && mango build"
+          test -d public/assets
+
+      - name: Remove build leftovers
+        run: |
+          rm -rf temp/cache/* node_modules
+          # webroot must not ship dev files
+          rm -f public/info.php
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Maintenance mode on
+        if: env.DRY_RUN != 'true'
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          printf '<?php http_response_code(503); header("Retry-After: 300"); echo "Probíhá aktualizace webu, zkuste to za chvíli.";\n' > maintenance.php
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set ssl:verify-certificate yes; put -O ${FTP_DIR}public/ maintenance.php; bye"
+          rm maintenance.php
+
+      # Uploads only files that changed since the last deploy (state file is stored on the server).
+      - name: Upload changed files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          server-dir: ${{ vars.FTP_SERVER_DIR }}
+          dry-run: ${{ env.DRY_RUN == 'true' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            node_modules/**
+            docker/**
+            docker-compose.yml
+            Dockerfile
+            tests/**
+            packages/**
+            deploy.sample.sh
+            README.md
+            composer.json
+            composer.lock
+            package*.json
+            mango.json
+            config/config.local.neon
+            config/config.local.sample.neon
+            public/wp-content/uploads/**
+            public/wp-content/cache/**
+            public/wp-content/webp-express/**
+            public/wp-content/aiowps_backups/**
+            public/wp-content/plugins/**
+            public/maintenance.php
+            log/**
+            temp/cache/**
+
+      - name: Clear cache and maintenance mode off
+        if: env.DRY_RUN != 'true'
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          # Nette container cache is not invalidated automatically in production.
+          # log/ and temp/ are excluded from the sync, so (re)upload their .htaccess that blocks web access.
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set ssl:verify-certificate yes; \
+            put -O ${FTP_DIR}log/ log/.htaccess; put -O ${FTP_DIR}temp/ temp/.htaccess; \
+            rm -rf ${FTP_DIR}temp/cache; mkdir -p ${FTP_DIR}temp/cache; \
+            rm -f ${FTP_DIR}public/maintenance.php; bye"
+
+      - name: Smoke test
+        if: env.DRY_RUN != 'true'
+        run: curl --fail --silent --show-error --output /dev/null https://praha.skauting.cz/
