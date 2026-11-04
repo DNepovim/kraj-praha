@@ -40,6 +40,8 @@ jobs:
         run: |
           docker run --rm -v "$PWD":/var/www/html -w /var/www/html --entrypoint sh \
             mangoweb/mango-cli -c "npm install && mango build"
+          # the container runs as root, give the files back to the runner user
+          sudo chown -R "$(id -u):$(id -g)" node_modules public/assets package-lock.json
           test -d public/assets
 
       - name: Remove build leftovers
