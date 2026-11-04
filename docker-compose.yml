@@ -47,7 +47,7 @@ services:
       - 8080:8080
   composer:
     image: composer:2.8
-    command: install
+    command: install --ignore-platform-req=php
     working_dir: /var/www/html
     volumes:
       - "./:/var/www/html"

@@ -24,7 +24,7 @@ jobs:
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
       FTP_DIR: ${{ vars.FTP_SERVER_DIR }} # e.g. /www/ (ends with slash)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: shivammathur/setup-php@v2
         with:
@@ -33,7 +33,8 @@ jobs:
           extensions: mbstring, intl, gd, mysqli, xml, zip
 
       - name: Install PHP dependencies (WordPress core, plugins, vendor)
-        run: composer install --no-dev --no-interaction --optimize-autoloader --no-scripts
+        # latte 2.11 (max PHP 8.3) and nette/caching 3.3 (max 8.4) don't declare 8.5 support yet, but run fine on it
+        run: composer install --no-dev --no-interaction --optimize-autoloader --no-scripts --ignore-platform-req=php
 
       - name: Build assets
         run: |
