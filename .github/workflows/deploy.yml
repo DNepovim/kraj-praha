@@ -50,81 +50,107 @@ jobs:
           # webroot must not ship dev files
           rm -f public/info.php
 
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Check FTP target
+      - name: Check deploy settings
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
           if [ -z "$FTP_DIR" ]; then
-            echo "::error::Variable FTP_SERVER_DIR is empty (set it as a repository or environment variable, e.g. /www/)"
+            echo "::error::FTP_SERVER_DIR is empty (set it as a variable or secret, e.g. /www/)"
+            exit 1
+          fi
+          if [ "${#DEPLOY_TOKEN}" -lt 32 ]; then
+            echo "::error::Secret DEPLOY_TOKEN is missing or shorter than 32 characters"
             exit 1
           fi
 
-      - name: Maintenance mode on
+      # One archive instead of ~10 000 single uploads: the host drops long FTP sessions.
+      # Paths that live only on the server (uploads, local config, logs, cache, plugins) are not in it.
+      - name: Pack release
+        run: |
+          cat > exclude.lst <<'EOF'
+          .git*
+          */.git*
+          node_modules/*
+          docker/*
+          docker-compose.yml
+          Dockerfile
+          tests/*
+          packages/*
+          deploy.sample.sh
+          README.md
+          composer.json
+          composer.lock
+          package.json
+          package-lock.json
+          mango.json
+          config/config.local.neon
+          config/config.local.sample.neon
+          public/wp-content/uploads/*
+          public/wp-content/cache/*
+          public/wp-content/webp-express/*
+          public/wp-content/aiowps_backups/*
+          public/wp-content/plugins/*
+          public/maintenance.php
+          log/*
+          temp/cache/*
+          exclude.lst
+          release.zip
+          EOF
+          zip -r -q -9 release.zip . -x@exclude.lst
+          # block web access to these, they are otherwise excluded from the archive
+          zip -q release.zip log/.htaccess temp/.htaccess
+          ls -lh release.zip
+          echo "files in archive: $(unzip -Z1 release.zip | wc -l)"
+          for forbidden in config/config.local.neon public/wp-content/uploads; do
+            if unzip -Z1 release.zip | grep -q "^$forbidden"; then
+              echo "::error::$forbidden must not be in the release"
+              exit 1
+            fi
+          done
+
+      - name: Install lftp
         if: env.DRY_RUN != 'true'
-        # best effort: only takes effect once public/index.php of the new release is live
-        continue-on-error: true
-        timeout-minutes: 2
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Upload release
+        if: env.DRY_RUN != 'true'
+        timeout-minutes: 20
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
+          EXTRACTOR="deploy-${GITHUB_RUN_ID}.php"
+          echo "EXTRACTOR=$EXTRACTOR" >> "$GITHUB_ENV"
+          HASH=$(printf %s "$DEPLOY_TOKEN" | sha256sum | cut -d' ' -f1)
+          sed "s/__TOKEN_HASH__/$HASH/" .github/deploy-extract.php > "$EXTRACTOR"
           printf '<?php http_response_code(503); header("Retry-After: 300"); echo "Probíhá aktualizace webu, zkuste to za chvíli.";\n' > maintenance.php
-          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 20; set net:max-retries 2; set ssl:verify-certificate yes; put -O ${FTP_DIR}public/ maintenance.php; bye"
-          rm maintenance.php
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set cmd:fail-exit yes; set net:timeout 30; set net:max-retries 5; set net:reconnect-interval-base 5; set ssl:verify-certificate yes; \
+            put -O ${FTP_DIR}public/ maintenance.php; \
+            put -c -O ${FTP_DIR} release.zip; \
+            put -O ${FTP_DIR}public/ $EXTRACTOR; bye"
 
-      # Uploads only files that changed since the last deploy (state file is stored on the server).
-      - name: Upload changed files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          server-dir: ${{ vars.FTP_SERVER_DIR || secrets.FTP_SERVER_DIR }}
-          dry-run: ${{ env.DRY_RUN == 'true' }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
-            node_modules/**
-            docker/**
-            docker-compose.yml
-            Dockerfile
-            tests/**
-            packages/**
-            deploy.sample.sh
-            README.md
-            composer.json
-            composer.lock
-            package*.json
-            mango.json
-            config/config.local.neon
-            config/config.local.sample.neon
-            public/wp-content/uploads/**
-            public/wp-content/cache/**
-            public/wp-content/webp-express/**
-            public/wp-content/aiowps_backups/**
-            public/wp-content/plugins/**
-            public/maintenance.php
-            log/**
-            temp/cache/**
-
-      - name: Clear cache and maintenance mode off
+      - name: Unpack on the server
         if: env.DRY_RUN != 'true'
-        timeout-minutes: 5
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        run: |
+          curl --fail --silent --show-error --max-time 900 \
+            --data-urlencode "token=$DEPLOY_TOKEN" \
+            "https://praha.skauting.cz/public/$EXTRACTOR" | tee extract.out
+          grep -q '^DEPLOY_OK' extract.out
+
+      - name: Remove leftovers from the server
+        if: always() && env.DRY_RUN != 'true'
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          # Nette container cache is not invalidated automatically in production.
-          # log/ and temp/ are excluded from the sync, so (re)upload their .htaccess that blocks web access.
-          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 20; set net:max-retries 2; set ssl:verify-certificate yes; \
-            put -O ${FTP_DIR}log/ log/.htaccess; put -O ${FTP_DIR}temp/ temp/.htaccess; \
-            rm -rf ${FTP_DIR}temp/cache; mkdir -p ${FTP_DIR}temp/cache; \
-            rm -f ${FTP_DIR}public/maintenance.php; bye"
+          # the extractor deletes these itself on success; this covers failed runs
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 30; set net:max-retries 2; \
+            rm -f ${FTP_DIR}release.zip; rm -f ${FTP_DIR}public/deploy-${GITHUB_RUN_ID}.php; bye" || true
 
       - name: Smoke test
         if: env.DRY_RUN != 'true'
