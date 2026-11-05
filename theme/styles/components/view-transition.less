@@ -1,0 +1,21 @@
+// Animated navigation between pages (cross-document View Transitions).
+// Unsupported browsers (e.g. Firefox) ignore it and navigate as usual.
+@view-transition {
+	navigation: auto;
+}
+
+// header keeps its place, the rest of the page cross-fades
+.main-header {
+	view-transition-name: main-header;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	@view-transition {
+		navigation: none;
+	}
+}
