@@ -2,21 +2,32 @@
 
 $args = [];
 $postID = get_the_ID();
-$taxonomies = wp_get_post_categories($postID);
+$categories = wp_get_post_categories($postID);
 
-if ($taxonomies) {
-	$args['relatedTitle'] = 'Podobné články:';
+$relatedTitle = 'Podobné články:';
+$relatedQuery = null;
 
-	$args['relatedQuery'] = new WP_Query([
-		'category__in' => $taxonomies,
+if ($categories) {
+	$relatedQuery = new WP_Query([
+		'category__in' => $categories,
 		'post__not_in' => [$postID],
 		'posts_per_page' => 3,
 	]);
-
-	$args['relatedButton'] = [
-		'label' => 'Všechny články',
-		'link' => '/',
-	];
 }
+
+if (!$relatedQuery || !$relatedQuery->have_posts()) {
+	$relatedTitle = 'Další články:';
+	$relatedQuery = new WP_Query([
+		'post__not_in' => [$postID],
+		'posts_per_page' => 3,
+	]);
+}
+
+$args['relatedTitle'] = $relatedTitle;
+$args['relatedQuery'] = $relatedQuery;
+$args['relatedButton'] = [
+	'label' => 'Všechny články',
+	'link' => '/',
+];
 
 view('singular', $args);
