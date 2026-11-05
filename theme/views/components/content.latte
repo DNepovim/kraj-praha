@@ -2,6 +2,7 @@
 {default $titleTag = 'h2'}
 {var $author = !empty(($Post|wp_meta:praha_post_author_name)) ? ($Post|wp_meta:praha_post_author_name) : ($Post|wp_author)}
 {var $author_archive_url = empty(($Post|wp_meta:praha_post_author_name)) ? get_author_posts_url($Post->post_author) : false}
+{var $postTypeLabel = is_search() ? ($Post->post_type === 'page' ? 'stránka' : 'příspěvek') : null}
 {var $thumbnailID = get_post_thumbnail_id($Post->ID)}
 
 <article n:class="post, content-box__post, content, $thumbnailID ? 'thumb', get_post_type(), is_sticky($Post->ID) ? 'is-sticky'">
@@ -19,7 +20,7 @@
 		<a href="{$Post|wp_permalink}">{$Post|wp_title}</a>
 	</{$titleTag}>
 
-	<p class="content__date">{$Post|wp_pubdate}&nbsp;•&nbsp;<a href="{$author_archive_url}" n:tag-if="$author_archive_url">{$author}</a>{edit_post_link('upravit', '&nbsp;•&nbsp;', null, $Post->ID)}</p>
+	<p class="content__date"><span class="content__type content__type--{$Post->post_type}" n:if="$postTypeLabel">{$postTypeLabel}</span>{if $postTypeLabel}&nbsp;•&nbsp;{/if}{$Post|wp_pubdate}&nbsp;•&nbsp;<a href="{$author_archive_url}" n:tag-if="$author_archive_url">{$author}</a>{edit_post_link('upravit', '&nbsp;•&nbsp;', null, $Post->ID)}</p>
 
 	<div class="content__excerpt">{$Post|wp_contexcerpt}</div>
 </article>
