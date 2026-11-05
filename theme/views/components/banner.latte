@@ -1,7 +1,8 @@
 {default $link = null}
 {default $blank = false}
+{default $ratio = 0.5}
 
-<a n:tag="empty($link) ? 'div'" class="banner thumbnail" href="{$link}" target="{$blank ? '_blank'}" rel="{$blank ? 'noreferrer noopener'}">
+<a n:tag="empty($link) ? 'div'" class="banner thumbnail" style="--ratio: {$ratio}" href="{$link}" target="{$blank ? '_blank'}" rel="{$blank ? 'noreferrer noopener'}">
 	{$image|noescape}
 	{include shape.latte name => frame, class => "thumbnail__frame"}
 </a>

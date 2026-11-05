@@ -40,11 +40,15 @@ class BannerWidget extends WP_Widget {
 			return;
 		}
 
+		$meta = wp_get_attachment_metadata($id);
+		$ratio = !empty($meta['width']) && !empty($meta['height']) ? round($meta['height'] / $meta['width'], 4) : 0.5;
+
 		echo $args['before_widget'];
 		echo renderLatteToString(__DIR__ . '/../views/components/banner.latte', [
 			'image' => $image,
 			'link' => $instance['link'] ?? '',
 			'blank' => $this->isExternal($instance['link'] ?? ''),
+			'ratio' => $ratio,
 		]);
 		echo $args['after_widget'];
 	}
@@ -95,23 +99,34 @@ class BannerWidget extends WP_Widget {
 		$printed = true;
 		?>
 		<script>
-			jQuery(function ($) {
-				$(document).on('click', '.banner-widget-pick', function (e) {
-					e.preventDefault();
-					var $widget = $(this).closest('.banner-widget');
-					var frame = wp.media({title: 'Vyber obrázek', library: {type: 'image'}, multiple: false});
-					frame.on('select', function () {
-						var attachment = frame.state().get('selection').first().toJSON();
-						var url = attachment.sizes && attachment.sizes.medium ? attachment.sizes.medium.url : attachment.url;
-						$widget.find('.banner-widget-id').val(attachment.id).trigger('input').trigger('change');
-						$widget.find('.banner-widget-preview').attr('src', url).show();
-						var $alt = $widget.find('input[name$="[alt]"]');
-						if (!$alt.val() && attachment.alt) {
-							$alt.val(attachment.alt).trigger('input');
-						}
-					});
-					frame.open();
+			document.addEventListener('click', function (e) {
+				var button = e.target.closest('.banner-widget-pick');
+				if (!button) {
+					return;
+				}
+				e.preventDefault();
+				var widget = button.closest('.banner-widget');
+				var frame = wp.media({title: 'Vyber obrázek', library: {type: 'image'}, multiple: false});
+				var notify = function (input) {
+					input.dispatchEvent(new Event('input', {bubbles: true}));
+					input.dispatchEvent(new Event('change', {bubbles: true}));
+				};
+				frame.on('select', function () {
+					var attachment = frame.state().get('selection').first().toJSON();
+					var url = attachment.sizes && attachment.sizes.medium ? attachment.sizes.medium.url : attachment.url;
+					var id = widget.querySelector('.banner-widget-id');
+					var preview = widget.querySelector('.banner-widget-preview');
+					var alt = widget.querySelector('input[name$="[alt]"]');
+					id.value = attachment.id;
+					notify(id);
+					preview.src = url;
+					preview.style.display = '';
+					if (!alt.value && attachment.alt) {
+						alt.value = attachment.alt;
+						alt.dispatchEvent(new Event('input', {bubbles: true}));
+					}
 				});
+				frame.open();
 			});
 		</script>
 		<?php

@@ -1,5 +1,4 @@
 var Component = require('./component')
-var $ = window.jQuery
 
 var spriteInserted = false
 
@@ -17,21 +16,22 @@ class Shapes extends Component {
 	constructor(element, data) {
 		super(element, data)
 
-		this.supportsSVG = document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")
-		if(this.supportsSVG && !spriteInserted) this.injectSprite()
+		if (!spriteInserted) this.injectSprite()
 	}
 
 	injectSprite() {
 		spriteInserted = true
 
-		$.get(this.data.url, (response, status) => {
-			if(status == 'success') {
-				$(document.body).prepend(response)
-			} else {
+		fetch(this.data.url)
+			.then((response) => {
+				if (!response.ok) throw new Error(response.statusText)
+				return response.text()
+			})
+			.then((sprite) => document.body.insertAdjacentHTML('afterbegin', sprite))
+			.catch(() => {
 				spriteInserted = false
 				this.injectSprite()
-			}
-		}, 'text')
+			})
 	}
 
 }

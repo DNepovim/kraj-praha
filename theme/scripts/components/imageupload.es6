@@ -1,5 +1,4 @@
 var Component = require('./component')
-var $ = window.jQuery
 
 class ImageUpload extends Component {
 
@@ -10,29 +9,28 @@ class ImageUpload extends Component {
 		}
 	}
 
-	handleChange(e, self) {
+	handleChange(e, target) {
+		const label = document.querySelector(target.dataset.label)
+		const image = URL.createObjectURL(target.files[0])
 
-		const target = e.currentTarget
-		const $label = $($(target).data('label'))
-		const image = (window.URL ? URL : webkitURL).createObjectURL(target.files[0])
+		label.style.backgroundImage = 'url(' + image + ')'
 
-		$label.css('background-image', 'url(' + image + ')')
-
-		$('.remover').addClass('is-active')
-		$('#upload_icon').hide()
+		this.setActive(true)
 	}
 
-	handleClick(e, self) {
-		const $input = $($(e.currentTarget).data('for'))
-		const label = $input.data('label')
+	handleClick(e, target) {
+		const input = document.querySelector(target.dataset.for)
+		const label = document.querySelector(input.dataset.label)
 
-		$input.wrap('<form>').closest('form').get(0).reset()
-		$input.unwrap()
+		input.value = ''
+		label.style.backgroundImage = 'none'
 
-		$(label).css('background-image', 'none')
+		this.setActive(false)
+	}
 
-		$('.remover').removeClass('is-active')
-		$('#upload_icon').show()
+	setActive(active) {
+		document.querySelectorAll('.remover').forEach((remover) => remover.classList.toggle('is-active', active))
+		document.getElementById('upload_icon').style.display = active ? 'none' : ''
 	}
 }
 

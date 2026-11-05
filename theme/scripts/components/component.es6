@@ -1,11 +1,10 @@
-var $ = window.jQuery
 var eventSplitter = /^(\S+)\s*(.*)$/
 
 /**
  * Abstract component class
  *
  * - use for creating own components with standartized API
- * - dependes on jQuery.on() for attaching listeners (can be replaced with Zepto, Gator, etc.)
+ * - uses native event delegation for attaching listeners
  *
  * @abstract
  * @class
@@ -23,10 +22,10 @@ class Component {
 	constructor(element, data = {}) {
 		/** @type {HTMLElement} */
 		this.el = element
-		/** @type {jQuery} */
-		this.$el = $(element)
 		/** @type {object|null} */
 		this.data = data
+		/** @type {Array<{type: string, listener: Function}>} */
+		this.attached = []
 
 		this.attachListeners()
 	}
@@ -50,38 +49,29 @@ class Component {
 	 * Assign event handlers from this.listeners property
 	 */
 	attachListeners() {
-		let self = this
-		let listeners = this.listeners
+		const listeners = this.listeners
 
-		for(let event in listeners) {
-			let type = event.trim()
-			let selector = false
-			let callback = this[listeners[event]]
-
-			let split = event.match(eventSplitter)
-			if(split) {
-				type = split[1]
-				selector = split[2]
-			}
+		for (const event in listeners) {
+			const callback = this[listeners[event]]
+			const [, type, selector] = event.trim().match(eventSplitter)
 
 			/**
 			 * Handler called when an event occured
 			 *
 			 * @callback Component~eventHandler
-			 * @param {object} event - an event object
-			 * @param {Component} self - currrent instance
-			 * @param {Object} data - optional data passed with event
-			 * @this {Element} - an element that catched the event
+			 * @param {Event} event - an event object
+			 * @param {Element} target - an element matching the selector (the component element when there is no selector)
+			 * @this {Component} - current instance
 			 */
-			let listener = function(e, data) {
-				callback(e, self, data)
+			const listener = (e) => {
+				if (!selector) return callback.call(this, e, this.el)
+
+				const target = e.target instanceof Element ? e.target.closest(selector) : null
+				if (target && this.el.contains(target)) callback.call(this, e, target)
 			}
 
-			if(selector){
-				this.$el.on(type, selector, listener)
-			} else {
-				this.$el.on(type, listener)
-			}
+			this.el.addEventListener(type, listener)
+			this.attached.push({ type, listener })
 		}
 	}
 
@@ -89,7 +79,8 @@ class Component {
 	 * Remove event listeners
 	 */
 	detachListeners() {
-		this.$el.off()
+		this.attached.forEach(({ type, listener }) => this.el.removeEventListener(type, listener))
+		this.attached = []
 	}
 
 	/**
@@ -98,7 +89,7 @@ class Component {
 	destroy() {
 		this.detachListeners()
 
-		for (let prop in this) {
+		for (const prop in this) {
 			this[prop] = null
 		}
 	}
@@ -106,12 +97,10 @@ class Component {
 	/**
 	 * Returns a child
 	 * @param  {string} CSS selector
-	 * @return {jQuery|null}
+	 * @return {Element|null}
 	 */
 	child(selector) {
-		var result = this.$el.find(selector)
-		if(!result.length) return null
-		else return result.eq(0)
+		return this.el.querySelector(selector)
 	}
 
 }

@@ -1,13 +1,12 @@
 var Component = require('./component')
-var $ = window.jQuery
+var createCookie = require('../utils/cookie')
 
 class ColorSwitcher extends Component {
 
 	constructor(element, data) {
 		super(element, data)
 
-		$('#color-switcher').addClass('is-active')
-
+		document.getElementById('color-switcher').classList.add('is-active')
 	}
 
 	get listeners() {
@@ -16,27 +15,16 @@ class ColorSwitcher extends Component {
 		}
 	}
 
-	handleClick(e, self) {
-		const $target = $(e.currentTarget)
-		self.updateLink($target.data('stylesheet'), 'stylesheet')
-		self.updateLink($target.data('icon'), 'icon')
-		self.createCookie('style', $target.attr('title'), 365)
-		$('.color-switcher-button').removeClass('active')
-		$target.addClass('active')
-	}
-
-	createCookie(name,value,days) {
-	  if (days) {
-		var date = new Date()
-		date.setTime(date.getTime()+(days*24*60*60*1000))
-		var expires = ' expires='+date.toGMTString()
-	  }
-	  else expires = ''
-	  document.cookie = name + '=' + value + '' + expires + '; path=/'
+	handleClick(e, target) {
+		this.updateLink(target.dataset.stylesheet, 'stylesheet')
+		this.updateLink(target.dataset.icon, 'icon')
+		createCookie('style', target.getAttribute('title'), 365)
+		document.querySelectorAll('.color-switcher-button').forEach((button) => button.classList.remove('active'))
+		target.classList.add('active')
 	}
 
 	updateLink(url, rel) {
-		$(`#main-${rel}`).attr('href', url)
+		document.getElementById(`main-${rel}`).setAttribute('href', url)
 	}
 
 }

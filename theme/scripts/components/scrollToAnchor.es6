@@ -1,5 +1,4 @@
 var Component = require('./component')
-var $ = window.jQuery
 
 class ScrollToAnchor extends Component {
 
@@ -9,12 +8,13 @@ class ScrollToAnchor extends Component {
 		}
 	}
 
-	handleClick(e, self) {
-	e.preventDefault();
+	handleClick(e, target) {
+		const id = decodeURIComponent(target.hash.slice(1))
+		const destination = id && document.getElementById(id)
+		if (!destination) return
 
-		$('html, body').animate({
-			scrollTop: $($.attr(e.currentTarget, 'href')).offset().top
-		}, 500);
+		e.preventDefault()
+		destination.scrollIntoView({ behavior: 'smooth' })
 	}
 }
 

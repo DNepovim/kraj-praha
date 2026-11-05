@@ -5,7 +5,7 @@ var Component = require('./component')
  *
  * - all DOM operations must be executed after creating an instance (in constructor)
  * - when defining own constructor, don't forget to call super(element, data)
- * - DOM event listeners are in Backbone style
+ * - DOM event listeners are in Backbone style, handlers are called with the instance as `this`
  *
  */
 class Example extends Component {
@@ -16,9 +16,9 @@ class Example extends Component {
 		}
 	}
 
-	handleClick(e, self) {
+	handleClick(e, target) {
 		e.preventDefault()
-		alert(self.data)
+		alert(this.data)
 	}
 
 }

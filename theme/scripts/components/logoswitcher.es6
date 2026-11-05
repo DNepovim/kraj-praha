@@ -1,5 +1,5 @@
 var Component = require('./component')
-var $ = window.jQuery
+var createCookie = require('../utils/cookie')
 
 class LogoSwitcher extends Component {
 
@@ -9,29 +9,14 @@ class LogoSwitcher extends Component {
 		}
 	}
 
-	handleClick(e, self) {
+	handleClick(e, target) {
 		e.preventDefault()
 
-		const $logotyp = $('#logotyp')
-		const currentShape = $logotyp.find('use').attr('xlink:href')
+		const use = document.querySelector('#logotyp use')
+		const isSkaut = use.getAttribute('xlink:href') === '#shape-logotype-skaut'
 
-		if (currentShape === '#shape-logotype-skaut') {
-			$logotyp.find('use').attr('xlink:href', '#shape-logotype-junak')
-			self.createCookie('logotype', 'logotype-junak', 365)
-		} else {
-			$logotyp.find('use').attr('xlink:href', '#shape-logotype-skaut')
-			self.createCookie('logotype', 'logotype-skaut', 365)
-		}
-	}
-
-	createCookie(name,value,days) {
-	  if (days) {
-		var date = new Date()
-		date.setTime(date.getTime()+(days*24*60*60*1000))
-		var expires = ' expires='+date.toGMTString()
-	  }
-	  else expires = ''
-	  document.cookie = name + '=' + value + '' + expires + '; path=/'
+		use.setAttribute('xlink:href', isSkaut ? '#shape-logotype-junak' : '#shape-logotype-skaut')
+		createCookie('logotype', isSkaut ? 'logotype-junak' : 'logotype-skaut', 365)
 	}
 
 }
