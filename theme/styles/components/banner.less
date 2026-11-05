@@ -4,7 +4,7 @@
 // Opening inset (share of the frame): left 3.1%, right 2.2% of the width, top 4.1%, bottom 2.9% of the height.
 // The frame height is ~1.018 * ratio * width, so the vertical padding (a share of the width) scales with --ratio.
 .banner.thumbnail {
-	margin: 0 -2.3% 0.5rem -3.3%;
+	margin: 0 -2.3% 0 -3.3%;
 	padding: calc(var(--ratio) * 4.2%) 2.2% calc(var(--ratio) * 3%) 3.1%;
 	background-color: transparent;
 
@@ -20,4 +20,11 @@
 		height: auto;
 		object-fit: fill;
 	}
+}
+
+// Plain image with small rounded corners instead of the frame shape.
+.banner--rounded.thumbnail {
+	margin: 0;
+	padding: 0;
+	border-radius: 8px;
 }

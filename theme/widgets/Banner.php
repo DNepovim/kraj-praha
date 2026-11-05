@@ -43,12 +43,19 @@ class BannerWidget extends WP_Widget {
 		$meta = wp_get_attachment_metadata($id);
 		$ratio = !empty($meta['width']) && !empty($meta['height']) ? round($meta['height'] / $meta['width'], 4) : 0.5;
 
+		$link = $instance['link'] ?? '';
+		$page = (int) ($instance['page'] ?? 0);
+		if ($page && get_post_status($page) === 'publish') {
+			$link = get_permalink($page);
+		}
+
 		echo $args['before_widget'];
 		echo renderLatteToString(__DIR__ . '/../views/components/banner.latte', [
 			'image' => $image,
-			'link' => $instance['link'] ?? '',
-			'blank' => $this->isExternal($instance['link'] ?? ''),
+			'link' => $link,
+			'blank' => $this->isExternal($link),
 			'ratio' => $ratio,
+			'rounded' => ($instance['style'] ?? 'shape') === 'rounded',
 		]);
 		echo $args['after_widget'];
 	}
@@ -56,13 +63,19 @@ class BannerWidget extends WP_Widget {
 	/** Links to another host open in a new window. */
 	private function isExternal($link) {
 		$host = wp_parse_url($link, PHP_URL_HOST);
-		return $host && strcasecmp($host, wp_parse_url(home_url(), PHP_URL_HOST)) !== 0;
+		$normalize = function($host) {
+			return preg_replace('~^www\.~i', '', (string) $host);
+		};
+		return $host && strcasecmp($normalize($host), $normalize(wp_parse_url(home_url(), PHP_URL_HOST))) !== 0;
 	}
 
 	public function form($instance) {
 		$image = (int) ($instance['image'] ?? 0);
 		$link = $instance['link'] ?? '';
+		$page = (int) ($instance['page'] ?? 0);
+		$pages = get_pages(['sort_column' => 'post_title']);
 		$alt = $instance['alt'] ?? '';
+		$style = $instance['style'] ?? 'shape';
 		$preview = $image ? wp_get_attachment_image_url($image, 'medium') : '';
 		?>
 		<div class="banner-widget">
@@ -72,8 +85,24 @@ class BannerWidget extends WP_Widget {
 				<button type="button" class="button banner-widget-pick">Vybrat obrázek</button>
 			</p>
 			<p>
-				<label for="<?php echo esc_attr($this->get_field_id('link')); ?>">Odkaz:</label>
+				<label for="<?php echo esc_attr($this->get_field_id('page')); ?>">Odkaz na:</label>
+				<select class="widefat banner-widget-page" id="<?php echo esc_attr($this->get_field_id('page')); ?>" name="<?php echo esc_attr($this->get_field_name('page')); ?>">
+					<option value="0">Vlastní adresa</option>
+					<?php foreach ($pages as $item): ?>
+						<option value="<?php echo esc_attr($item->ID); ?>"<?php selected($page, $item->ID); ?>><?php echo esc_html($item->post_title); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</p>
+			<p class="banner-widget-link"<?php echo $page ? ' style="display: none;"' : ''; ?>>
+				<label for="<?php echo esc_attr($this->get_field_id('link')); ?>">Adresa:</label>
 				<input class="widefat" id="<?php echo esc_attr($this->get_field_id('link')); ?>" name="<?php echo esc_attr($this->get_field_name('link')); ?>" type="url" value="<?php echo esc_attr($link); ?>">
+			</p>
+			<p>
+				<label for="<?php echo esc_attr($this->get_field_id('style')); ?>">Ohraničení:</label>
+				<select class="widefat" id="<?php echo esc_attr($this->get_field_id('style')); ?>" name="<?php echo esc_attr($this->get_field_name('style')); ?>">
+					<option value="shape"<?php selected($style, 'shape'); ?>>Tvar rámečku (SVG)</option>
+					<option value="rounded"<?php selected($style, 'rounded'); ?>>Malé zaoblené ohraničení</option>
+				</select>
 			</p>
 			<p>
 				<label for="<?php echo esc_attr($this->get_field_id('alt')); ?>">Popis obrázku (pro čtečky a vyhledávače):</label>
@@ -86,8 +115,10 @@ class BannerWidget extends WP_Widget {
 	public function update($new_instance, $old_instance) {
 		return [
 			'image' => absint($new_instance['image'] ?? 0),
+			'page' => absint($new_instance['page'] ?? 0),
 			'link' => esc_url_raw($new_instance['link'] ?? ''),
 			'alt' => sanitize_text_field($new_instance['alt'] ?? ''),
+			'style' => ($new_instance['style'] ?? '') === 'rounded' ? 'rounded' : 'shape',
 		];
 	}
 
@@ -99,6 +130,13 @@ class BannerWidget extends WP_Widget {
 		$printed = true;
 		?>
 		<script>
+			document.addEventListener('change', function (e) {
+				if (!e.target.classList.contains('banner-widget-page')) {
+					return;
+				}
+				var link = e.target.closest('.banner-widget').querySelector('.banner-widget-link');
+				link.style.display = e.target.value === '0' ? '' : 'none';
+			});
 			document.addEventListener('click', function (e) {
 				var button = e.target.closest('.banner-widget-pick');
 				if (!button) {
