@@ -22,7 +22,7 @@ jobs:
     env:
       # manual runs default to a dry run; untick it to deploy for real
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
-      FTP_DIR: ${{ vars.FTP_SERVER_DIR }} # e.g. /www/ (ends with slash)
+      FTP_DIR: ${{ vars.FTP_SERVER_DIR || secrets.FTP_SERVER_DIR }} # e.g. /www/ (ends with slash)
     steps:
       - uses: actions/checkout@v5
 
@@ -82,7 +82,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          server-dir: ${{ vars.FTP_SERVER_DIR }}
+          server-dir: ${{ vars.FTP_SERVER_DIR || secrets.FTP_SERVER_DIR }}
           dry-run: ${{ env.DRY_RUN == 'true' }}
           exclude: |
             **/.git*
