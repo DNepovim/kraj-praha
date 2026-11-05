@@ -1,0 +1,10 @@
+{default $key = $parameters['bugsnagKey'] ?? null}
+
+<script src="https://d2wy8f7a9ursnm.cloudfront.net/v7/bugsnag.min.js" n:if="!empty($key)"></script>
+<script n:if="!empty($key)">
+	Bugsnag.start({
+		apiKey: {$key},
+		releaseStage: location.hostname === {$parameters['prodHost'] ?? 'praha.skauting.cz'} ? 'production' : 'development',
+		enabledReleaseStages: ['production']
+	})
+</script>

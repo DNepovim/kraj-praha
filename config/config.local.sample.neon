@@ -13,6 +13,9 @@ parameters:
 	# Universal Analytics ID
 	GTM: 'GTM-xxxxxxx'
 
+	# Bugsnag browser API key (JS errors are reported only on the production host)
+	bugsnagKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
 	# forceDebug: on # off
 
 	# change salting on production!
