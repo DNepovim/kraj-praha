@@ -22,3 +22,9 @@ add_filter('wp_insert_post_data', function ($data) {
 
 	return array_merge($data, wp_slash($fixed));
 }, 20);
+
+// Fix typography of posts and pages when they are rendered too, so the content saved before is covered as well.
+// It runs after wpautop and the shortcodes, the fixing is idempotent, so already fixed content is left as it is.
+add_filter('the_content', function ($content) {
+	return in_array(get_post_type(), ['post', 'page'], true) ? Typopo::fixHtml($content) : $content;
+}, 20);
