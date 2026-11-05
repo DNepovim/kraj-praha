@@ -84,6 +84,31 @@ add_filter('the_content', function($content) {
 	return $content;
 });
 
+// open external links in a new tab
+add_filter('the_content', function($content) {
+	$host = wp_parse_url(home_url(), PHP_URL_HOST);
+	$processor = new WP_HTML_Tag_Processor($content);
+
+	while ($processor->next_tag('a')) {
+		$href = $processor->get_attribute('href');
+
+		if (!is_string($href) || !preg_match('~^(https?:)?//~i', $href)) {
+			continue;
+		}
+
+		$linkHost = wp_parse_url(str_starts_with($href, '//') ? "https:$href" : $href, PHP_URL_HOST);
+
+		if (!$linkHost || strcasecmp($linkHost, $host) === 0) {
+			continue;
+		}
+
+		$processor->set_attribute('target', '_blank');
+		$processor->set_attribute('rel', 'noopener noreferrer');
+	}
+
+	return $processor->get_updated_html();
+});
+
 // custom pagination
 add_action('pre_get_posts', function($query) {
 	if($query->is_main_query() && $query->post_count > 0) {
