@@ -47,6 +47,33 @@
 		font-style: normal;
 	}
 
+	transition: transform 200ms;
+
+	&__background {
+		transition: filter 200ms;
+	}
+
+	&:hover,
+	&:focus-within {
+		transform: translateY(-2px);
+	}
+
+	&:hover &__background,
+	&:focus-within &__background {
+		filter: brightness(1.15);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&,
+		&__background {
+			transition: none;
+		}
+	}
+
 	&:hover &__link {
 		color: @blank;
 	}
