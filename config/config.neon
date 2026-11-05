@@ -3,12 +3,6 @@ parameters:
 	assetsDir: %wwwDir%/%assetsDirname%
 	wp:
 		table_prefix:	qvwrx_
-	s3:
-		enabled: off
-		bucket: uploads.mangoweb.org
-		region: eu-central-1
-		key:
-		secret:
 
 database:
 	dsn: 'mysql:host=%database.host%;dbname=%database.database%'

@@ -42,7 +42,7 @@
   ],
   "hooks": {
     "init": "mango install",
-    "dev": "cp -u ./config/config.local.sample.neon ./config/config.local.neon"
+    "dev": "[ -f config/.env ] || cp config/.env.sample config/.env"
   },
   "snippet": "yes please",
   "version": ">=0.24"

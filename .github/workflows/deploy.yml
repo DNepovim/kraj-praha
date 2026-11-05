@@ -55,6 +55,36 @@ jobs:
           # webroot must not ship dev files
           rm -f public/info.php
 
+      - name: Write config/.env from secrets
+        shell: bash
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          WP_AUTH_KEY: ${{ secrets.WP_AUTH_KEY }}
+          WP_SECURE_AUTH_KEY: ${{ secrets.WP_SECURE_AUTH_KEY }}
+          WP_LOGGED_IN_KEY: ${{ secrets.WP_LOGGED_IN_KEY }}
+          WP_NONCE_KEY: ${{ secrets.WP_NONCE_KEY }}
+          WP_AUTH_SALT: ${{ secrets.WP_AUTH_SALT }}
+          WP_SECURE_AUTH_SALT: ${{ secrets.WP_SECURE_AUTH_SALT }}
+          WP_LOGGED_IN_SALT: ${{ secrets.WP_LOGGED_IN_SALT }}
+          WP_NONCE_SALT: ${{ secrets.WP_NONCE_SALT }}
+          BUGSNAG_KEY: ${{ secrets.BUGSNAG_KEY }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        run: |
+          required="DB_HOST DB_NAME DB_USER DB_PASSWORD WP_AUTH_KEY WP_SECURE_AUTH_KEY WP_LOGGED_IN_KEY WP_NONCE_KEY WP_AUTH_SALT WP_SECURE_AUTH_SALT WP_LOGGED_IN_SALT WP_NONCE_SALT"
+          optional="BUGSNAG_KEY MAIL_PASSWORD"
+          for key in $required; do
+            if [ -z "${!key}" ]; then
+              echo "::error::Secret $key is missing (set it in the 'production' environment)"
+              exit 1
+            fi
+          done
+          for key in $required $optional; do
+            printf '%s=%s\n' "$key" "${!key}"
+          done > config/.env
+
       - name: Check deploy settings
         env:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
@@ -69,7 +99,7 @@ jobs:
           fi
 
       # One archive instead of ~10 000 single uploads: the host drops long FTP sessions.
-      # Paths that live only on the server (uploads, local config, logs, cache, plugins) are not in it.
+      # Paths that live only on the server (uploads, logs, cache, plugins) are not in it; config/.env is generated above.
       - name: Pack release
         run: |
           cat > exclude.lst <<'EOF'
@@ -88,8 +118,7 @@ jobs:
           package.json
           package-lock.json
           mango.json
-          config/config.local.neon
-          config/config.local.sample.neon
+          config/.env.sample
           public/wp-content/uploads/*
           public/wp-content/cache/*
           public/wp-content/webp-express/*
@@ -106,7 +135,8 @@ jobs:
           zip -q release.zip log/.htaccess temp/.htaccess
           ls -lh release.zip
           echo "files in archive: $(unzip -Z1 release.zip | wc -l)"
-          for forbidden in config/config.local.neon public/wp-content/uploads; do
+          unzip -Z1 release.zip | grep -qx 'config/.env' || { echo "::error::config/.env is missing from the release"; exit 1; }
+          for forbidden in public/wp-content/uploads; do
             if unzip -Z1 release.zip | grep -q "^$forbidden"; then
               echo "::error::$forbidden must not be in the release"
               exit 1

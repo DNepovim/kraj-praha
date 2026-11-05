@@ -6,7 +6,7 @@
 .Trashes
 
 /public/assets/
-/config/config.local.neon
+/config/.env
 /mango.local.json
 /.mango-snippet.html
 /node_modules
@@ -19,4 +19,3 @@
 deploy.sh
 /docker/data
 /public/wp-content/webp-express
-/public/wp-content/themes/.htaccess

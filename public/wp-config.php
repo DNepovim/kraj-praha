@@ -47,28 +47,6 @@ define('NONCE_SALT', $wpParams['NONCE_SALT']);
 
 $table_prefix  = $wpParams['table_prefix'];
 
-$s3 = $params['s3'];
-define('S3_UPLOADS_BUCKET', $s3['bucket']);
-define('S3_UPLOADS_KEY', $s3['key']);
-define('S3_UPLOADS_SECRET', $s3['secret']);
-define('S3_UPLOADS_REGION', $s3['region']);
-if (!$s3['enabled']) {
-	define('S3_UPLOADS_USE_LOCAL', TRUE);
-	define('S3_UPLOADS_DISABLE_REPLACE_UPLOAD_URL', TRUE);
-}
-
-if (isset($s3['basePath'])) {
-	define('S3_UPLOADS_PATH_PREFIX', '/' . $s3['basePath']);
-} elseif (Mangoweb\isSharedHost()) {
-	define('PROJECT_ROOT', dirname(__DIR__, 3));
-
-	// disable installing plugins and editing files inline
-	// all changes must be versioned and deployed instead
-	define('DISALLOW_FILE_MODS', true);
-
-	define('S3_UPLOADS_PATH_PREFIX', '/' . Mangoweb\getReplicationGroupName() . '/' . basename(PROJECT_ROOT));
-}
-
 define('WP_DEBUG', !Tracy\Debugger::$productionMode);
 define('WP_DEBUG_DISPLAY', false); // warnings go to the Tracy bar, printing them would send headers early (breaks Nette Forms CSRF)
 

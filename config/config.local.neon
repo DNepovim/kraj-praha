@@ -1,0 +1,41 @@
+#
+# Secrets and per-environment values are read from the environment (real env vars or config/.env),
+# see config/.env.sample. Do not put credentials in this file, it is tracked.
+#
+# NEON: indent with tabs, never mix tabs and spaces.
+#
+
+parameters:
+	mango: off
+	fromEmail: 'info@example.com'
+
+	# Universal Analytics ID
+	UA: ''
+	GTM: 'GTM-NGXLW7V'
+
+	# Bugsnag API key (browser JS errors on the production host, PHP errors in production mode)
+	bugsnagKey: %env.BUGSNAG_KEY%
+
+	# forceDebug: on # off
+
+	wp:
+		AUTH_KEY:         %env.WP_AUTH_KEY%
+		SECURE_AUTH_KEY:  %env.WP_SECURE_AUTH_KEY%
+		LOGGED_IN_KEY:    %env.WP_LOGGED_IN_KEY%
+		NONCE_KEY:        %env.WP_NONCE_KEY%
+		AUTH_SALT:        %env.WP_AUTH_SALT%
+		SECURE_AUTH_SALT: %env.WP_SECURE_AUTH_SALT%
+		LOGGED_IN_SALT:   %env.WP_LOGGED_IN_SALT%
+		NONCE_SALT:       %env.WP_NONCE_SALT%
+
+	database:
+		host: %env.DB_HOST%
+		username: %env.DB_USER%
+		password: %env.DB_PASSWORD%
+		database: %env.DB_NAME%
+
+mail:
+	host: smtp.mailgun.org
+	secure: tls
+	username: info@example.com
+	password: %env.MAIL_PASSWORD%

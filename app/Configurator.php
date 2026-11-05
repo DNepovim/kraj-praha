@@ -50,7 +50,7 @@ class Configurator extends Nette\Configurator
 			'testMode' => FALSE,
 		];
 
-		$this->addParameters((array) $params + $defaults);
+		$this->addParameters((array) $params + $defaults + ['env' => Env::load(CONFIG_DIR . '/.env')]);
 
 		foreach (get_class_methods($this) as $name)
 		{
@@ -172,7 +172,7 @@ class MissingLocalConfigException extends RuntimeException
 	 */
 	public function __construct(FileNotFoundException $e)
 	{
-		parent::__construct('Copy "config/config.local.sample.neon" to "config/config.local.neon" and update credentials.', 0, $e);
+		parent::__construct('Copy "config/.env.sample" to "config/.env" and update credentials.', 0, $e);
 	}
 
 }

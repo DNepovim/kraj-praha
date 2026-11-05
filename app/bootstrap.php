@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . '/hosting.php';
 require __DIR__ . '/exceptions.php';
+require __DIR__ . '/Env.php';
 require __DIR__ . '/Configurator.php';
 require __DIR__ . '/Container.php';
 require __DIR__ . '/BugsnagLogger.php';

@@ -22,7 +22,7 @@ mango dev
 
 **Additional steps:**
 - Create a new database
-- Create your `config/config.local.neon` based on `config.local.sample.neon`.
+- Create your `config/.env` based on `config/.env.sample` (secrets live there, `config/config.local.neon` is tracked and reads them).
 - Make directories `log/`,  `temp/`, `public/wp-content/*` writeable for web process
 
 **Use Docker for local development**
