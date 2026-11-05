@@ -104,6 +104,7 @@ jobs:
         run: |
           cat > exclude.lst <<'EOF'
           .git*
+          .mango-snippet.html
           */.git*
           node_modules/*
           docker/*

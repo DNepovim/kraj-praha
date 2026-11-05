@@ -6,7 +6,7 @@
 #
 
 parameters:
-	mango: off
+	mango: false
 	fromEmail: 'info@example.com'
 
 	# Universal Analytics ID
