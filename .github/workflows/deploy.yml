@@ -53,15 +53,25 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
+      - name: Check FTP target
+        run: |
+          if [ -z "$FTP_DIR" ]; then
+            echo "::error::Variable FTP_SERVER_DIR is empty (set it as a repository or environment variable, e.g. /www/)"
+            exit 1
+          fi
+
       - name: Maintenance mode on
         if: env.DRY_RUN != 'true'
+        # best effort: only takes effect once public/index.php of the new release is live
+        continue-on-error: true
+        timeout-minutes: 2
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           printf '<?php http_response_code(503); header("Retry-After: 300"); echo "Probíhá aktualizace webu, zkuste to za chvíli.";\n' > maintenance.php
-          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set ssl:verify-certificate yes; put -O ${FTP_DIR}public/ maintenance.php; bye"
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 20; set net:max-retries 2; set ssl:verify-certificate yes; put -O ${FTP_DIR}public/ maintenance.php; bye"
           rm maintenance.php
 
       # Uploads only files that changed since the last deploy (state file is stored on the server).
@@ -103,6 +113,7 @@ jobs:
 
       - name: Clear cache and maintenance mode off
         if: env.DRY_RUN != 'true'
+        timeout-minutes: 5
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
@@ -110,7 +121,7 @@ jobs:
         run: |
           # Nette container cache is not invalidated automatically in production.
           # log/ and temp/ are excluded from the sync, so (re)upload their .htaccess that blocks web access.
-          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set ssl:verify-certificate yes; \
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 20; set net:max-retries 2; set ssl:verify-certificate yes; \
             put -O ${FTP_DIR}log/ log/.htaccess; put -O ${FTP_DIR}temp/ temp/.htaccess; \
             rm -rf ${FTP_DIR}temp/cache; mkdir -p ${FTP_DIR}temp/cache; \
             rm -f ${FTP_DIR}public/maintenance.php; bye"
