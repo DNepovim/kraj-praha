@@ -70,11 +70,11 @@ jobs:
           WP_SECURE_AUTH_SALT: ${{ secrets.WP_SECURE_AUTH_SALT }}
           WP_LOGGED_IN_SALT: ${{ secrets.WP_LOGGED_IN_SALT }}
           WP_NONCE_SALT: ${{ secrets.WP_NONCE_SALT }}
+          GTM_ID: ${{ vars.GTM_ID || secrets.GTM_ID }} # not a secret, a variable is fine
           BUGSNAG_KEY: ${{ secrets.BUGSNAG_KEY }}
-          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
         run: |
-          required="DB_HOST DB_NAME DB_USER DB_PASSWORD WP_AUTH_KEY WP_SECURE_AUTH_KEY WP_LOGGED_IN_KEY WP_NONCE_KEY WP_AUTH_SALT WP_SECURE_AUTH_SALT WP_LOGGED_IN_SALT WP_NONCE_SALT"
-          optional="BUGSNAG_KEY MAIL_PASSWORD"
+          required="DB_HOST DB_NAME DB_USER DB_PASSWORD WP_AUTH_KEY WP_SECURE_AUTH_KEY WP_LOGGED_IN_KEY WP_NONCE_KEY WP_AUTH_SALT WP_SECURE_AUTH_SALT WP_LOGGED_IN_SALT WP_NONCE_SALT GTM_ID"
+          optional="BUGSNAG_KEY"
           for key in $required; do
             if [ -z "${!key}" ]; then
               echo "::error::Secret $key is missing (set it in the 'production' environment)"
