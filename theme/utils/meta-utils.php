@@ -36,7 +36,8 @@ function meta_array($id, $key, $as = null) {
 }
 
 function get_image_url($id, $size = 'thumbnail') {
-	return wp_get_attachment_image_src($id, $size)[0];
+	$src = wp_get_attachment_image_src($id, $size);
+	return $src ? $src[0] : null;
 }
 
 function get_thumbnail_url($id, $size = 'thumbnail') {
