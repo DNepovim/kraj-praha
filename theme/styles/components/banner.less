@@ -1,8 +1,19 @@
 // the image keeps its own proportions, the frame (.thumbnail__frame) is stretched over it
 .banner {
 	margin-bottom: 0.5rem;
+	background-color: transparent;
+
+	// The opening of the frame svg is inset by ~2.5% on every side. Overscan the frame so the opening
+	// lines up with the edges of the sidebar; its outer edge (the thin outline) is clipped by overflow: hidden.
+	.thumbnail__frame {
+		top: -3%;
+		left: -3%;
+		width: 106%;
+		height: 106%;
+	}
 
 	.thumbnail__image {
+		display: block; // an inline image leaves a gap at the bottom
 		height: auto;
 		object-fit: fill;
 	}
