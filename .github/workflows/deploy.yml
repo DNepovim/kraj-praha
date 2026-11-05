@@ -126,7 +126,7 @@ jobs:
           HASH=$(printf %s "$DEPLOY_TOKEN" | sha256sum | cut -d' ' -f1)
           sed "s/__TOKEN_HASH__/$HASH/" .github/deploy-extract.php > "$EXTRACTOR"
           printf '<?php http_response_code(503); header("Retry-After: 300"); echo "Probíhá aktualizace webu, zkuste to za chvíli.";\n' > maintenance.php
-          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set cmd:fail-exit yes; set net:timeout 30; set net:max-retries 5; set net:reconnect-interval-base 5; set ssl:verify-certificate yes; \
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftp://$FTP_HOST" -e "set cmd:fail-exit yes; set net:timeout 30; set net:max-retries 5; set net:reconnect-interval-base 5; set ftp:ssl-force true; set ftp:ssl-protect-data true; set ssl:verify-certificate yes; \
             put -O ${FTP_DIR}public/ maintenance.php; \
             put -c -O ${FTP_DIR} release.zip; \
             put -O ${FTP_DIR}public/ $EXTRACTOR; bye"
@@ -149,7 +149,7 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           # the extractor deletes these itself on success; this covers failed runs
-          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 30; set net:max-retries 2; \
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftp://$FTP_HOST" -e "set ftp:ssl-force true; set net:timeout 30; set net:max-retries 2; \
             rm -f ${FTP_DIR}release.zip; rm -f ${FTP_DIR}public/deploy-${GITHUB_RUN_ID}.php; bye" || true
 
       - name: Smoke test
