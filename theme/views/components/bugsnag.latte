@@ -1,10 +1,18 @@
 {default $key = $parameters['bugsnagKey'] ?? null}
 
-<script src="https://d2wy8f7a9ursnm.cloudfront.net/v7/bugsnag.min.js" n:if="!empty($key)"></script>
-<script n:if="!empty($key)">
-	Bugsnag.start({
-		apiKey: {$key},
-		releaseStage: location.hostname === {$parameters['prodHost'] ?? 'praha.skauting.cz'} ? 'production' : 'development',
-		enabledReleaseStages: ['production']
-	})
+{* loaded async so it never blocks rendering; errors thrown before it loads are not reported *}
+<script n:syntax="double" n:if="!empty($key)">
+	(function () {
+		var s = document.createElement('script');
+		s.src = 'https://d2wy8f7a9ursnm.cloudfront.net/v7/bugsnag.min.js';
+		s.async = true;
+		s.onload = function () {
+			Bugsnag.start({
+				apiKey: {{$key}},
+				releaseStage: location.hostname === {{$parameters['prodHost'] ?? 'praha.skauting.cz'}} ? 'production' : 'development',
+				enabledReleaseStages: ['production']
+			});
+		};
+		document.head.appendChild(s);
+	})();
 </script>
