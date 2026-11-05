@@ -18,3 +18,5 @@
 .idea
 deploy.sh
 /docker/data
+/public/wp-content/webp-express
+/public/wp-content/themes/.htaccess

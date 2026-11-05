@@ -13,8 +13,10 @@ parameters:
 	# Universal Analytics ID
 	GTM: 'GTM-xxxxxxx'
 
-	# Bugsnag browser API key (JS errors are reported only on the production host)
+	# Bugsnag API key (browser JS errors on the production host, PHP errors in production mode)
 	bugsnagKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+	# NEON: indent with the same characters as the surrounding lines, never mix tabs and spaces
 
 	# forceDebug: on # off
 

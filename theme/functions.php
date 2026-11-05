@@ -4,6 +4,9 @@ if (ob_get_contents()) {
 	ob_clean(); ob_start();
 }
 
+// Latte 2.x (last 2.x release) triggers PHP 8.5 deprecations that cannot be fixed without upgrading to Latte 3
+error_reporting(error_reporting() & ~E_DEPRECATED);
+
 // Register menu
 register_nav_menu('main_menu', 'Hlavní menu');
 register_nav_menu('footer_menu', 'Menu v patičce');
