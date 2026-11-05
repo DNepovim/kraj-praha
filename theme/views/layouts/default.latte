@@ -42,7 +42,7 @@
 		{var $excerpt = substr($content, 0, $position) . '…'}
 		<meta property="og:description" content="{$excerpt}">
 	{else}
-		<meta property="og:image" content="{get_template_directory_uri()}/dist/images/logo-og.png">
+		<meta property="og:image" content="{$assetsPath}/images/logo-og.png">
 		<meta property="og:description" content="{bloginfo("description")}">
 	{/if}
 
