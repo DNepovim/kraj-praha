@@ -22,9 +22,9 @@
 
 
 	<section class="feed grid-xs-24 grid-m-20 grid-m-offset-2" n:if="isset($relatedQuery)">
-		<h3 class="title title--medium feed__title" n:if="!empty($relatedTitle)">{$relatedTitle|noescape}</h3>
+		<h2 class="title title--medium feed__title" n:if="!empty($relatedTitle)">{$relatedTitle|noescape}</h2>
 		{each $relatedQuery}
-			{include components/content.latte Post => $Post, highlighted_sitky => false}
+			{include components/content.latte Post => $Post, highlighted_sitky => false, titleTag => h3}
 		{/each}
 		<footer class="feed__footer" n:if="$relatedButton">
 			{include components/button.latte

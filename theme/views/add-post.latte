@@ -19,7 +19,7 @@
 
 			<form n:name="$Forms[add-post]" class="form">
 
-				<h3 class="title title--medium form__title">{$Post|wp_title}</h3>
+				<h2 class="title title--medium form__title">{$Post|wp_title}</h2>
 				<p class="subtitle form__subtitle" n:if="is_user_logged_in()">Jsi přihlášen jako <strong clas="name">{$user->display_name}</strong></p>
 
 				<fieldset class="form__fieldset">
