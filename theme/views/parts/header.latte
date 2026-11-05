@@ -1,7 +1,7 @@
 <header class="main-header" role="banner">
 	<div class="row main-header__row">
 		<div class="grid-xs-12 grid-s-24 grid-m-10">
-			<a class="logotype" href={esc_url(home_url('/'))}>
+			<a class="logotype" href={esc_url(home_url('/'))} aria-label="Skaut – kraj Praha">
 				{include ../components/shape.latte name => "shape-1", class => "logotype__background"}
 				{var $logotype = !empty($_COOKIE['logotype']) ? explode(' ', $_COOKIE['logotype'])[0] : 'logotype-skaut'}
 				{include ../components/shape.latte name => $logotype, class => "logotype__logo", id => 'logotyp'}
@@ -39,8 +39,8 @@
 			{if !empty($locations)}
 				{var $menu = wp_get_nav_menu_object($locations[$menu_name])}
 				{var $menuitems = wp_get_nav_menu_items($menu->term_id, array('order' => 'DESC'))}
+				{include ../components/shape.latte name => rect, class => "main-nav__background"}
 				<ul class="main-nav__items" n:if="!empty($menuitems)">
-					{include ../components/shape.latte name => rect, class => "main-nav__background"}
 					{var $first = true}
 					{foreach $menuitems as $item}
 						{var $classes='main-nav__item'}
@@ -49,7 +49,7 @@
 						{/if}
 						<li n:class="$classes">
 							{include ../components/shape.latte name => rect, class => "main-nav__item__background"}
-							<a class="link main-nav__item__link" href={$item->url}>
+							<a class="link main-nav__item__link" href={$item->url} aria-label={$first ? 'Domů' : null}>
 								{if $first}
 									{include ../components/shape.latte name => home, class => "main-nav__item__icon"}
 									{var $first = false}

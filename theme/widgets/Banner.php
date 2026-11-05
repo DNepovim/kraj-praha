@@ -55,6 +55,8 @@ class BannerWidget extends WP_Widget {
 			'link' => $link,
 			'blank' => $this->isExternal($link),
 			'ratio' => $ratio,
+			// the link needs a name even when the image has no description
+			'label' => empty($instance['alt']) ? ($page ? get_the_title($page) : null) : null,
 			'rounded' => ($instance['style'] ?? 'shape') === 'rounded',
 		]);
 		echo $args['after_widget'];
@@ -73,7 +75,19 @@ class BannerWidget extends WP_Widget {
 		$image = (int) ($instance['image'] ?? 0);
 		$link = $instance['link'] ?? '';
 		$page = (int) ($instance['page'] ?? 0);
-		$pages = get_pages(['sort_column' => 'post_title']);
+		$groups = [
+			'Stránky' => get_pages(['sort_column' => 'post_title']),
+			'Příspěvky' => get_posts(['numberposts' => 200, 'post_status' => 'publish']),
+		];
+		// keep the chosen item selectable even when it is older than the listed posts
+		if ($page && !in_array($page, array_merge(...array_values(array_map(function($items) {
+			return wp_list_pluck($items, 'ID');
+		}, $groups))))) {
+			$selected = get_post($page);
+			if ($selected) {
+				$groups[$selected->post_type === 'page' ? 'Stránky' : 'Příspěvky'][] = $selected;
+			}
+		}
 		$alt = $instance['alt'] ?? '';
 		$style = $instance['style'] ?? 'shape';
 		$preview = $image ? wp_get_attachment_image_url($image, 'medium') : '';
@@ -88,8 +102,12 @@ class BannerWidget extends WP_Widget {
 				<label for="<?php echo esc_attr($this->get_field_id('page')); ?>">Odkaz na:</label>
 				<select class="widefat banner-widget-page" id="<?php echo esc_attr($this->get_field_id('page')); ?>" name="<?php echo esc_attr($this->get_field_name('page')); ?>">
 					<option value="0">Vlastní adresa</option>
-					<?php foreach ($pages as $item): ?>
-						<option value="<?php echo esc_attr($item->ID); ?>"<?php selected($page, $item->ID); ?>><?php echo esc_html($item->post_title); ?></option>
+					<?php foreach ($groups as $label => $items): ?>
+						<optgroup label="<?php echo esc_attr($label); ?>">
+							<?php foreach ($items as $item): ?>
+								<option value="<?php echo esc_attr($item->ID); ?>"<?php selected($page, $item->ID); ?>><?php echo esc_html($item->post_title); ?></option>
+							<?php endforeach; ?>
+						</optgroup>
 					<?php endforeach; ?>
 				</select>
 			</p>

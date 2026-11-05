@@ -2,8 +2,9 @@
 {default $blank = false}
 {default $ratio = 0.5}
 {default $rounded = false}
+{default $label = null}
 
-<a n:tag="empty($link) ? 'div'" class="banner thumbnail{$rounded ? ' banner--rounded'}" style="--ratio: {$ratio}" href="{$link}" target="{$blank ? '_blank'}" rel="{$blank ? 'noreferrer noopener'}">
+<a n:tag="empty($link) ? 'div'" class="banner thumbnail{$rounded ? ' banner--rounded'}" style="--ratio: {$ratio}" href="{$link}" target="{$blank ? '_blank'}" rel="{$blank ? 'noreferrer noopener'}" aria-label="{$label}">
 	{$image|noescape}
 	{if !$rounded}
 		{include shape.latte name => frame, class => "thumbnail__frame"}
