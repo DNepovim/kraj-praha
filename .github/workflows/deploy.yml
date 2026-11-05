@@ -1,12 +1,17 @@
 name: Deploy
 
 on:
-  # Manual only until a dry run and a supervised deploy worked.
-  # To deploy on every push to master, add:  push: { branches: [master] }
+  # every push to master deploys to production
+  push:
+    branches: [master]
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/ftp-test.yml'
+  # manual runs default to a dry run (builds the archive, uploads nothing)
   workflow_dispatch:
     inputs:
       dry_run:
-        description: Only list what would be uploaded
+        description: Only build the archive, do not upload
         type: boolean
         default: true
 
@@ -20,7 +25,7 @@ jobs:
     # configure required reviewers on this environment for a manual approval step
     environment: production
     env:
-      # manual runs default to a dry run; untick it to deploy for real
+      # pushes always deploy; manual runs default to a dry run, untick it to deploy for real
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
       FTP_DIR: ${{ vars.FTP_SERVER_DIR || secrets.FTP_SERVER_DIR }} # e.g. /www/ (ends with slash)
     steps:
