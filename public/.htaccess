@@ -1,4 +1,13 @@
-
+# Old URLs requested with the /public prefix go to the clean ones (/public/x -> /x).
+# THE_REQUEST is the original request line, so the internal rewrite from the root .htaccess does not trigger this.
+# The deploy extractor is called under /public/ and must stay reachable there.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{THE_REQUEST} ^[A-Z]+\ /public(/|\ |\?)
+RewriteCond %{REQUEST_URI} !^/public/deploy-[A-Za-z0-9_]+\.php$
+RewriteCond %{REQUEST_URI} ^/public/?(.*)$
+RewriteRule ^ https://%{HTTP_HOST}/%1 [R=301,L]
+</IfModule>
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
