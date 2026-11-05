@@ -1,0 +1,7 @@
+{default $link = null}
+{default $blank = false}
+
+<a n:tag="empty($link) ? 'div'" class="banner thumbnail" href="{$link}" target="{$blank ? '_blank'}" rel="{$blank ? 'noreferrer noopener'}">
+	{$image|noescape}
+	{include shape.latte name => frame, class => "thumbnail__frame"}
+</a>
