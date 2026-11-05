@@ -25,6 +25,20 @@
 		display: none;
 	}
 
+	&__overlay {
+		display: none;
+		position: fixed;
+		z-index: 49;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	&__check:checked ~ &__overlay {
+		display: block;
+	}
+
 	&__check:checked ~ & {
 		right: 0;
 		transform: none;
@@ -92,7 +106,12 @@
 		}
 
 		&__close,
-		&__open {
+		&__open,
+		&__overlay {
+			display: none;
+		}
+
+		&__check:checked ~ &__overlay {
 			display: none;
 		}
 
