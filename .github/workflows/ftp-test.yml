@@ -1,0 +1,39 @@
+name: FTP connection test
+
+# Diagnoses FTPS data connection problems from GitHub runners. Uploads one tiny file to FTP_SERVER_DIR and removes it.
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 10
+    env:
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+      FTP_USER: ${{ secrets.FTP_USER }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      FTP_DIR: ${{ vars.FTP_SERVER_DIR || secrets.FTP_SERVER_DIR }}
+    steps:
+      - run: sudo apt-get update && sudo apt-get install -y lftp
+      - run: echo ok > ftp-test.txt
+
+      - name: "A: FTPS, encrypted data (what the deploy uses)"
+        continue-on-error: true
+        run: |
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 15; set net:max-retries 1; set ssl:verify-certificate yes; debug 3; cls ${FTP_DIR}; put -O ${FTP_DIR} ftp-test.txt; rm ${FTP_DIR}ftp-test.txt; bye" 2>&1 | sed "s/$FTP_PASSWORD/***/g"
+
+      - name: "B: FTPS, certificate not verified"
+        continue-on-error: true
+        run: |
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 15; set net:max-retries 1; set ssl:verify-certificate no; cls ${FTP_DIR}; put -O ${FTP_DIR} ftp-test.txt; rm ${FTP_DIR}ftp-test.txt; bye" 2>&1 | sed "s/$FTP_PASSWORD/***/g"
+
+      - name: "C: FTPS, encrypted login, unencrypted data"
+        continue-on-error: true
+        run: |
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 15; set net:max-retries 1; set ssl:verify-certificate no; set ftp:ssl-protect-data no; cls ${FTP_DIR}; put -O ${FTP_DIR} ftp-test.txt; rm ${FTP_DIR}ftp-test.txt; bye" 2>&1 | sed "s/$FTP_PASSWORD/***/g"
+
+      - name: "D: FTPS, active mode"
+        continue-on-error: true
+        run: |
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "ftps://$FTP_HOST" -e "set net:timeout 15; set net:max-retries 1; set ssl:verify-certificate no; set ftp:passive-mode off; cls ${FTP_DIR}; put -O ${FTP_DIR} ftp-test.txt; rm ${FTP_DIR}ftp-test.txt; bye" 2>&1 | sed "s/$FTP_PASSWORD/***/g"
