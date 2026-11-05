@@ -15,4 +15,10 @@ function add_image_sizes() {
 	add_image_size('post_detail', 330, 330);
 	add_image_size('post_feed', 450, 450);
 	add_image_size('og', 1200, 630);
+
+	// proportional (not cropped), used by the banner widget; the sizes above are hard-cropped squares
+	// widths cover the sidebar at 1x/2x: 291px desktop, ~375px phone, up to ~694px tablet; larger falls back to the full image
+	add_image_size('banner_300', 300, 9999);
+	add_image_size('banner_600', 600, 9999);
+	add_image_size('banner_900', 900, 9999);
 }
