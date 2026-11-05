@@ -75,7 +75,14 @@ MangoFilters::$set['attrs'] = function($array) {
 	)));
 };
 
-MangoFilters::$set['imgsrcset'] = function($img, $class = '',  $sizes = '100%', $srcset = ['100', '150', '200', '300', '500', '700', '900', '1200', '1600'], $alt = '') {
+MangoFilters::$set['imgsrcset'] = function($img, $class = '',  $sizes = '100%', $srcset = null, $alt = '', $priority = null) {
+	static $firstDone = false;
+	$srcset = $srcset ?: ['100', '150', '200', '300', '500', '700', '900', '1200', '1600'];
+	// 'first': only the first such image on the page is likely to be the LCP, give it high fetch priority
+	if ($priority === 'first') {
+		$priority = $firstDone ? null : 'high';
+		$firstDone = true;
+	}
 	return Html::el('img', [
 		'src' => wp_get_attachment_image_src($img, 'post_feed')[0],
 		'srcset' => implode(', ', array_map(function($size) use($img) {
@@ -83,6 +90,7 @@ MangoFilters::$set['imgsrcset'] = function($img, $class = '',  $sizes = '100%', 
 			}, $srcset)),
 		'sizes' => $sizes,
 		'class' => $class,
-		'alt' => $alt
+		'alt' => $alt,
+		'fetchpriority' => $priority,
 	]);
 };

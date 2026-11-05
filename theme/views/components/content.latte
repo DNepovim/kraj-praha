@@ -10,7 +10,7 @@
 
 	<a class="content__thumbnail thumbnail" href="{$Post|wp_permalink}">
 		{if $thumbnailID}
-			{$thumbnailID|imgsrcset:'thumbnail__image':'(min-width: 500px) 150px, calc(100vw - 44px)'}
+			{$thumbnailID|imgsrcset:'thumbnail__image':'(min-width: 500px) 150px, calc(100vw - 44px)':null:'':'first'}
 		{/if}
 		{include shape.latte name => frame, class => "thumbnail__frame"}
 	</a>
