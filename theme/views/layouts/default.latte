@@ -14,7 +14,9 @@
 
 	<meta name="description" content="{get_bloginfo('description')|noescape}">
 
-	{use_google_fonts([ 'Open+Sans:400,400i,700,700i&amp;subset=latin-ext'])}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap">
 
 	{var $stylesheet = !empty($_COOKIE['style']) ? explode(' ', $_COOKIE['style'])[0] : 'first'}
 	<link id="main-stylesheet" rel="stylesheet" href="{$assetsPath}/styles/{$buildstamp|noescape}{$stylesheet}.css" media="screen">

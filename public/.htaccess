@@ -25,6 +25,16 @@ ExpiresByType image/jpeg "access plus 1 month"
 ExpiresByType image/gif "access plus 1 month"
 </IfModule>
 
+# Same as above for hosts without mod_expires.
+<IfModule mod_headers.c>
+<FilesMatch "\.(css|js|woff2?|svg)$">
+Header set Cache-Control "public, max-age=31536000"
+</FilesMatch>
+<FilesMatch "\.(webp|png|jpe?g|gif)$">
+Header set Cache-Control "public, max-age=2592000"
+</FilesMatch>
+</IfModule>
+
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
