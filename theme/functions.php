@@ -24,9 +24,9 @@ add_filter('wp_editor_settings', function($settings) {
 add_filter('request', function($query_variables) {
 	if(isset( $_GET['s'] ) && (strlen(preg_replace('/\s+/u','', $_GET['s'])) == 0)) {
 		wp_redirect(home_url());
-	} else {
-		return $query_variables;
+		exit;
 	}
+	return $query_variables;
 });
 
 // Remove tools item form admin menu
