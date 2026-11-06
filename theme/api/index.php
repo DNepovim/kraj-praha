@@ -15,4 +15,6 @@ switch($ApiRequest[0]) {
 		break;
 }
 
-sendPayload($payload);
+// Unknown endpoint
+http_response_code(404);
+sendPayload();
