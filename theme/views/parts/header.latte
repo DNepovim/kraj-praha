@@ -1,6 +1,6 @@
 <header class="main-header" role="banner">
 	<div class="row main-header__row">
-		<div class="grid-xs-12 grid-s-24 grid-m-10">
+		<div class="grid-xs-12 grid-s-24 grid-l-10">
 			<a class="logotype" href={esc_url(home_url('/'))} aria-label="Skaut – kraj Praha">
 				{include ../components/shape.latte name => "shape-1", class => "logotype__background"}
 				{var $logotype = !empty($_COOKIE['logotype']) ? explode(' ', $_COOKIE['logotype'])[0] : 'logotype-skaut'}
