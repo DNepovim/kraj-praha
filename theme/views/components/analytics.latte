@@ -1,0 +1,4 @@
+{default $code = $parameters['UA']}
+
+<script n:if="!empty($code)" async src="https://www.googletagmanager.com/gtag/js?id={$code}"></script>
+<script n:syntax="double" n:if="!empty($code)">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',{{$code}});</script>

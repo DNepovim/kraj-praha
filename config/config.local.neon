@@ -9,9 +9,8 @@ parameters:
 	mango: false
 	fromEmail: 'info@example.com'
 
-	# Universal Analytics ID
-	UA: ''
-	GTM: %env.GTM_ID%
+	# Google Analytics ID, empty disables tracking
+	UA: %env.UA_ID%
 
 	# Bugsnag API key (browser JS errors on the production host, PHP errors in production mode)
 	bugsnagKey: %env.BUGSNAG_KEY%
