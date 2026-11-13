@@ -53,13 +53,29 @@ class FeedWidget extends WP_Widget {
 	}
 
 	private function getRssPosts($limit = 5) {
-		$rss = simplexml_load_file('https://zpravodajstvi.skaut.cz/feed');
+		$cacheKey = 'feed_widget_rss_posts';
+		$cached = get_transient($cacheKey);
+		if ($cached !== false) {
+			return array_slice($cached, 0, $limit);
+		}
+
+		$result = [];
+		$response = wp_remote_get('https://zpravodajstvi.skaut.cz/feed', ['timeout' => 5]);
+		if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+			$previous = libxml_use_internal_errors(true);
+			$rss = simplexml_load_string(wp_remote_retrieve_body($response));
+			libxml_clear_errors();
+			libxml_use_internal_errors($previous);
+		} else {
+			$rss = false;
+		}
 
 		if (empty($rss)) {
+			// Cache the failure briefly so a down feed isn't hit on every request
+			set_transient($cacheKey, [], 5 * MINUTE_IN_SECONDS);
 			return [];
 		}
 
-		$resutl = [];
 		$index = 0;
 		foreach ($rss->channel->item as $item) {
 			$result[$index] = [
@@ -71,6 +87,8 @@ class FeedWidget extends WP_Widget {
 				break;
 			}
 		}
+
+		set_transient($cacheKey, $result, 15 * MINUTE_IN_SECONDS);
 
 		return $result;
 	}
