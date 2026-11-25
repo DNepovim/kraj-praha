@@ -6,6 +6,15 @@ require __DIR__ . '/Configurator.php';
 require __DIR__ . '/Container.php';
 require __DIR__ . '/BugsnagLogger.php';
 
+// Hosting may configure session.save_handler = redis without the redis extension loaded,
+// which makes every session_start() fail. Fall back to file sessions in that case.
+if (ini_get('session.save_handler') === 'redis' && !extension_loaded('redis')) {
+	$sessionDir = TEMP_DIR . '/sessions';
+	@mkdir($sessionDir, 0770, true);
+	ini_set('session.save_handler', 'files');
+	ini_set('session.save_path', $sessionDir);
+}
+
 $configurator = new App\Config\Configurator;
 $container = $configurator->createContainer();
 
