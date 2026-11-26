@@ -52,8 +52,6 @@ jobs:
       - name: Remove build leftovers
         run: |
           rm -rf temp/cache/* node_modules
-          # webroot must not ship dev files
-          rm -f public/info.php
 
       - name: Write config/.env from secrets
         shell: bash
